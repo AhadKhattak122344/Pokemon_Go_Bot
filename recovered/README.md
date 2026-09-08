@@ -1,7 +1,8 @@
-# RegiBot: restored Android project
+# Archived RegiBot recovery notes
 
-This is the working source project. Open this directory in Android Studio, or use
-the PowerShell scripts in `../tools/`. See `../START-HERE.md` for exact commands.
+The reconstructed Android app and its model binaries were removed from the project.
+This directory remains only as recovery provenance for the original flat notes.
+It is not an Android Studio project and is not used by the emulator tooling.
 
 ## Build status
 

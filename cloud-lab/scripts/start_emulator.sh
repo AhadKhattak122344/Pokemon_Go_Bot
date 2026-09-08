@@ -32,6 +32,4 @@ for attempt in 1 2; do
     emulator_pid=''
     if [[ "$attempt" == 2 ]]; then echo 'Both cold boots failed' >&2; exit 1; fi
 done
-adb -s emulator-5554 install -r /opt/regibot.apk
-adb -s emulator-5554 shell am start -W -n com.juancavr6.regibot/.MainActivity
 wait "$emulator_pid"

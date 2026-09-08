@@ -1,17 +1,16 @@
 # Emulator root controls and review of the supplied implementation
 
-The working implementation is `orchestrator/root.py`, exposed through `lab root`
-and the Windows wrapper `../../tools/Root-Emulator.ps1`.
+The working implementation is `orchestrator/root.py`, exposed through `lab root`.
+The Windows Android 14 profile is started and verified with
+`../../tools/Start-Emulator.ps1` and `../../tools/Test-Emulator.ps1`.
 
 ## Commands
 
-From the workspace root on this machine:
+From the workspace root on Windows:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools/Root-Emulator.ps1 -Action status
-powershell -ExecutionPolicy Bypass -File tools/Root-Emulator.ps1 -Action enable
-powershell -ExecutionPolicy Bypass -File tools/Root-Emulator.ps1 -Action disable
-powershell -ExecutionPolicy Bypass -File tools/Root-Emulator.ps1 -Action self-test
+powershell -ExecutionPolicy Bypass -File tools/Start-Emulator.ps1 -Profile Rooted
+powershell -ExecutionPolicy Bypass -File tools/Test-Emulator.ps1 -Profile Rooted
 ```
 
 With the Python package installed, from `cloud-lab/`:
@@ -41,7 +40,7 @@ An unavailable probe is reported as unknown, not as a successful negative result
 
 ## Verification on the current emulator
 
-On API 30 x86, `userdebug`, the self-test observed:
+On Android 14 / API 34 x86_64, `userdebug`, live verification observed:
 
 | Stage | ADB UID | SELinux |
 | --- | --- | --- |
@@ -56,8 +55,8 @@ At the initial debug-root verification, no Magisk executable was found in PATH.
 
 ## Magisk installation (2026-09-08)
 
-The separate `tools/Install-Magisk.ps1` wrapper now applies the official Magisk
-v30.7 temporary AVD setup to the project's API 30 x86 emulator. It validates the
+The separate `tools/Install-Magisk.ps1` wrapper applies the official Magisk
+v30.7 temporary AVD setup to the project's API 34 x86_64 emulator. It validates the
 downloaded APK and upstream `build.py` / `live_setup.sh` hashes before execution,
 checks emulator capabilities, enables ADB root, and invokes upstream `setup_avd()`.
 The required local downloads are under `.tools/`; this is not a download bootstrap.
@@ -69,12 +68,8 @@ app displayed installed version `30.7 (30700)` for both core and app. Evidence:
 
 This setup briefly restarts Android's app processes. Its runtime is lost after an
 emulator reboot; re-run the wrapper to restore it. It does not patch the boot image.
-The upstream script emits missing `magisk32` copy warnings on this 32-bit guest;
-the primary x86 binary and daemon were verified successfully afterward.
-
-The existing Android app's computer-vision implementation remains the non-root path.
-Its native model inference and launch were already tested separately. These root controls
-do not add OCR, new gesture planning, or a hybrid automation policy to the app.
+The upstream script emits missing `magisk32` copy warnings because this guest exposes
+only the 64-bit runtime; the primary x86_64 binary and daemon were verified afterward.
 
 ## Problems in the supplied code
 

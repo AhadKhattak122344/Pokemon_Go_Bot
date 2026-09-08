@@ -1,8 +1,7 @@
-# Optional Linux emulator harness for RegiBot
+# Optional Linux Android emulator harness
 
-The original app build is the primary deliverable in `../recovered`.
-This harness adapts the useful container, ADB, and deterministic route concepts from
-the supplied reference files to that app. It is not the full QA-platform specification.
+This harness provides container, ADB, and deterministic route utilities for
+user-supplied APKs. It is not a fleet-provisioning or device-identity system.
 
 **Validation:** Python unit tests pass and the launch checker ran against the local
 Windows emulator. Docker is absent on the development machine, so Docker image build
@@ -10,8 +9,8 @@ and Linux emulator boot remain unverified.
 
 Use a Linux **x86_64** Ubuntu 22.04/24.04 host with Docker Engine, Docker Compose v2,
 GNU Make, at least 4 vCPU, 8 GB RAM, and approximately 20 GB free SSD space.
-The emulator uses the official **API 30 Google APIs x86** image to match the original
-app's MediaPipe ABI. ARM cloud hosts are not supported by this harness.
+The emulator uses the official **Android 14 / API 34 Google APIs x86_64** image.
+ARM cloud hosts are not supported by this harness.
 
 ```sh
 cd cloud-lab
@@ -30,8 +29,8 @@ make PROFILE=nested-virt smoke
 make PROFILE=nested-virt down
 ```
 
-The emulator image builds the original app, bundles its APK, then installs and
-launches it after boot. A failed cold boot is retried once. SIGTERM stops owned
+The emulator starts without a bundled application. Install a user-supplied APK with
+the CLI after boot. A failed cold boot is retried once. SIGTERM stops owned
 emulator/relay processes. No privileged container or Docker socket mount is required.
 
 Ports 5037 (ADB server) and 5555 (guest ADB relay) bind to host loopback only.
@@ -75,15 +74,13 @@ mock-provider APK or claim that an arbitrary app consumed the fix.
 
 ## Build reproducibility and scope
 
-Gradle 8.9, Android plugin 8.7.3, command-line-tools build 11076708, compile API 35,
-build-tools 34.0.0, and direct Python dependencies are pinned. SDK manager's emulator,
-platform-tools, and API 30 image revisions and OS package updates may change upstream;
+Command-line-tools build 11076708 and direct Python dependencies are pinned. SDK
+manager's emulator, platform-tools, Android 14 image revisions, and OS package updates may change upstream;
 archive built image digests for reproducible CI. This is not a fully immutable SDK lock.
 
-The reference files contained missing modules/APKs, incompatible native architectures,
-an unbounded boot wait, and configuration for services that were not supplied.
-This harness does not depend on those stubs. noVNC, infrastructure provisioning, managed
-PaaS integration, attestation modules, and external backend automation are not implemented.
+The reference notes describe components that are not supplied by this repository.
+noVNC, infrastructure provisioning, managed PaaS integration, identity spoofing,
+attestation bypasses, and external backend automation are not implemented.
 
 Official references: [emulator architecture and acceleration](https://developer.android.com/studio/run/emulator-acceleration),
 [emulator CLI](https://developer.android.com/studio/run/emulator-commandline),

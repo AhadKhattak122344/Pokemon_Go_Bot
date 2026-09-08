@@ -22,6 +22,7 @@ these paths (create the directories first):
 | `.tools/magisk-source/scripts/live_setup.sh` | https://raw.githubusercontent.com/topjohnwu/Magisk/v30.7/scripts/live_setup.sh |
 
 `tools/install_magisk.py` verifies the SHA-256 of all three files before use.
-Run `tools/Install-Magisk.ps1` only after starting the project's API 30 x86
-emulator. The installation is temporary and must be reapplied after reboot.
+Run `tools/Install-Magisk.ps1` only with the project's Android 14 x86_64
+`baseline-rooted` Google APIs emulator. The Google Play `baseline` profile does not
+support ADB root. The installation is temporary and must be reapplied after reboot.
 Downloaded tools and local emulator state are intentionally not committed.

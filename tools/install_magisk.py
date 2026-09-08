@@ -33,8 +33,8 @@ for name, expected in {
 
 if shell('getprop', 'ro.kernel.qemu') != '1' or shell('getprop', 'ro.debuggable') != '1':
     raise SystemExit('Only a debuggable Android emulator is supported.')
-if shell('getprop', 'ro.build.version.sdk') != '30' or shell('getprop', 'ro.product.cpu.abi') != 'x86':
-    raise SystemExit('This wrapper is verified only for the project API 30 x86 emulator.')
+if shell('getprop', 'ro.build.version.sdk') != '34' or shell('getprop', 'ro.product.cpu.abi') != 'x86_64':
+    raise SystemExit('This wrapper is verified only for the project API 34 x86_64 Google APIs emulator.')
 if shell('getenforce') == 'Disabled':
     raise SystemExit('The official setup requires SELinux enabled.')
 if shell('id', '-u') != '0':

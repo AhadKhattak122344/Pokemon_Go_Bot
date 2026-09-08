@@ -22,6 +22,12 @@ $ErrorActionPreference = 'Continue'
 1..80 | ForEach-Object { 'y' } | & "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager.bat" --licenses
 if ($LASTEXITCODE -ne 0) { throw 'SDK license setup failed' }
 $packages = @('platform-tools','platforms;android-35','build-tools;34.0.0')
-if ($WithEmulator) { $packages += @('emulator','system-images;android-30;google_apis;x86') }
+if ($WithEmulator) {
+    $packages += @(
+        'emulator',
+        'system-images;android-34;google_apis_playstore;x86_64',
+        'system-images;android-34;google_apis;x86_64'
+    )
+}
 & "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager.bat" @packages
 if ($LASTEXITCODE -ne 0) { throw 'SDK package installation failed' }

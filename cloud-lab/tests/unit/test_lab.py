@@ -47,7 +47,7 @@ def test_empty_route_is_rejected(tmp_path):
 
 def test_other_app_component_is_rejected():
     with pytest.raises(ValueError):
-        component('com.other.app/.MainActivity', 'com.juancavr6.regibot')
+        component('com.other.app/.MainActivity', 'com.example.app')
 
 
 def test_failed_launch_still_writes_report(tmp_path):

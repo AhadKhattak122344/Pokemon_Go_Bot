@@ -64,7 +64,7 @@ def smoke(adb: Adb, cfg: dict, out: Path) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description='Build/test harness for the recovered Android app')
+    parser = argparse.ArgumentParser(description='Android emulator QA harness')
     parser.add_argument('--config', type=Path, default=Path('config/default.yaml'))
     commands = parser.add_subparsers(dest='command', required=True)
     for name in ('up', 'down', 'status', 'smoke'):

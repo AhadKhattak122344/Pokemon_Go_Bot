@@ -8,13 +8,13 @@ adb:
   server: tcp:127.0.0.1:5037
   timeout_s: 30
 emulator:
-  api: 30
-  avd: regibot_api30
+  api: 34
+  avd: baseline
   boot_timeout_s: 600
 app:
-  package: com.juancavr6.regibot
-  activity: com.juancavr6.regibot/.MainActivity
-  ready_activity: com.juancavr6.regibot/.NavigationActivity
+  package: com.example.app
+  activity: com.example.app/.MainActivity
+  ready_activity: null
   instrumentation: null
   reset_app_data: false
   permissions: []
