@@ -1,0 +1,32 @@
+services:
+  emulator:
+    build:
+      context: ..
+      dockerfile: cloud-lab/Dockerfile.emulator
+      target: emulator
+    platform: linux/amd64
+    init: true
+    environment:
+      EMULATOR_ACCEL: 'off'
+      EMULATOR_GPU: ${EMULATOR_GPU:-swiftshader_indirect}
+      BOOT_TIMEOUT: '900'
+    ports:
+      - '127.0.0.1:5037:5037'
+      - '127.0.0.1:5555:5559'
+    volumes:
+      - ./artifacts:/artifacts
+    shm_size: 2gb
+    stop_grace_period: 30s
+  lab:
+    build:
+      context: ..
+      dockerfile: cloud-lab/Dockerfile.emulator
+      target: orchestrator
+    environment:
+      ADB_SERVER_SOCKET: tcp:emulator:5037
+    volumes:
+      - ./artifacts:/lab/artifacts
+      - ./apks:/lab/apks:ro
+    depends_on:
+      emulator:
+        condition: service_healthy

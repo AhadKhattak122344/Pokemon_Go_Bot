@@ -1,0 +1,12 @@
+*
+!recovered
+!recovered/**
+!cloud-lab
+!cloud-lab/**
+recovered/.gradle
+recovered/app/build
+recovered/local.properties
+cloud-lab/artifacts
+cloud-lab/.venv
+**/__pycache__
+**/.pytest_cache

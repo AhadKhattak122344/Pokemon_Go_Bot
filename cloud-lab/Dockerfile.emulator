@@ -1,0 +1,42 @@
+FROM eclipse-temurin:17-jdk-jammy AS sdk
+ARG TARGETARCH
+RUN test "$TARGETARCH" = amd64 || (echo 'This original app requires the Linux amd64/x86 emulator profile.' && exit 1)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl unzip ca-certificates libglib2.0-0 libnss3 libx11-6 libxcb1 libxcomposite1 \
+    libxcursor1 libxi6 libxtst6 libasound2 libpulse0 libdbus-1-3 libgl1 libvulkan1 socat \
+    && rm -rf /var/lib/apt/lists/*
+ENV ANDROID_HOME=/opt/android-sdk ANDROID_SDK_ROOT=/opt/android-sdk
+ENV PATH="/opt/android-sdk/cmdline-tools/latest/bin:/opt/android-sdk/platform-tools:/opt/android-sdk/emulator:${PATH}"
+ARG SDK_TOOLS=11076708
+RUN mkdir -p "$ANDROID_HOME/cmdline-tools" \
+    && curl --fail --location --retry 3 "https://dl.google.com/android/repository/commandlinetools-linux-${SDK_TOOLS}_latest.zip" -o /tmp/sdk.zip \
+    && unzip -q /tmp/sdk.zip -d "$ANDROID_HOME/cmdline-tools" \
+    && mv "$ANDROID_HOME/cmdline-tools/cmdline-tools" "$ANDROID_HOME/cmdline-tools/latest" \
+    && rm /tmp/sdk.zip
+RUN yes | sdkmanager --licenses >/dev/null
+RUN sdkmanager 'platform-tools' 'platforms;android-35' 'build-tools;34.0.0'
+
+FROM sdk AS app-build
+WORKDIR /project
+COPY recovered/ .
+RUN bash ./gradlew --no-daemon :app:assembleDebug :app:testDebugUnitTest :app:lintDebug
+
+FROM sdk AS emulator
+RUN sdkmanager 'emulator' 'system-images;android-30;google_apis;x86' \
+    && echo no | avdmanager create avd --name regibot_api30 --package 'system-images;android-30;google_apis;x86' --device pixel_4
+COPY --from=app-build /project/app/build/outputs/apk/debug/app-debug.apk /opt/regibot.apk
+COPY cloud-lab/scripts/ /opt/lab/scripts/
+RUN chmod +x /opt/lab/scripts/*.sh
+ENV AVD_NAME=regibot_api30 EMULATOR_ACCEL=off EMULATOR_GPU=swiftshader_indirect BOOT_TIMEOUT=900
+EXPOSE 5037 5559
+HEALTHCHECK --interval=15s --timeout=10s --start-period=900s --retries=3 \
+    CMD adb -s emulator-5554 get-state | grep -qx device && test "$(adb -s emulator-5554 shell getprop sys.boot_completed | tr -d '\r')" = 1
+ENTRYPOINT ["/opt/lab/scripts/start_emulator.sh"]
+
+FROM python:3.12.10-slim-bookworm AS orchestrator
+COPY --from=sdk /opt/android-sdk/platform-tools/ /opt/platform-tools/
+ENV PATH="/opt/platform-tools:${PATH}"
+WORKDIR /lab
+COPY cloud-lab/ .
+RUN pip install --no-cache-dir '.[test]'
+ENTRYPOINT ["lab"]

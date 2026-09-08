@@ -1,0 +1,6 @@
+services:
+  emulator:
+    devices:
+      - /dev/kvm:/dev/kvm
+    environment:
+      EMULATOR_ACCEL: 'on'

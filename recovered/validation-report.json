@@ -1,0 +1,12 @@
+﻿{
+    "StructuralErrors":  [
+
+                         ],
+    "UnresolvedResourceReferences":  [
+
+                                     ],
+    "MissingModelAssets":  [
+
+                           ],
+    "Note":  "Static recovery audit, not an Android compile or runtime test. Framework/library references may need manual review."
+}

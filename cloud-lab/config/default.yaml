@@ -1,0 +1,26 @@
+profile: cheap-cloud
+profiles:
+  cheap-cloud: {accel: 'off', gpu: swiftshader_indirect}
+  nested-virt: {accel: 'on', gpu: swiftshader_indirect}
+adb:
+  executable: adb
+  serial: emulator-5554
+  server: tcp:127.0.0.1:5037
+  timeout_s: 30
+emulator:
+  api: 30
+  avd: regibot_api30
+  boot_timeout_s: 600
+app:
+  package: com.juancavr6.regibot
+  activity: com.juancavr6.regibot/.MainActivity
+  ready_activity: com.juancavr6.regibot/.NavigationActivity
+  instrumentation: null
+  reset_app_data: false
+  permissions: []
+location:
+  backend: geo
+  lat: 40.758
+  lon: -73.985
+  accuracy: 8
+artifacts: artifacts

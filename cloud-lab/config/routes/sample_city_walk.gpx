@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="android-cloud-lab" xmlns="http://www.topografix.com/GPX/1/1">
+  <trk><name>Deterministic QA route</name><trkseg>
+    <trkpt lat="40.758000" lon="-73.985000"><ele>12</ele></trkpt>
+    <trkpt lat="40.758050" lon="-73.984950"><ele>12</ele></trkpt>
+    <trkpt lat="40.758100" lon="-73.984900"><ele>13</ele></trkpt>
+  </trkseg></trk>
+</gpx>
