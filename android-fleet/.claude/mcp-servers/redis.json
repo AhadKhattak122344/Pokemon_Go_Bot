@@ -1,0 +1,34 @@
+{
+  "name": "redis-mcp",
+  "type": "cache",
+  "description": "Redis cache and task queue for Android fleet orchestration",
+  "connection": {
+    "host": "${REDIS_HOST:-localhost}",
+    "port": 6379,
+    "password": "${REDIS_PASSWORD}",
+    "db": 0
+  },
+  "operations": [
+    "get",
+    "set",
+    "delete",
+    "queue",
+    "pubsub"
+  ],
+  "key_patterns": {
+    "instance_status": "instance:{id}:status",
+    "running_instances": "instances:running",
+    "task_queue": "task:queue",
+    "task_results": "task:results",
+    "instance_config": "instance:{id}:config",
+    "instance_lock": "instance:{id}:lock"
+  },
+  "queues": [
+    "task:queue",
+    "task:results"
+  ],
+  "channels": [
+    "fleet:events",
+    "instance:updates"
+  ]
+}

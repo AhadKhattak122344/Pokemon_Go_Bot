@@ -1,0 +1,39 @@
+---
+name: pre-edit
+description: Pre-edit hook to validate code before saving files
+triggers:
+  - file-save
+  - commit
+checks:
+  - name: lint-python
+    command: "flake8 python/ --max-line-length=120 --ignore=E501,W503"
+    description: "Python linting with flake8"
+    required: true
+  - name: type-check-python
+    command: "mypy python/ --ignore-missing-imports"
+    description: "Python type checking with mypy"
+    required: true
+  - name: format-python
+    command: "black python/ --check --diff"
+    description: "Python formatting with black"
+    required: false
+  - name: lint-kotlin
+    command: "ktlint kotlin/"
+    description: "Kotlin linting with ktlint"
+    required: false
+  - name: test-unit
+    command: "pytest python/tests/unit -v"
+    description: "Run unit tests"
+    required: true
+  - name: security-scan
+    command: "bandit -r python/ -ll"
+    description: "Security scanning with bandit"
+    required: false
+on_failure: |
+  ⚠️ Pre-edit checks failed! Please fix the following issues:
+  
+  {failed_checks}
+  
+  You can skip this hook with --no-verify flag (not recommended)
+on_success: |
+  ✅ All pre-edit checks passed!

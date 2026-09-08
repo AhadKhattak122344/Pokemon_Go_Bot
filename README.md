@@ -16,6 +16,20 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/Start-Emulator.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/Test-App.ps1
 ```
 
+**Alternative: Deploy Docker Emulator Directly**
+
+If you have Docker Desktop installed and want to skip the full build setup:
+
+```powershell
+cd Pokemon_Go_Bot\cloud-lab
+docker compose build
+docker compose up -d --wait --wait-timeout 1900 emulator
+docker compose run --rm lab smoke
+docker compose down
+```
+
+See [cloud-lab/WINDOWS_DEPLOYMENT.md](cloud-lab/WINDOWS_DEPLOYMENT.md) for complete step-by-step Windows instructions with troubleshooting.
+
 Bootstrap downloads JDK 17 and the Android SDK and accepts SDK licenses. Allow
 several GB of disk space and internet access for SDK and Gradle dependencies.
 The build creates `artifacts/RegiBot-debug.apk` and runs JVM tests and Android lint.

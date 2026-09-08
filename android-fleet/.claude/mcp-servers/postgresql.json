@@ -1,0 +1,33 @@
+{
+  "name": "postgresql-mcp",
+  "type": "database",
+  "description": "PostgreSQL database connection for Android fleet state management",
+  "connection": {
+    "host": "${POSTGRES_HOST:-localhost}",
+    "port": 5432,
+    "database": "android_fleet",
+    "user": "${POSTGRES_USER:-android_fleet}",
+    "password": "${POSTGRES_PASSWORD}",
+    "ssl": false
+  },
+  "operations": [
+    "query",
+    "insert",
+    "update",
+    "delete",
+    "transaction"
+  ],
+  "tables": [
+    "instances",
+    "identity_profiles",
+    "task_history",
+    "account_vault"
+  ],
+  "queries": {
+    "get_instance": "SELECT * FROM instances WHERE vm_id = $1",
+    "get_all_instances": "SELECT * FROM instances ORDER BY created_at DESC",
+    "get_identity": "SELECT * FROM identity_profiles WHERE instance_id = $1",
+    "get_failed_instances": "SELECT * FROM instances WHERE status = 'failed'",
+    "count_running": "SELECT COUNT(*) FROM instances WHERE status = 'running'"
+  }
+}

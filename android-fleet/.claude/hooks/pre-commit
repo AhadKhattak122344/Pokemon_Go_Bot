@@ -1,0 +1,40 @@
+---
+name: pre-commit
+description: Pre-commit hook to validate entire codebase before git commit
+triggers:
+  - git-commit
+checks:
+  - name: test-python-unit
+    command: "pytest python/tests/unit -v --tb=short"
+    description: "Run Python unit tests"
+    required: true
+  - name: test-integration
+    command: "pytest python/tests/integration -v --tb=short"
+    description: "Run integration tests (requires staging Proxmox)"
+    required: false
+  - name: proxmox-check
+    command: "python scripts/validate_proxmox_config.py"
+    description: "Validate Proxmox configuration"
+    required: false
+  - name: lint-all
+    command: "flake8 python/ --max-line-length=120 && black python/ --check"
+    description: "Lint all Python code"
+    required: true
+  - name: database-schema-check
+    command: "python scripts/validate_schema.py"
+    description: "Validate database schema migrations"
+    required: true
+on_failure: |
+  ❌ Pre-commit checks failed! Commit blocked.
+  
+  Failed Checks:
+  {failed_checks}
+  
+  Please fix these issues before committing:
+  1. Run failing tests locally: {test_command}
+  2. Fix linting errors: black python/ && flake8 python/
+  3. Re-run checks before committing
+  
+  You can skip with: git commit --no-verify (NOT RECOMMENDED)
+on_success: |
+  ✅ All pre-commit checks passed! Ready to commit.

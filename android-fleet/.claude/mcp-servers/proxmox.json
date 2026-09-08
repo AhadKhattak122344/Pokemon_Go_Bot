@@ -1,0 +1,43 @@
+{
+  "name": "proxmox-mcp",
+  "type": "api",
+  "description": "Proxmox VE REST API for Android VM lifecycle management",
+  "connection": {
+    "host": "${PROXMOX_HOST}",
+    "port": 8006,
+    "user": "${PROXMOX_USER:-root@pam}",
+    "password": "${PROXMOX_PASSWORD}",
+    "realm": "pam",
+    "verify_ssl": false
+  },
+  "operations": [
+    "clone_vm",
+    "start_vm",
+    "stop_vm",
+    "destroy_vm",
+    "get_status",
+    "list_vms",
+    "get_config",
+    "set_config"
+  ],
+  "endpoints": {
+    "authenticate": "POST /api2/json/access/ticket",
+    "clone_vm": "POST /api2/json/nodes/{node}/qemu/{vmid}/clone",
+    "start_vm": "POST /api2/json/nodes/{node}/qemu/{vmid}/status/start",
+    "stop_vm": "POST /api2/json/nodes/{node}/qemu/{vmid}/status/stop",
+    "destroy_vm": "DELETE /api2/json/nodes/{node}/qemu/{vmid}",
+    "get_status": "GET /api2/json/nodes/{node}/qemu/{vmid}/status/current",
+    "list_vms": "GET /api2/json/nodes/{node}/qemu",
+    "get_config": "GET /api2/json/nodes/{node}/qemu/{vmid}/config",
+    "set_config": "POST /api2/json/nodes/{node}/qemu/{vmid}/config"
+  },
+  "templates": {
+    "bliss_os": 9000
+  },
+  "defaults": {
+    "node": "proxmox",
+    "cpu_cores": 4,
+    "ram_mb": 8192,
+    "disk_gb": 64
+  }
+}
