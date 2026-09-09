@@ -13,11 +13,11 @@ cleanup() {
 trap cleanup EXIT
 trap 'exit 143' TERM
 trap 'exit 130' INT
-if [[ "$EMULATOR_ACCEL" == on && ! -r /dev/kvm ]]; then
+if [[ "$EMULATOR_ACCEL" == on && ( ! -r /dev/kvm || ! -w /dev/kvm ) ]]; then
     echo 'KVM profile requires a usable /dev/kvm' >&2
     exit 1
 fi
-adb -L tcp:0.0.0.0:5037 start-server
+adb -a -P 5037 start-server
 # The emulator binds guest ADB to loopback. Forward a separate container port.
 socat TCP-LISTEN:5559,bind=0.0.0.0,reuseaddr,fork TCP:127.0.0.1:5555 &
 relay_pid=$!
@@ -26,7 +26,7 @@ for attempt in 1 2; do
         -gpu "$EMULATOR_GPU" -accel "$EMULATOR_ACCEL" -memory 4096 -cores 4 \
         >>/artifacts/emulator.log 2>&1 &
     emulator_pid=$!
-    if /opt/lab/scripts/wait_for_adb.sh "$BOOT_TIMEOUT"; then break; fi
+    if /opt/lab/scripts/wait_for_adb.sh "$BOOT_TIMEOUT" "$emulator_pid"; then break; fi
     kill "$emulator_pid" 2>/dev/null || true
     wait "$emulator_pid" 2>/dev/null || true
     emulator_pid=''

@@ -1,67 +1,59 @@
-# Android 14 emulator setup
+# Start here
 
-## Install the toolchain
-
-From PowerShell in the repository root:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/Bootstrap-Android.ps1 -WithEmulator
-```
-
-Bootstrap downloads a checksum-verified Temurin JDK 17, Android command-line tools,
-platform tools, the Android emulator, and two Android 14 x86_64 images. It accepts
-the Android SDK licenses for this local toolchain and does not change the machine's
-persistent `PATH` or `JAVA_HOME`.
-
-## Google Play profile
+Run these commands from the repository root in PowerShell. Install Python 3.11+
+and uv first.
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/Start-Emulator.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/Test-Emulator.ps1
+uv sync --extra test
+uv run lab --help
+uv run pytest -p no:cacheprovider
 ```
 
-This starts `baseline` on port 5554 with the Android 14 Google Play image. The live
-test verifies boot completion, API 34, x86_64, Google Play services, the Play Store,
-and the expected non-rooted ADB state. Sign in through the emulator UI before
-installing apps tied to a Google account.
-
-## Rooted profile
-
-Stop the Play profile before starting the rooted one:
+Prepare the repo-local SDK only if needed. Bootstrap accepts the Android SDK
+licenses and downloads the selected platform tools/images. Existing AVDs are not
+recreated by startup. Do not replace the known rooted API 34 image to investigate
+an unrelated crash.
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/Stop-Emulator.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/Start-Emulator.ps1 -Profile Rooted
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/Test-Emulator.ps1 -Profile Rooted
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Bootstrap-Android.ps1 -WithEmulator
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Start-Emulator.ps1 -Profile Api36
 ```
 
-This starts `baseline-rooted` on port 5554 using the Android 14 Google APIs image.
-The startup enables ADB root, applies the checksum-pinned Magisk 30.7 temporary AVD
-runtime, and installs the Magisk manager. The live test verifies UID 0, Magisk, Play
-services, API level, ABI, and boot state. See `tools/OPTIONAL-SETUP.md` for the three
-upstream Magisk files required by a fresh checkout.
-
-The Magisk runtime is temporary and is reapplied by the start script after a reboot.
-The rooted profile does not include the Google Play Store image. Google documents
-that Play Store images cannot use ADB root, so the two profiles serve different test
-purposes.
-
-## Install and launch your own APK
+Load ADB into the **current** PowerShell process, then inspect the clean API 36 AVD:
 
 ```powershell
-. tools/Android-Environment.ps1
-& "$env:ANDROID_HOME/platform-tools/adb.exe" -s emulator-5554 install -r C:\path\to\app.apk
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+. ./tools/windows/Android-Environment.ps1
+uv run lab --config cloud-lab/config/api36.yaml status
+uv run lab --config cloud-lab/config/api36.yaml diagnostics
 ```
 
-Use the app's real package and activity with `adb shell am start` when you want to
-launch it. The repository intentionally includes no application APK, source, models,
-account credentials, identity-spoofing configuration, or integrity-bypass modules.
+Each capture gets a new directory under `artifacts/`. To investigate an authorized
+app's sign-in failure, reproduce it manually once, then collect diagnostics with
+`--package com.example.app` replaced by its real package. No account switching,
+root installation or automated sign-in is performed.
 
-## Stop the emulator
+For your own test APK, copy `cloud-lab/config/api36.yaml` to a local YAML file and
+set its real `app.package`, `app.activity`, and optional `ready_activity`:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/Stop-Emulator.ps1
+uv run lab --config cloud-lab/config/api36.yaml install --apk C:/path/to/your-app.apk
+uv run lab --config cloud-lab/config/local-app.yaml smoke
 ```
 
-The stop script waits until port 5554 is released so the other profile can start
-without a race.
+The example package is a configuration placeholder, not a supplied app. `smoke`
+clears logcat for its launch check; use `diagnostics` first when preserving a
+pre-existing failure. Stop the selected AVD when finished:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Stop-Emulator.ps1 -Profile Api36
+```
+
+To prepare Proxmox without a host:
+
+```powershell
+uv run lab proxmox plan --config cloud-lab/config/proxmox.example.json
+```
+
+Continue with [the deployment guide](docs/PROXMOX-VM-PREP.md) when a host is available.
+For Windows Temp errors and the full layout, see [README.md](README.md).

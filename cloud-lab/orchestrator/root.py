@@ -46,7 +46,7 @@ class RootManager:
         def optional(label: str, *args: str) -> str | None:
             try:
                 return self.adb.shell(*args, timeout=5) or None
-            except subprocess.SubprocessError:
+            except (subprocess.SubprocessError, RuntimeError, TimeoutError):
                 observations.append(f'{label} unavailable to this ADB session')
                 return None
 
@@ -93,7 +93,7 @@ class RootManager:
                         return {'changed': True, 'response': response,
                                 'before': before.to_dict(), 'after': after.to_dict()}
                 last_error = f'Expected UID {wanted_uid}, observed UID {uid}'
-            except (subprocess.SubprocessError, ValueError) as exc:
+            except (subprocess.SubprocessError, ValueError, RuntimeError, TimeoutError) as exc:
                 last_error = str(exc)
             time.sleep(max(0, min(0.5, deadline - time.monotonic())))
         raise TimeoutError(f'{action} did not reach UID {wanted_uid}: {last_error}')

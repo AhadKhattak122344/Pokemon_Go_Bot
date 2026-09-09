@@ -1,90 +1,83 @@
-# Optional Linux Android emulator harness
+# Python Android QA component
 
-This harness provides container, ADB, and deterministic route utilities for
-user-supplied APKs. It is not a fleet-provisioning or device-identity system.
+This component supplies the single installed `lab` CLI. Prefer the root uv
+workspace commands in [../START-HERE.md](../START-HERE.md); `uv sync --extra test`
+and `uv run lab --help` also work from this directory.
 
-**Validation:** Python unit tests pass and the launch checker ran against the local
-Windows emulator. Docker is absent on the development machine, so Docker image build
-and Linux emulator boot remain unverified.
+## CLI
 
-Use a Linux **x86_64** Ubuntu 22.04/24.04 host with Docker Engine, Docker Compose v2,
-GNU Make, at least 4 vCPU, 8 GB RAM, and approximately 20 GB free SSD space.
-The emulator uses the official **Android 14 / API 34 Google APIs x86_64** image.
-ARM cloud hosts are not supported by this harness.
+`up`, `down` manage the optional Linux Docker emulator. `status` checks selected
+ADB transport, Android boot and package-manager readiness. `connect` connects a
+configured TCP serial and verifies authorization. `install --apk FILE` installs a
+user-supplied APK. `smoke` launches the configured component and saves evidence.
+`diagnostics` saves read-only device state/logs/screenshots without clearing logs.
+`root {status,enable,disable,self-test}` controls debug ADB privileges explicitly.
+`location {set,follow}` uses emulator geo controls for apps you are authorized to test.
+`proxmox {plan,preflight,deploy}` manages the prepared-template workflow.
+
+Global `--config YAML` precedes the command. Proxmox has its own JSON `--config`
+after the command. Defaults are `config/default.yaml` in a source checkout or its
+packaged counterpart in an installed wheel. These copies are compared by tests.
+`LAB_SERIAL`, `ADB_SERVER_SOCKET`, and `LAB_ARTIFACTS` override connection/output
+values; `LAB_PROFILE` selects the Docker accelerator profile. Values are validated.
+For API 36 use `--config config/api36.yaml`; the default API 34 config is retained
+for the Linux image. Package/activity fields must describe your real test app.
+
+Diagnostics can contain account data and remain in ignored artifact directories.
+A smoke test clears logcat, launches the configured activity and checks foreground
+state/crash evidence; it is not a sign-in test. Collect diagnostics first when
+preserving an existing failure. APKs, account credentials, web APIs, databases and
+job queues are not bundled.
+
+## Optional Linux runtime
+
+Use a Linux x86_64 host with Docker Engine/Compose v2, at least 4 vCPU, 8 GiB RAM,
+SSD storage and real `/dev/kvm` access. Windows-native AVDs are the local path.
+Do not rerun the handoff's known software-emulated Windows/WSL experiment.
+
+From `cloud-lab/` on the intended Linux host:
 
 ```sh
-cd cloud-lab
 make build
-make up
-make smoke
-make down
-```
-
-The default profile uses software rendering and `-accel off`. Expect slow boot and
-inference on ordinary cloud VMs. When the host actually exposes working `/dev/kvm`:
-
-```sh
 make PROFILE=nested-virt up
-make PROFILE=nested-virt smoke
+uv run lab status
+uv run lab install --apk apks/your-app.apk
+uv run lab smoke
 make PROFILE=nested-virt down
 ```
 
-The emulator starts without a bundled application. Install a user-supplied APK with
-the CLI after boot. A failed cold boot is retried once. SIGTERM stops owned
-emulator/relay processes. No privileged container or Docker socket mount is required.
+Configure the app before `smoke`. The image is Google APIs Android 14/API 34
+x86_64 and does not bundle Play Store. The KVM override mounts `/dev/kvm`.
+The retained `cheap-cloud` software-emulation profile is explicitly slow and does
+not acquire acceleration by installing Docker. No local Docker boot was repeated
+in this migration.
 
-Ports 5037 (ADB server) and 5555 (guest ADB relay) bind to host loopback only.
-The Python container talks to the internal ADB server and uses the exact platform-tools
-binary copied from the SDK build stage. Do not expose these ports to the internet.
-Use an SSH tunnel for access from another machine.
-
-Optional Python CLI on the host (`python3.11+`, platform-tools on PATH):
-
-```sh
-python3 -m venv .venv
-. .venv/bin/activate
-pip install -e '.[test]'
-lab up
-lab status
-lab install --apk apks/your-app.apk
-lab smoke
-lab down
-```
-
-Set `LAB_PROFILE=nested-virt` for the CLI's KVM profile. Configuration defaults to
-`config/default.yaml`; `--config` accepts another file. Configure your package,
-launcher activity, and optional expected ready activity when testing a different app.
-`ADB_SERVER_SOCKET`, `LAB_SERIAL`, and `LAB_ARTIFACTS` override connection/output values.
-
-The smoke test launches only the configured app, waits for its ready activity, checks
-the crash buffer, and writes a screenshot, logcat, dumpsys location, metadata, and JUnit
-XML under a unique `artifacts/` run directory. A failed check exits nonzero. This is
-an app-launch test, not a GPS-consumption or game-operation test.
-
-For location-aware apps you control, optional deterministic emulator GPS utilities:
+Compose binds ADB ports to loopback. The internal daemon starts with
+`adb -a -P 5037 start-server`. Container startup owns two bounded cold-boot attempts;
+the CLI waits for their combined health window. It does not add another retry loop.
+Container `COPY` paths are relative to the root build context and exclude `archive/`.
 
 ```sh
-lab location set --lat 40.758 --lon -73.985
-lab location follow --gpx config/routes/sample_city_walk.gpx --speed-mps 1.4
+uv run lab location set --lat 40.758 --lon -73.985
+uv run lab location follow --gpx config/routes/sample_city_walk.gpx --speed-mps 1.4
 ```
 
-These use the emulator's `geo fix` API, validate coordinates, interpolate a finite
-route at the selected speed, and write a CSV trace. They do not include a companion
-mock-provider APK or claim that an arbitrary app consumed the fix.
+These APIs do not prove an arbitrary app consumed a location fix. Root controls
+are documented in [docs/ROOT-CONTROLS.md](docs/ROOT-CONTROLS.md). Proxmox operation
+is documented in [../docs/PROXMOX-VM-PREP.md](../docs/PROXMOX-VM-PREP.md).
 
-## Build reproducibility and scope
+## Build and test
 
-Command-line-tools build 11076708 and direct Python dependencies are pinned. SDK
-manager's emulator, platform-tools, Android 14 image revisions, and OS package updates may change upstream;
-archive built image digests for reproducible CI. This is not a fully immutable SDK lock.
+From the repository root:
 
-The reference notes describe components that are not supplied by this repository.
-noVNC, infrastructure provisioning, managed PaaS integration, identity spoofing,
-attestation bypasses, and external backend automation are not implemented.
+```sh
+uv sync --extra test
+uv run pytest -p no:cacheprovider
+uv build --package android-cloud-lab
+```
 
-Official references: [emulator architecture and acceleration](https://developer.android.com/studio/run/emulator-acceleration),
-[emulator CLI](https://developer.android.com/studio/run/emulator-commandline),
-[SDK manager](https://developer.android.com/tools/sdkmanager).
-
-For explicit emulator debug-root operations and a review of the root-management
-reference code, see [ROOT-CONTROLS.md](docs/ROOT-CONTROLS.md).
+The wheel contains `orchestrator` and its default scenario. Docker lifecycle
+commands require a source checkout containing Compose files; device and Proxmox
+commands work from the installed wheel. All external unit-test dependencies are
+mocked. Docker image build and live guest/Proxmox checks are separate integration
+work, never inferred from this test suite.

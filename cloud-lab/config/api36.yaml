@@ -1,0 +1,20 @@
+profile: cheap-cloud
+profiles:
+  cheap-cloud: {accel: 'off', gpu: swiftshader_indirect}
+  nested-virt: {accel: 'on', gpu: swiftshader_indirect}
+adb:
+  executable: adb
+  serial: emulator-5556
+  server: tcp:127.0.0.1:5037
+  timeout_s: 30
+emulator:
+  api: 36
+  avd: poke_api36_test
+  boot_timeout_s: 600
+app:
+  package: com.example.app
+  activity: com.example.app/.MainActivity
+  ready_activity: null
+location:
+  backend: geo
+artifacts: artifacts

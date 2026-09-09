@@ -1,0 +1,17 @@
+{
+  "host": "https://pve.example.com:8006",
+  "node": "pve",
+  "template_vmid": 9000,
+  "storage": "local-lvm",
+  "bridge": "vmbr0",
+  "cores": 4,
+  "memory_mib": 8192,
+  "reserve_memory_mib": 4096,
+  "reserve_storage_gib": 20,
+  "task_timeout_s": 1800,
+  "poll_interval_s": 2,
+  "namespace_uuid": "6a35f440-3491-4bd4-b410-15b9ee4d12a9",
+  "instances": [
+    {"vmid": 10001, "name": "android-1"}
+  ]
+}

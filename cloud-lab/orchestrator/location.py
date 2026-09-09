@@ -5,6 +5,7 @@ import math
 import time
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
+from itertools import chain
 from pathlib import Path
 
 from .adb import Adb
@@ -24,15 +25,21 @@ class Point:
 
 
 def read_gpx(path: Path) -> list[Point]:
-    root = ET.parse(path).getroot()
+    try:
+        root = ET.parse(path).getroot()
+    except ET.ParseError as exc:
+        raise ValueError(f'Invalid GPX XML: {exc}') from exc
     # Prefer track points, then route points, then standalone waypoints.
     for kind in ("trkpt", "rtept", "wpt"):
         nodes = [n for n in root.iter() if n.tag.rsplit('}', 1)[-1] == kind]
         if nodes:
             points = []
             for node in nodes:
-                elevation = next((float(n.text) for n in node if n.tag.rsplit('}', 1)[-1] == 'ele'), 0)
-                points.append(Point(float(node.attrib['lat']), float(node.attrib['lon']), elevation))
+                try:
+                    elevation = next((float(n.text) for n in node if n.tag.rsplit('}', 1)[-1] == 'ele'), 0)
+                    points.append(Point(float(node.attrib['lat']), float(node.attrib['lon']), elevation))
+                except (KeyError, TypeError, ValueError) as exc:
+                    raise ValueError(f'Invalid GPX coordinate: {exc}') from exc
             return points
     raise ValueError("GPX has no track, route, or waypoint coordinates")
 
@@ -70,12 +77,18 @@ def set_location(adb: Adb, point: Point) -> None:
 
 
 def follow(adb: Adb, path: Path, speed: float, trace: Path) -> None:
+    points = read_gpx(path)
+    sequence = updates(points, speed)
+    # Validate the speed before opening an existing output file.
+    first = next(sequence)
     trace.parent.mkdir(parents=True, exist_ok=True)
     with trace.open('w', newline='', encoding='utf-8') as stream:
         writer = csv.writer(stream)
         writer.writerow(['timestamp', 'lat', 'lon', 'speed_mps'])
-        for point, delay in updates(read_gpx(path), speed):
-            time.sleep(delay)
+        scheduled = time.monotonic()
+        for point, delay in chain((first,), sequence):
+            scheduled += delay
+            time.sleep(max(0, scheduled - time.monotonic()))
             set_location(adb, point)
             writer.writerow([time.time(), point.lat, point.lon, speed])
             stream.flush()

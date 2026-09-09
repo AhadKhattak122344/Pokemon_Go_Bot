@@ -1,0 +1,18 @@
+[project]
+name = "android-qa-workspace"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = ["android-cloud-lab"]
+
+[project.optional-dependencies]
+test = ["pytest==8.3.5"]
+
+[tool.uv.workspace]
+members = ["cloud-lab"]
+
+[tool.uv.sources]
+android-cloud-lab = { workspace = true }
+
+[tool.pytest.ini_options]
+testpaths = ["cloud-lab/tests/unit"]
+norecursedirs = ["archive", ".tools", ".venv", ".tmp", "artifacts"]

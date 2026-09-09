@@ -1,49 +1,105 @@
-# Android 14 Emulator Lab
+# Android QA Lab
 
-Reproducible Android Studio/QEMU emulator tooling for Windows, plus an optional
-Linux Docker QA harness. The repository does not contain an Android application.
+Windows-native Android emulator tooling and a Python QA CLI for user-supplied APKs,
+with an optional Linux Docker harness and Proxmox template-clone workflow.
+The repository contains no active Android application or buildable app module.
 
-## Windows quick start
+## Layout
 
-```powershell
-git clone https://github.com/AhadKhattak122344/Pokemon_Go_Bot.git
-cd Pokemon_Go_Bot
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/Bootstrap-Android.ps1 -WithEmulator
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/Start-Emulator.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/Test-Emulator.ps1
-```
+- `cloud-lab/orchestrator/`: installed `lab` CLI, ADB, health, diagnostics, smoke tests, debug-root controls, Proxmox client.
+- `cloud-lab/config/`: Android scenarios, route fixtures, Proxmox example configuration.
+- `cloud-lab/tests/`: mocked unit and failure-path tests.
+- `cloud-lab/scripts/`, Dockerfiles and Compose files: optional Linux runtime.
+- `tools/windows/`: repo-local SDK setup and native AVD management.
+- `docs/project-handoff/`: current evidence, constraints and next steps.
+- `docs/PROXMOX-VM-PREP.md`: future Proxmox deployment procedure.
+- `assets/`: ignored local downloads; the historical manifest records checksums, not compatibility.
+- `archive/`: deduplicated flat export, recovery provenance and superseded proposals. Never part of the build or Docker context.
 
-The default profile is:
+## Install and verify
 
-- Android version: Android 14 / API 34
-- Emulator: Android Studio QEMU emulator
-- System image: Google Play, x86_64
-- AVD name: `baseline`
-- ADB serial and port: `emulator-5554` / 5554
-- Hardware profile: Pixel 7, 4 cores, 4 GB RAM, automatic GPU acceleration
-- Startup: Quick Boot snapshots after the first cold boot
-
-This profile includes Google Play services and the Play Store. Sign in inside the
-emulator to install account-bound apps such as Google Drive.
-
-## Rooted test profile
-
-Google Play system images are release-signed and do not permit ADB root. A separate
-Android 14 Google APIs AVD named `baseline-rooted` provides ADB root and a temporary
-Magisk 30.7 runtime:
+Install Python 3.11+ and uv. From the repository root:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/Start-Emulator.ps1 -Profile Rooted
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/Test-Emulator.ps1 -Profile Rooted
+uv sync --extra test
+uv run lab --help
+uv run pytest -p no:cacheprovider
 ```
 
-Run only one profile at a time because both use port 5554. Magisk is reapplied when
-the rooted profile starts. This repository does not include root concealment,
-fingerprint spoofing, identity rotation, or Play Integrity/SafetyNet bypasses.
+The root uv workspace installs `android-cloud-lab` from `cloud-lab/` as an editable
+package. There is one CLI implementation, `orchestrator.cli:main`. No external
+server, device, Docker daemon or Google account is needed for unit tests.
 
-Pokémon GO officially does not support rooted devices and may also reject emulator
-environments. The Play profile supplies the supported Google components, but app
-availability and acceptance remain controlled by Google Play and the app developer.
+On Windows, when Temp permissions interfere with pytest:
 
-See [START-HERE.md](START-HERE.md) for commands and
-[cloud-lab/README.md](cloud-lab/README.md) for the optional Linux harness.
+```powershell
+New-Item -ItemType Directory -Force .tmp/tests | Out-Null
+$env:TEMP=(Resolve-Path .tmp/tests).Path
+$env:TMP=$env:TEMP
+uv run pytest --basetemp .tmp/tests/pytest -p no:cacheprovider
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Test-Profiles.ps1
+```
+
+## Run on Windows
+
+Use [START-HERE.md](START-HERE.md) for the clean API 36 workflow. The profiles are:
+
+| Profile | AVD | Serial | Purpose |
+| --- | --- | --- | --- |
+| `Api36` (default) | `poke_api36_test` | `emulator-5556` | Clean Android 16 compatibility baseline |
+| `Play` | `baseline` | `emulator-5554` | Existing API 34 Google Play image; supplied handoff reports it was rooted externally |
+| `Rooted` | `baseline-rooted` | `emulator-5554` | Separate API 34 Google APIs debug image |
+
+Startup never installs Magisk or patches an image. The two API 34 profiles share
+port 5554 and cannot run together. Stop/test operations check the AVD name before
+targeting a port. The API 36 profile remains independent.
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Start-Emulator.ps1 -Profile Api36
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Test-Emulator.ps1 -Profile Api36
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Stop-Emulator.ps1 -Profile Api36
+```
+
+Before ADB CLI commands, load `tools/windows/Android-Environment.ps1` into the
+current shell as shown in START-HERE. Supply an APK you own or are authorized to
+test; edit a scenario's package/activity before running `lab smoke`. Diagnostic
+capture does not launch apps, clear logcat, attempt sign-in, or change root state.
+Artifacts can contain app/account data; they remain ignored by Git.
+
+## Proxmox and Linux
+
+```powershell
+uv run lab proxmox plan --config cloud-lab/config/proxmox.example.json
+```
+
+This is an offline plan. Live `preflight` only reads; `deploy` full-clones an
+already-installed, stopped template, configures each clone and waits for start.
+See [Proxmox preparation](docs/PROXMOX-VM-PREP.md) for configuration, credentials,
+permission checks, task recovery and guest acceptance. It is not a web API, job
+queue, image installer, or proof of target-app acceptance.
+
+Linux Docker commands and prerequisites are in [cloud-lab/README.md](cloud-lab/README.md).
+Do not repeat the software-emulated Docker experiment on the Windows/WSL host
+from the supplied handoff; it lacked `/dev/kvm`. Native WHPX is the local path.
+
+## Build and limitations
+
+There is no Android build target: commit `cbc1d35` removed the reconstructed app.
+The remaining flattened files have misleading extensions (some Gradle filenames
+are WebP images). They are preserved under `archive/recovered/`, not silently
+turned into a new app. Build the Python distribution with `uv build --package
+android-cloud-lab`.
+
+API 34 ARM translation SIGILL and API 36 sign-in failure are **reported historical
+observations**, not bugs proven fixed by the current unit tests. Proxmox live
+operation, Linux/KVM boot, certification and third-party authentication require
+real environment tests. See [current state](docs/project-handoff/CURRENT_STATE.md).
+
+## Troubleshooting
+
+- Missing ADB: bootstrap the SDK and load the Android environment, or set `adb.executable` in your YAML scenario.
+- Missing Docker: use the native Windows scripts, or install Docker/Compose on the intended Linux host.
+- Unauthorized device: select the exact serial and approve debugging inside Android.
+- Proxmox TLS error: configure the trusted CA; certificate verification is never disabled.
+- Existing VMID or timed-out task: inspect the journal and Proxmox task log before retrying. Existing VMs are never overwritten.
+- Invalid config: use the committed examples; YAML `on`/`off` values must be quoted.

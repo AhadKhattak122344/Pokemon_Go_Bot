@@ -1,0 +1,69 @@
+﻿{
+    "generated_at_utc":  "2026-09-08T17:37:20.3336626Z",
+    "warning":  "Verify upstream licenses and hashes before deployment. Bliss OS public ISOs are archived and unsupported.",
+    "assets":  [
+                   {
+                       "name":  "Magisk",
+                       "version":  "v30.7",
+                       "file":  "magisk-v30.7.apk",
+                       "url":  "https://github.com/topjohnwu/Magisk/releases/download/v30.7/Magisk-v30.7.apk",
+                       "sha256":  "e0d32d2123532860f97123d927b1bb86c4e08e6fd8a48bfc6b5bee0afae9ebd5",
+                       "size":  11613864,
+                       "downloaded_at_utc":  "2026-09-08T17:37:09.4944557Z"
+                   },
+                   {
+                       "name":  "Zygisk Next",
+                       "version":  "v1.5.0",
+                       "file":  "zygisk-next-v1.5.0.zip",
+                       "url":  "https://github.com/Dr-TSNG/ZygiskNext/releases/download/v1.5.0/Zygisk-Next-1.5.0-843-5217106-release.zip",
+                       "sha256":  "474d58abc208c0779e7f8f1d8449db755a874d475c13b9cf8decf74bc171933b",
+                       "size":  7529581,
+                       "downloaded_at_utc":  "2026-09-08T17:37:09.6118100Z"
+                   },
+                   {
+                       "name":  "Shamiko",
+                       "version":  "shamiko-414",
+                       "file":  "shamiko-shamiko-414.zip",
+                       "url":  "https://github.com/LSPosed/LSPosed.github.io/releases/download/shamiko-414/Shamiko-v1.2.5-414-release.zip",
+                       "sha256":  "308d31b2f52a80e49eb58f46bc4c764a6588a79e4b8d101b44860832023f88b4",
+                       "size":  6523936,
+                       "downloaded_at_utc":  "2026-09-08T17:37:09.6984309Z"
+                   },
+                   {
+                       "name":  "Play Integrity Fix",
+                       "version":  "v4.7-inject-s",
+                       "file":  "play-integrity-fix-v4.7-inject-s.zip",
+                       "url":  "https://github.com/KOWX712/PlayIntegrityFix/releases/download/v4.7-inject-s/PlayIntegrityFix_v4.7-1-inject-s.zip",
+                       "sha256":  "10eec591735cafee437332871443a2fadf6632b1a58abb16fe2461d9df100ab1",
+                       "size":  660329,
+                       "downloaded_at_utc":  "2026-09-08T17:37:15.8720564Z"
+                   },
+                   {
+                       "name":  "Universal SafetyNet Fix",
+                       "version":  "v2.4.0",
+                       "file":  "universal-safetynet-fix-v2.4.0.zip",
+                       "url":  "https://github.com/kdrag0n/safetynet-fix/releases/download/v2.4.0/safetynet-fix-v2.4.0.zip",
+                       "sha256":  "03f9a593e063d13151787aba13ccb07d2d6a34dd4e7e1243b71f59025eae9e8c",
+                       "size":  96532,
+                       "downloaded_at_utc":  "2026-09-08T17:37:15.9713851Z"
+                   },
+                   {
+                       "name":  "libhoudini source payload",
+                       "version":  "hpe-14@2f8f08867118",
+                       "file":  "libhoudini-2f8f08867118.zip",
+                       "url":  "https://api.github.com/repos/supremegamers/vendor_intel_proprietary_houdini/zipball/2f8f088671182e17e67321e098e8411a3972a628",
+                       "sha256":  "89562cc3fc5d0fc523b4c8c557fee7f7db7735166ba5c027b291ba663a45fa94",
+                       "size":  75127313,
+                       "downloaded_at_utc":  "2026-09-08T17:37:16.3794052Z"
+                   },
+                   {
+                       "name":  "Bliss OS x86_64 GApps (archived)",
+                       "version":  "Bliss-v16.9.7-x86_64-OFFICIAL-gapps-20241011",
+                       "file":  "Bliss-v16.9.7-x86_64-OFFICIAL-gapps-20241011.iso",
+                       "url":  "https://sourceforge.net/projects/blissos-x86/files/Official/BlissOS16/Gapps/Generic/Bliss-v16.9.7-x86_64-OFFICIAL-gapps-20241011.iso/download",
+                       "sha256":  "17137711fb42236640ac6fe4421fcb3bd15710065fcf75c20807c018f42e3751",
+                       "size":  2429550592,
+                       "downloaded_at_utc":  "2026-09-08T17:37:20.3336626Z"
+                   }
+               ]
+}

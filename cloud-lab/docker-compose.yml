@@ -7,9 +7,9 @@ services:
     platform: linux/amd64
     init: true
     environment:
-      EMULATOR_ACCEL: 'off'
+      EMULATOR_ACCEL: ${EMULATOR_ACCEL:-off}
       EMULATOR_GPU: ${EMULATOR_GPU:-swiftshader_indirect}
-      BOOT_TIMEOUT: '900'
+      BOOT_TIMEOUT: ${BOOT_TIMEOUT:-900}
     ports:
       - '127.0.0.1:5037:5037'
       - '127.0.0.1:5555:5559'
@@ -17,6 +17,8 @@ services:
       - ./artifacts:/artifacts
     shm_size: 2gb
     stop_grace_period: 30s
+    healthcheck:
+      start_period: ${BOOT_HEALTH_START_PERIOD:-1900s}
   lab:
     build:
       context: ..

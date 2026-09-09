@@ -6,7 +6,7 @@ import pytest
 
 from orchestrator.adb import Adb
 from orchestrator.config import component, load
-from orchestrator.location import Point, distance, read_gpx, updates
+from orchestrator.location import Point, distance, follow, read_gpx, updates
 from orchestrator.cli import smoke
 
 
@@ -58,3 +58,39 @@ def test_failed_launch_still_writes_report(tmp_path):
                 smoke(Adb(), cfg, tmp_path)
     assert 'failures="1"' in (tmp_path / 'junit.xml').read_text()
     assert (tmp_path / 'meta.json').exists()
+
+
+@pytest.mark.parametrize('xml', ['<gpx>', '<gpx><wpt lon="0"/></gpx>', '<gpx><wpt lat="0" lon="0"><ele/></wpt></gpx>'])
+def test_malformed_gpx_is_an_actionable_error(xml, tmp_path):
+    route = tmp_path / 'bad.gpx'
+    route.write_text(xml)
+    with pytest.raises(ValueError, match='GPX'):
+        read_gpx(route)
+
+
+def test_bad_route_does_not_truncate_previous_trace(tmp_path):
+    route = tmp_path / 'bad.gpx'
+    route.write_text('<gpx/>')
+    trace = tmp_path / 'trace.csv'
+    trace.write_text('previous result')
+    with pytest.raises(ValueError):
+        follow(Adb(), route, 1, trace)
+    assert trace.read_text() == 'previous result'
+
+
+def test_route_schedule_accounts_for_adb_latency(tmp_path):
+    now = [0.0]
+    sent = []
+    def sleep(duration):
+        now[0] += duration
+    def send(*args):
+        sent.append(now[0])
+        now[0] += 0.2
+    points = [Point(0, 0), Point(0, 0.001), Point(0, 0.002)]
+    with patch('orchestrator.location.read_gpx', return_value=points), \
+         patch('orchestrator.location.updates', return_value=iter(zip(points, (0, 1, 1)))), \
+         patch('orchestrator.location.time.monotonic', side_effect=lambda: now[0]), \
+         patch('orchestrator.location.time.sleep', side_effect=sleep), \
+         patch('orchestrator.location.set_location', side_effect=send):
+        follow(Adb(), tmp_path / 'route.gpx', 1, tmp_path / 'trace.csv')
+    assert sent == pytest.approx([0, 1, 2])

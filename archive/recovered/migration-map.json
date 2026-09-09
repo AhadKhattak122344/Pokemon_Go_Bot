@@ -1,0 +1,2438 @@
+[
+  {
+    "source": "ActionLooper (1).html",
+    "destination": "archive/recovered/flat-export/ActionLooper.html",
+    "sha256": "12acc90bb2db96bb0d1424e90147b7c9935d6cecc383e611c5290790a70d0e02",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ActionLooper (1).java",
+    "destination": "archive/recovered/flat-export/ActionLooper.java",
+    "sha256": "94c1c1e64f2084b234c397703e855bd1cf8538d921d1145a95ae6837b92bfe29",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ActionLooper.html",
+    "destination": "archive/recovered/flat-export/ActionLooper.html",
+    "sha256": "12acc90bb2db96bb0d1424e90147b7c9935d6cecc383e611c5290790a70d0e02",
+    "action": "move",
+    "references": [
+      "index-all (1).html",
+      "index-all.html",
+      "jquery-ui.min (1).css",
+      "jquery-ui.min (1).js",
+      "jquery-ui.min.css",
+      "jquery-ui.min.js"
+    ]
+  },
+  {
+    "source": "ActionLooper.java",
+    "destination": "archive/recovered/flat-export/ActionLooper.java",
+    "sha256": "94c1c1e64f2084b234c397703e855bd1cf8538d921d1145a95ae6837b92bfe29",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "ActionService (1).html",
+    "destination": "archive/recovered/flat-export/ActionService.html",
+    "sha256": "cc110438452433dcf8c2c03608945c7f1138528737844f4a62570175fa42c606",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ActionService (1).java",
+    "destination": "archive/recovered/flat-export/ActionService.java",
+    "sha256": "f67b43c5df566d5bd16125fa1a5573e1cc132fcc595980505b8bb9bf10b33eee",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ActionService.html",
+    "destination": "archive/recovered/flat-export/ActionService.html",
+    "sha256": "cc110438452433dcf8c2c03608945c7f1138528737844f4a62570175fa42c606",
+    "action": "move",
+    "references": [
+      "index-all (1).html",
+      "index-all.html",
+      "jquery-3.6.1.min (1).js",
+      "jquery-3.6.1.min.js"
+    ]
+  },
+  {
+    "source": "ActionService.java",
+    "destination": "archive/recovered/flat-export/ActionService.java",
+    "sha256": "f67b43c5df566d5bd16125fa1a5573e1cc132fcc595980505b8bb9bf10b33eee",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "AndroidManifest (1).xml",
+    "destination": "archive/recovered/flat-export/AndroidManifest.xml",
+    "sha256": "b39d87cfa5f6c7c5760d34a80412c6a50c8641d6d53afc60309591fef565e6e4",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "AndroidManifest.xml",
+    "destination": "archive/recovered/flat-export/AndroidManifest.xml",
+    "sha256": "b39d87cfa5f6c7c5760d34a80412c6a50c8641d6d53afc60309591fef565e6e4",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "CrashLogger (1).java",
+    "destination": "archive/recovered/flat-export/CrashLogger.java",
+    "sha256": "e27f262a14d62d2274cbb77e135b48be93c66f17cbba032d62a1fcb7bd6b6f79",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "CrashLogger.java",
+    "destination": "archive/recovered/flat-export/CrashLogger.java",
+    "sha256": "e27f262a14d62d2274cbb77e135b48be93c66f17cbba032d62a1fcb7bd6b6f79",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "CustomUtils (1).java",
+    "destination": "archive/recovered/flat-export/CustomUtils.java",
+    "sha256": "1418d53d6d449374c1ebf9dfe293ee6ae2279ddb050f9919c08d1b946cbf9203",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "CustomUtils.java",
+    "destination": "archive/recovered/flat-export/CustomUtils.java",
+    "sha256": "1418d53d6d449374c1ebf9dfe293ee6ae2279ddb050f9919c08d1b946cbf9203",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "DialogHelper (1).java",
+    "destination": "archive/recovered/flat-export/DialogHelper.java",
+    "sha256": "7209a50a37b6cde9f2b5a9b41e0786a1e4af267191e8d50a982dfb59899e9255",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "DialogHelper.java",
+    "destination": "archive/recovered/flat-export/DialogHelper.java",
+    "sha256": "7209a50a37b6cde9f2b5a9b41e0786a1e4af267191e8d50a982dfb59899e9255",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "ExampleInstrumentedTest (1).java",
+    "destination": "archive/recovered/flat-export/ExampleInstrumentedTest.java",
+    "sha256": "5c3174b74edc6f2b9e0743594b8bd3c7f31e4f4405758cc9872b3fe1de1d28b4",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ExampleInstrumentedTest.java",
+    "destination": "archive/recovered/flat-export/ExampleInstrumentedTest.java",
+    "sha256": "5c3174b74edc6f2b9e0743594b8bd3c7f31e4f4405758cc9872b3fe1de1d28b4",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "FloatingMenuService (1).html",
+    "destination": "archive/recovered/flat-export/FloatingMenuService.html",
+    "sha256": "5f527031c0d1fa2378e381cda5ee0c6806e7ba6abb47fcecbfb2870e3004e00d",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "FloatingMenuService (1).java",
+    "destination": "archive/recovered/flat-export/FloatingMenuService.java",
+    "sha256": "0c7e6f59ab84ac27a03a6808f8c37dcbaadd35b2a40900628ca13fe5fcdce2bc",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "FloatingMenuService.Callbacks (1).html",
+    "destination": "archive/recovered/flat-export/FloatingMenuService.Callbacks.html",
+    "sha256": "940f48fb2ba4d9ec5a55671126796fefa71661c0a5d7b434dc1e9be23da41690",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "FloatingMenuService.Callbacks.html",
+    "destination": "archive/recovered/flat-export/FloatingMenuService.Callbacks.html",
+    "sha256": "940f48fb2ba4d9ec5a55671126796fefa71661c0a5d7b434dc1e9be23da41690",
+    "action": "move",
+    "references": [
+      "index-all (1).html",
+      "index-all.html"
+    ]
+  },
+  {
+    "source": "FloatingMenuService.LocalBinder (1).html",
+    "destination": "archive/recovered/flat-export/FloatingMenuService.LocalBinder.html",
+    "sha256": "1abae3d99b54cda68169a2bb78685a7f005c0abb894616815e758e50ccac5b76",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "FloatingMenuService.LocalBinder.html",
+    "destination": "archive/recovered/flat-export/FloatingMenuService.LocalBinder.html",
+    "sha256": "1abae3d99b54cda68169a2bb78685a7f005c0abb894616815e758e50ccac5b76",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "FloatingMenuService.html",
+    "destination": "archive/recovered/flat-export/FloatingMenuService.html",
+    "sha256": "5f527031c0d1fa2378e381cda5ee0c6806e7ba6abb47fcecbfb2870e3004e00d",
+    "action": "move",
+    "references": [
+      "index-all (1).html",
+      "index-all.html"
+    ]
+  },
+  {
+    "source": "FloatingMenuService.java",
+    "destination": "archive/recovered/flat-export/FloatingMenuService.java",
+    "sha256": "0c7e6f59ab84ac27a03a6808f8c37dcbaadd35b2a40900628ca13fe5fcdce2bc",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "LICENSE (1)",
+    "destination": "archive/recovered/flat-export/LICENSE (1)",
+    "sha256": "4a81d8655fd5f66cbbe9d76dbd7d067c985eade1ab35408c9b7320bc3d866149",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "ListSeparatorDecoration (1).html",
+    "destination": "archive/recovered/flat-export/ListSeparatorDecoration.html",
+    "sha256": "15f88604cb05eedb4c8b906d6565b227cd85a1a73c969b0a1bbe5c94a639b2bd",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ListSeparatorDecoration.html",
+    "destination": "archive/recovered/flat-export/ListSeparatorDecoration.html",
+    "sha256": "15f88604cb05eedb4c8b906d6565b227cd85a1a73c969b0a1bbe5c94a639b2bd",
+    "action": "move",
+    "references": [
+      "index-all (1).html",
+      "index-all.html"
+    ]
+  },
+  {
+    "source": "MainActivity (1).html",
+    "destination": "archive/recovered/flat-export/MainActivity.html",
+    "sha256": "d762ba66853241b690216b087bc885d856f0613cc1dd08c005dbbab68ddd1f63",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "MainActivity.html",
+    "destination": "archive/recovered/flat-export/MainActivity.html",
+    "sha256": "d762ba66853241b690216b087bc885d856f0613cc1dd08c005dbbab68ddd1f63",
+    "action": "move",
+    "references": [
+      "index-all (1).html",
+      "index-all.html",
+      "type-search-index (1).js",
+      "type-search-index.js"
+    ]
+  },
+  {
+    "source": "ModelHandler (1).html",
+    "destination": "archive/recovered/flat-export/ModelHandler.html",
+    "sha256": "9ee9d3de7fad6983bed11654811d2cd2b3a9873a204aa8427ef116c99c50a783",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ModelHandler (1).java",
+    "destination": "archive/recovered/flat-export/ModelHandler.java",
+    "sha256": "03c1b36ed6b02ed1cba842b87181ae35aee92a223cd092aa58006954f18542e7",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ModelHandler.Detector (1).html",
+    "destination": "archive/recovered/flat-export/ModelHandler.Detector.html",
+    "sha256": "b3d12837a099ea4239640cc8aa3baacfe48ab6b18cee102d81a4686e1fbb46cf",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ModelHandler.Detector.html",
+    "destination": "archive/recovered/flat-export/ModelHandler.Detector.html",
+    "sha256": "b3d12837a099ea4239640cc8aa3baacfe48ab6b18cee102d81a4686e1fbb46cf",
+    "action": "move",
+    "references": [
+      "index-all (1).html",
+      "index-all.html",
+      "overview-summary (1).html",
+      "overview-summary.html",
+      "serialized-form (1).html",
+      "serialized-form.html",
+      "stylesheet (1).css",
+      "stylesheet.css",
+      "tag-search-index (1).js",
+      "tag-search-index.js"
+    ]
+  },
+  {
+    "source": "ModelHandler.html",
+    "destination": "archive/recovered/flat-export/ModelHandler.html",
+    "sha256": "9ee9d3de7fad6983bed11654811d2cd2b3a9873a204aa8427ef116c99c50a783",
+    "action": "move",
+    "references": [
+      "index-all (1).html",
+      "index-all.html",
+      "search (1).html",
+      "search (1).js",
+      "search-page (1).js",
+      "search-page.js",
+      "search.html",
+      "search.js",
+      "stylesheet (1).css",
+      "stylesheet.css",
+      "tag-search-index (1).js",
+      "tag-search-index.js"
+    ]
+  },
+  {
+    "source": "ModelHandler.java",
+    "destination": "archive/recovered/flat-export/ModelHandler.java",
+    "sha256": "03c1b36ed6b02ed1cba842b87181ae35aee92a223cd092aa58006954f18542e7",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "MoreFragment (1).html",
+    "destination": "archive/recovered/flat-export/MoreFragment.html",
+    "sha256": "e996d452d2645e70c01c11143ca2d3742734a28da2bf61f25c82bdc288c9e637",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "MoreFragment (1).java",
+    "destination": "archive/recovered/flat-export/MoreFragment.java",
+    "sha256": "16b568409c1d76156f574fd1f0c1fe55d5b70f2e5d3f011e0a2b67f5a248e264",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "MoreFragment.html",
+    "destination": "archive/recovered/flat-export/MoreFragment.html",
+    "sha256": "e996d452d2645e70c01c11143ca2d3742734a28da2bf61f25c82bdc288c9e637",
+    "action": "move",
+    "references": [
+      "index-all (1).html",
+      "index-all.html"
+    ]
+  },
+  {
+    "source": "MoreFragment.java",
+    "destination": "archive/recovered/flat-export/MoreFragment.java",
+    "sha256": "16b568409c1d76156f574fd1f0c1fe55d5b70f2e5d3f011e0a2b67f5a248e264",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "NavigationActivity (1).html",
+    "destination": "archive/recovered/flat-export/NavigationActivity.html",
+    "sha256": "ba204f1563a5460b395ada96f9a158d51b6c267ec1fd4366185c55f6037534fc",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "NavigationActivity (1).java",
+    "destination": "archive/recovered/flat-export/NavigationActivity.java",
+    "sha256": "a36386c6ab4476308cdb2a26b90129d69a786514af00c0b5225d8829b9441e6b",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "NavigationActivity.html",
+    "destination": "archive/recovered/flat-export/NavigationActivity.html",
+    "sha256": "ba204f1563a5460b395ada96f9a158d51b6c267ec1fd4366185c55f6037534fc",
+    "action": "move",
+    "references": [
+      "index-all (1).html",
+      "index-all.html",
+      "type-search-index (1).js",
+      "type-search-index.js"
+    ]
+  },
+  {
+    "source": "NavigationActivity.java",
+    "destination": "archive/recovered/flat-export/NavigationActivity.java",
+    "sha256": "a36386c6ab4476308cdb2a26b90129d69a786514af00c0b5225d8829b9441e6b",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "ParamsFragment (1).html",
+    "destination": "archive/recovered/flat-export/ParamsFragment.html",
+    "sha256": "cbf3e1acb30f4a9782d5e3709d3aed10da190f6524fc536fbe6237c9bc994844",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ParamsFragment (1).java",
+    "destination": "archive/recovered/flat-export/ParamsFragment.java",
+    "sha256": "1d50daa54d7fa3ccad2d4356833ef2ce36035a2dae33a3342601ef6fd92f92e5",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ParamsFragment.html",
+    "destination": "archive/recovered/flat-export/ParamsFragment.html",
+    "sha256": "cbf3e1acb30f4a9782d5e3709d3aed10da190f6524fc536fbe6237c9bc994844",
+    "action": "move",
+    "references": [
+      "index-all (1).html",
+      "index-all.html"
+    ]
+  },
+  {
+    "source": "ParamsFragment.java",
+    "destination": "archive/recovered/flat-export/ParamsFragment.java",
+    "sha256": "1d50daa54d7fa3ccad2d4356833ef2ce36035a2dae33a3342601ef6fd92f92e5",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "README (1).md",
+    "destination": "archive/recovered/flat-export/README (1).md",
+    "sha256": "21f449530288f6f29326d3d9825885b1e071606abb98b59d6e5573d0333cb7b5",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "RegibotApplication (1).java",
+    "destination": "archive/recovered/flat-export/RegibotApplication.java",
+    "sha256": "9fbf436190d9e2cfe39b43696b4908199fd57a7112d2f3a0aab0a3d6da640736",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "RegibotApplication.java",
+    "destination": "archive/recovered/flat-export/RegibotApplication.java",
+    "sha256": "9fbf436190d9e2cfe39b43696b4908199fd57a7112d2f3a0aab0a3d6da640736",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "SettingsController (1).html",
+    "destination": "archive/recovered/flat-export/SettingsController.html",
+    "sha256": "8514e8fc4c1bfc1228f1881fd7916ae7e53ea34936b9054eac70146cee1f48e0",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "SettingsController (1).java",
+    "destination": "archive/recovered/flat-export/SettingsController.java",
+    "sha256": "e4993fb9dddb8cb33349141ebaecfe2da9b2737324117bec283e7ffaabc214c6",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "SettingsController.html",
+    "destination": "archive/recovered/flat-export/SettingsController.html",
+    "sha256": "8514e8fc4c1bfc1228f1881fd7916ae7e53ea34936b9054eac70146cee1f48e0",
+    "action": "move",
+    "references": [
+      "glass (1).png",
+      "glass.png",
+      "index-all (1).html",
+      "index-all.html",
+      "overview-summary (1).html",
+      "overview-summary.html",
+      "package-search-index (1).js",
+      "package-search-index.js"
+    ]
+  },
+  {
+    "source": "SettingsController.java",
+    "destination": "archive/recovered/flat-export/SettingsController.java",
+    "sha256": "e4993fb9dddb8cb33349141ebaecfe2da9b2737324117bec283e7ffaabc214c6",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "SettingsValuesProvider (1).html",
+    "destination": "archive/recovered/flat-export/SettingsValuesProvider.html",
+    "sha256": "e022203a83c2a107529dcf245185387f4bdb242bccda3c72706650324dbe8ebb",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "SettingsValuesProvider (1).java",
+    "destination": "archive/recovered/flat-export/SettingsValuesProvider.java",
+    "sha256": "8d922cd8e2245cd657254d50a5cb3f99b9a3afdbbf47c7c1b1942afd674a5874",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "SettingsValuesProvider.html",
+    "destination": "archive/recovered/flat-export/SettingsValuesProvider.html",
+    "sha256": "e022203a83c2a107529dcf245185387f4bdb242bccda3c72706650324dbe8ebb",
+    "action": "move",
+    "references": [
+      "glass (1).png",
+      "glass.png",
+      "index-all (1).html",
+      "index-all.html",
+      "overview-tree (1).html",
+      "overview-tree.html",
+      "package-search-index (1).js",
+      "package-search-index.js"
+    ]
+  },
+  {
+    "source": "SettingsValuesProvider.java",
+    "destination": "archive/recovered/flat-export/SettingsValuesProvider.java",
+    "sha256": "8d922cd8e2245cd657254d50a5cb3f99b9a3afdbbf47c7c1b1942afd674a5874",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "WebviewActivity (1).html",
+    "destination": "archive/recovered/flat-export/WebviewActivity.html",
+    "sha256": "a94720873dc8dab1ef6a51a8378622238b5054034ab8f2fc7b3599829a126744",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "WebviewActivity.html",
+    "destination": "archive/recovered/flat-export/WebviewActivity.html",
+    "sha256": "a94720873dc8dab1ef6a51a8378622238b5054034ab8f2fc7b3599829a126744",
+    "action": "move",
+    "references": [
+      "index-all (1).html",
+      "index-all.html",
+      "type-search-index (1).js",
+      "type-search-index.js"
+    ]
+  },
+  {
+    "source": "activity_main (1).xml",
+    "destination": "archive/recovered/flat-export/activity_main.xml",
+    "sha256": "a88deb7f17e9f22b6c0a86a83834f0aff9585a11ca8dce439382a28315efbfca",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "activity_main.xml",
+    "destination": "archive/recovered/flat-export/activity_main.xml",
+    "sha256": "a88deb7f17e9f22b6c0a86a83834f0aff9585a11ca8dce439382a28315efbfca",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "activity_navigation (1).xml",
+    "destination": "archive/recovered/flat-export/activity_navigation.xml",
+    "sha256": "ee9672ad89858175a26f3ab8fba59d8de65c7c6334bee254bb58da49f9404aee",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "activity_navigation.xml",
+    "destination": "archive/recovered/flat-export/activity_navigation.xml",
+    "sha256": "ee9672ad89858175a26f3ab8fba59d8de65c7c6334bee254bb58da49f9404aee",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "activity_permission (1).xml",
+    "destination": "archive/recovered/flat-export/activity_permission.xml",
+    "sha256": "ddf0629826bc3a6174ccadc3ac1aeb19560c14181c1ab2365765e24e788e047b",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "activity_permission.xml",
+    "destination": "archive/recovered/flat-export/activity_permission.xml",
+    "sha256": "ddf0629826bc3a6174ccadc3ac1aeb19560c14181c1ab2365765e24e788e047b",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "activity_webview (1).xml",
+    "destination": "archive/recovered/flat-export/activity_webview.xml",
+    "sha256": "08ee5c39de21c295b2be0f2cb628a2bb5c80cc3f2895e4ea50a34c51757e0076",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "activity_webview.xml",
+    "destination": "archive/recovered/flat-export/activity_webview.xml",
+    "sha256": "08ee5c39de21c295b2be0f2cb628a2bb5c80cc3f2895e4ea50a34c51757e0076",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "allpackages-index (1).html",
+    "destination": "archive/recovered/flat-export/allpackages-index.html",
+    "sha256": "f857a511a8bc470c94004006343b1abd19a8fdc933a32cbaf7903026d178f934",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "allpackages-index.html",
+    "destination": "archive/recovered/flat-export/allpackages-index.html",
+    "sha256": "f857a511a8bc470c94004006343b1abd19a8fdc933a32cbaf7903026d178f934",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "animation_lottie_happy (1).json",
+    "destination": "archive/recovered/flat-export/animation_lottie_happy.json",
+    "sha256": "03a2b0f1b87071217963e720969bbff119b722927e0c356c14b36bc1cbf5519d",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "animation_lottie_happy.json",
+    "destination": "archive/recovered/flat-export/animation_lottie_happy.json",
+    "sha256": "03a2b0f1b87071217963e720969bbff119b722927e0c356c14b36bc1cbf5519d",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "animation_lottie_pikachu (1).json",
+    "destination": "archive/recovered/flat-export/animation_lottie_pikachu.json",
+    "sha256": "729a15354a81393a7cbcf2e512fc51df12371fbb1fd870b5faa0c81a13230307",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "animation_lottie_pikachu.json",
+    "destination": "archive/recovered/flat-export/animation_lottie_pikachu.json",
+    "sha256": "729a15354a81393a7cbcf2e512fc51df12371fbb1fd870b5faa0c81a13230307",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "assets (1).models_ref",
+    "destination": "archive/recovered/flat-export/assets.models_ref",
+    "sha256": "8baf470e065b444c9e6420e2263a13e83a7b4a14240365c8f1205e8da8dbe9ce",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "assets.models_ref",
+    "destination": "archive/recovered/flat-export/assets.models_ref",
+    "sha256": "8baf470e065b444c9e6420e2263a13e83a7b4a14240365c8f1205e8da8dbe9ce",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "backup_rules (1).xml",
+    "destination": "archive/recovered/flat-export/backup_rules.xml",
+    "sha256": "aca2ce543edb40f4220e85c8bf2c11cb6ab9786a65586afb55212b5c56ff1ba7",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "backup_rules.xml",
+    "destination": "archive/recovered/flat-export/backup_rules.xml",
+    "sha256": "aca2ce543edb40f4220e85c8bf2c11cb6ab9786a65586afb55212b5c56ff1ba7",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "bottom_nav_menu (1).xml",
+    "destination": "archive/recovered/flat-export/bottom_nav_menu.xml",
+    "sha256": "f2ffe7b7ae1db67c892e07ebba6b0532b313b97c8ea3a4144815af0101bf917c",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "bottom_nav_menu.xml",
+    "destination": "archive/recovered/flat-export/bottom_nav_menu.xml",
+    "sha256": "f2ffe7b7ae1db67c892e07ebba6b0532b313b97c8ea3a4144815af0101bf917c",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "build (1).gradle",
+    "destination": "archive/recovered/flat-export/build.gradle",
+    "sha256": "0320910994eaf7c31c311e75f429ffb6be20f3bf1e50504708f997b52516d08a",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "build (19) (1).gradle",
+    "destination": "archive/recovered/flat-export/build (19).gradle",
+    "sha256": "6be9be8d39cb250f663814bc3ac3ba570d9629be22fbebcc95d0c058e2249717",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "build (19).gradle",
+    "destination": "archive/recovered/flat-export/build (19).gradle",
+    "sha256": "6be9be8d39cb250f663814bc3ac3ba570d9629be22fbebcc95d0c058e2249717",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "build.gradle",
+    "destination": "archive/recovered/flat-export/build.gradle",
+    "sha256": "0320910994eaf7c31c311e75f429ffb6be20f3bf1e50504708f997b52516d08a",
+    "action": "move",
+    "references": [
+      "model_classifier_screen_v5 (1).tflite",
+      "model_classifier_screen_v5.tflite"
+    ]
+  },
+  {
+    "source": "colors (1).xml",
+    "destination": "archive/recovered/flat-export/colors.xml",
+    "sha256": "1ed291f05e613c8ffa795323dbcb24e80b1a548fe11f4cf3023459d40f87a395",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "colors.xml",
+    "destination": "archive/recovered/flat-export/colors.xml",
+    "sha256": "1ed291f05e613c8ffa795323dbcb24e80b1a548fe11f4cf3023459d40f87a395",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "constant-values (1).html",
+    "destination": "archive/recovered/flat-export/constant-values.html",
+    "sha256": "6edad824e191b3bac270da62a7b3778c7e3defafade143a9a1f2fde5893590bd",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "constant-values.html",
+    "destination": "archive/recovered/flat-export/constant-values.html",
+    "sha256": "6edad824e191b3bac270da62a7b3778c7e3defafade143a9a1f2fde5893590bd",
+    "action": "move",
+    "references": [
+      "overview-tree (1).html",
+      "overview-tree.html"
+    ]
+  },
+  {
+    "source": "copy (1).svg",
+    "destination": "archive/recovered/flat-export/copy.svg",
+    "sha256": "0ecc49bb27e6b1542d0cb50d97a10eba141d6b80ca977955d2def65e02de0d9e",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "copy.svg",
+    "destination": "archive/recovered/flat-export/copy.svg",
+    "sha256": "0ecc49bb27e6b1542d0cb50d97a10eba141d6b80ca977955d2def65e02de0d9e",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "data_extraction_rules (1).xml",
+    "destination": "archive/recovered/flat-export/data_extraction_rules.xml",
+    "sha256": "70982044b9682524269b58b30ca474b708720768c43de2f4784347fabfd1af87",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "data_extraction_rules.xml",
+    "destination": "archive/recovered/flat-export/data_extraction_rules.xml",
+    "sha256": "70982044b9682524269b58b30ca474b708720768c43de2f4784347fabfd1af87",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "demo (1).gif",
+    "destination": "archive/recovered/flat-export/demo.gif",
+    "sha256": "ec682441700fa016f25db3ec4f2e86d7440259b914f1880e79f24f01454d8809",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "demo.gif",
+    "destination": "archive/recovered/flat-export/demo.gif",
+    "sha256": "ec682441700fa016f25db3ec4f2e86d7440259b914f1880e79f24f01454d8809",
+    "action": "move",
+    "references": [
+      "download (1)",
+      "download (1) (1)",
+      "recovered/docs/ORIGINAL-README.md"
+    ]
+  },
+  {
+    "source": "dialog_selector_language (1).xml",
+    "destination": "archive/recovered/flat-export/dialog_selector_language.xml",
+    "sha256": "d2efc0c0c5264b3150e931cf4629f124f2acc4e09b9878b179cc031829c1753e",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "dialog_selector_language.xml",
+    "destination": "archive/recovered/flat-export/dialog_selector_language.xml",
+    "sha256": "d2efc0c0c5264b3150e931cf4629f124f2acc4e09b9878b179cc031829c1753e",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "dialog_selector_theme (1).xml",
+    "destination": "archive/recovered/flat-export/dialog_selector_theme.xml",
+    "sha256": "dca84062ac67714c3b687d2c0f9ff03dc438dbb34b1516d04ec09e4c555b1f4b",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "dialog_selector_theme.xml",
+    "destination": "archive/recovered/flat-export/dialog_selector_theme.xml",
+    "sha256": "dca84062ac67714c3b687d2c0f9ff03dc438dbb34b1516d04ec09e4c555b1f4b",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "download (1)",
+    "destination": "archive/recovered/flat-export/download (1)",
+    "sha256": "7ac741162070bfb92106e2cf9edac13bc031a84075daa7aea1d0c4f649e63ed5",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "download (1) (1)",
+    "destination": "archive/recovered/flat-export/download (1)",
+    "sha256": "7ac741162070bfb92106e2cf9edac13bc031a84075daa7aea1d0c4f649e63ed5",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "download (3)",
+    "destination": "archive/recovered/flat-export/download (3)",
+    "sha256": "3c1c03dab768629f6fecdea58a095437dee3a76ca3eded354287d4cafda6389a",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "download (3) (1)",
+    "destination": "archive/recovered/flat-export/download (3)",
+    "sha256": "3c1c03dab768629f6fecdea58a095437dee3a76ca3eded354287d4cafda6389a",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "element-list",
+    "destination": "archive/recovered/flat-export/element-list",
+    "sha256": "506f5e8d744d02015a5741f0be01d2bc65861b6c9aa5283f31c4801ecc964490",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "element-list (1)",
+    "destination": "archive/recovered/flat-export/element-list",
+    "sha256": "506f5e8d744d02015a5741f0be01d2bc65861b6c9aa5283f31c4801ecc964490",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "floating_menu (1).xml",
+    "destination": "archive/recovered/flat-export/floating_menu.xml",
+    "sha256": "9d933c62e7e1095e9a0ce60faeb694c78b36dc0eeeca1ff00656156e210ab657",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "floating_menu.xml",
+    "destination": "archive/recovered/flat-export/floating_menu.xml",
+    "sha256": "9d933c62e7e1095e9a0ce60faeb694c78b36dc0eeeca1ff00656156e210ab657",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "fragment_home (1).xml",
+    "destination": "archive/recovered/flat-export/fragment_home.xml",
+    "sha256": "1f876124519f04360b41357f2527ba84ce12bf3cd0d353cb77f4e94b3c5bb306",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "fragment_home.xml",
+    "destination": "archive/recovered/flat-export/fragment_home.xml",
+    "sha256": "1f876124519f04360b41357f2527ba84ce12bf3cd0d353cb77f4e94b3c5bb306",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "fragment_more (1).xml",
+    "destination": "archive/recovered/flat-export/fragment_more.xml",
+    "sha256": "4cb26a99f6a3cd02d447d47b7ac18cf62088565c9077fd600bd49adf09475b48",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "fragment_more.xml",
+    "destination": "archive/recovered/flat-export/fragment_more.xml",
+    "sha256": "4cb26a99f6a3cd02d447d47b7ac18cf62088565c9077fd600bd49adf09475b48",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "glass (1).png",
+    "destination": "archive/recovered/flat-export/glass.png",
+    "sha256": "855be4637174eec2b0b86e254ed88cec2db9ee7b71a0ad8f3f8d1eb70a39fb27",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "glass.png",
+    "destination": "archive/recovered/flat-export/glass.png",
+    "sha256": "855be4637174eec2b0b86e254ed88cec2db9ee7b71a0ad8f3f8d1eb70a39fb27",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "gradle (1).properties",
+    "destination": "archive/recovered/flat-export/gradle.properties",
+    "sha256": "6be9be8d39cb250f663814bc3ac3ba570d9629be22fbebcc95d0c058e2249717",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "gradle-wrapper (1).jar",
+    "destination": "archive/recovered/flat-export/gradle-wrapper.jar",
+    "sha256": "66d1a168630f740d86f5be53a25752c5dfaa8791ec697f24d330d6bf6b00d853",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "gradle-wrapper (1).properties",
+    "destination": "archive/recovered/flat-export/gradle-wrapper.properties",
+    "sha256": "e129e21cdfd55a7fe699b604a4c42f7586725e23931040e58aa79d27768e5557",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "gradle-wrapper.jar",
+    "destination": "archive/recovered/flat-export/gradle-wrapper.jar",
+    "sha256": "66d1a168630f740d86f5be53a25752c5dfaa8791ec697f24d330d6bf6b00d853",
+    "action": "move",
+    "references": [
+      "package-summary (32) (1).html",
+      "package-summary (32).html",
+      "package-tree (33) (1).html",
+      "package-tree (33).html",
+      "recovered/gradlew",
+      "recovered/gradlew.bat"
+    ]
+  },
+  {
+    "source": "gradle-wrapper.properties",
+    "destination": "archive/recovered/flat-export/gradle-wrapper.properties",
+    "sha256": "e129e21cdfd55a7fe699b604a4c42f7586725e23931040e58aa79d27768e5557",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "gradle.properties",
+    "destination": "archive/recovered/flat-export/gradle.properties",
+    "sha256": "6be9be8d39cb250f663814bc3ac3ba570d9629be22fbebcc95d0c058e2249717",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "gradlew",
+    "destination": "archive/recovered/flat-export/gradlew",
+    "sha256": "a6862d5f5e895be614463cf718d1575397ff06b1a79d8a9fd8fcc3260bee6a66",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "gradlew (1)",
+    "destination": "archive/recovered/flat-export/gradlew",
+    "sha256": "a6862d5f5e895be614463cf718d1575397ff06b1a79d8a9fd8fcc3260bee6a66",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher (1).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher.webp",
+    "sha256": "26252ac83f15994d021873dbbe1a25569702e2d08a818c8ef650a48ba53334d5",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher (1).xml",
+    "destination": "archive/recovered/flat-export/ic_launcher.xml",
+    "sha256": "4c9bdee6dc95f0b0b5cb68f0a5cede0778bf7578eb6a47bdc0bcb08b9367c985",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher (10) (1).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher (10).webp",
+    "sha256": "278d861d9ac19ded05a65e7d7c9a42bf4999910bbf24501c6103f2b445d512ec",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher (10).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher (10).webp",
+    "sha256": "278d861d9ac19ded05a65e7d7c9a42bf4999910bbf24501c6103f2b445d512ec",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "ic_launcher (13) (1).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher (13).webp",
+    "sha256": "1687ef8054dad93bc7caf15c9b830471546df0c375d43d4988ad08bff0f9e5f8",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher (13).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher (13).webp",
+    "sha256": "1687ef8054dad93bc7caf15c9b830471546df0c375d43d4988ad08bff0f9e5f8",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "ic_launcher (4) (1).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher (4).webp",
+    "sha256": "215fed48b2850fc9e69be6d5130e9bcdadd79f342588920387573e2fbffd8962",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher (4).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher (4).webp",
+    "sha256": "215fed48b2850fc9e69be6d5130e9bcdadd79f342588920387573e2fbffd8962",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "ic_launcher (7) (1).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher (7).webp",
+    "sha256": "d4f2f6e00092de3a493e2e6a6f3460b8512c67bef045dcac45abab4387f5cd11",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher (7).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher (7).webp",
+    "sha256": "d4f2f6e00092de3a493e2e6a6f3460b8512c67bef045dcac45abab4387f5cd11",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "ic_launcher.webp",
+    "destination": "archive/recovered/flat-export/ic_launcher.webp",
+    "sha256": "26252ac83f15994d021873dbbe1a25569702e2d08a818c8ef650a48ba53334d5",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "ic_launcher.xml",
+    "destination": "archive/recovered/flat-export/ic_launcher.xml",
+    "sha256": "4c9bdee6dc95f0b0b5cb68f0a5cede0778bf7578eb6a47bdc0bcb08b9367c985",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "ic_launcher_background (16) (1).xml",
+    "destination": "archive/recovered/flat-export/ic_launcher_background (16).xml",
+    "sha256": "61c5061a085cd497a5c24f9018c874a374ed835df9b3bebd370d5c11b359ef9d",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_background (16).xml",
+    "destination": "archive/recovered/flat-export/ic_launcher_background (16).xml",
+    "sha256": "61c5061a085cd497a5c24f9018c874a374ed835df9b3bebd370d5c11b359ef9d",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_foreground (1).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_foreground.webp",
+    "sha256": "57a5fb65cf66ce8ac2be916ceb9c94fcf530f8221e6b67f23c7344e64ce6d37f",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_foreground (1).xml",
+    "destination": "archive/recovered/flat-export/ic_launcher_foreground.xml",
+    "sha256": "b307630ffefe160a54e9954afdca15c7d89533b87b587dde82f211c65451280c",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_foreground (11) (1).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_foreground (11).webp",
+    "sha256": "dc63cf2e79933cd0b1bc3b076b7b1becfa8cd634d615adca54cd61d820bc7ce3",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_foreground (11).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_foreground (11).webp",
+    "sha256": "dc63cf2e79933cd0b1bc3b076b7b1becfa8cd634d615adca54cd61d820bc7ce3",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_foreground (5) (1).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_foreground (5).webp",
+    "sha256": "d19784a88998d68b45bd130fc6bbef8336c90bd71d962a5b6069cab16ec5d142",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_foreground (5).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_foreground (5).webp",
+    "sha256": "d19784a88998d68b45bd130fc6bbef8336c90bd71d962a5b6069cab16ec5d142",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_foreground (8) (1).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_foreground (8).webp",
+    "sha256": "a97d9f5ed70996c01f6659d93119677ad9100d703bc6a124de4898e46b276a36",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_foreground (8).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_foreground (8).webp",
+    "sha256": "a97d9f5ed70996c01f6659d93119677ad9100d703bc6a124de4898e46b276a36",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_foreground.webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_foreground.webp",
+    "sha256": "57a5fb65cf66ce8ac2be916ceb9c94fcf530f8221e6b67f23c7344e64ce6d37f",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "ic_launcher_foreground.xml",
+    "destination": "archive/recovered/flat-export/ic_launcher_foreground.xml",
+    "sha256": "b307630ffefe160a54e9954afdca15c7d89533b87b587dde82f211c65451280c",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "ic_launcher_round (1).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_round.webp",
+    "sha256": "ed91d87fef5e911eefa5b745893af09c33992c41058bb6b16c24c8bfa4891d9f",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_round (1).xml",
+    "destination": "archive/recovered/flat-export/ic_launcher_round.xml",
+    "sha256": "f66da1753a167fcd92689002e85118d5487ce009ef80cde6d8eba5cb888a350d",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_round (15) (1).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_round (15).webp",
+    "sha256": "82de568642a536390a906204104004d8dc703784d054b2279479574e81b5634c",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_round (15).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_round (15).webp",
+    "sha256": "82de568642a536390a906204104004d8dc703784d054b2279479574e81b5634c",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_round (6) (1).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_round (6).webp",
+    "sha256": "1a126a1e4990d3223f4357bee310446c8d0b150d98194ce290a029eea1cd106f",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_round (6).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_round (6).webp",
+    "sha256": "1a126a1e4990d3223f4357bee310446c8d0b150d98194ce290a029eea1cd106f",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_round (9) (1).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_round (9).webp",
+    "sha256": "4d282dd94407cfb1e3ed32ede8e5e55543b0017fa07dcd1bd53b784f59837930",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_round (9).webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_round (9).webp",
+    "sha256": "4d282dd94407cfb1e3ed32ede8e5e55543b0017fa07dcd1bd53b784f59837930",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "ic_launcher_round.webp",
+    "destination": "archive/recovered/flat-export/ic_launcher_round.webp",
+    "sha256": "ed91d87fef5e911eefa5b745893af09c33992c41058bb6b16c24c8bfa4891d9f",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "ic_launcher_round.xml",
+    "destination": "archive/recovered/flat-export/ic_launcher_round.xml",
+    "sha256": "f66da1753a167fcd92689002e85118d5487ce009ef80cde6d8eba5cb888a350d",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "icon_accesibility (1).xml",
+    "destination": "archive/recovered/flat-export/icon_accesibility.xml",
+    "sha256": "fe8c17e63cb8692aa7e5ac472bdb40bfdfcba1fcf0cc2b55a75ef2bc4d6f25c7",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "icon_accesibility.xml",
+    "destination": "archive/recovered/flat-export/icon_accesibility.xml",
+    "sha256": "fe8c17e63cb8692aa7e5ac472bdb40bfdfcba1fcf0cc2b55a75ef2bc4d6f25c7",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "image_logo (1).png",
+    "destination": "archive/recovered/flat-export/image_logo.png",
+    "sha256": "b8a246902803f4e4375fda77cb7ec27bdeb1592248a182a8332cefe94df64643",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "image_logo.png",
+    "destination": "archive/recovered/flat-export/image_logo.png",
+    "sha256": "b8a246902803f4e4375fda77cb7ec27bdeb1592248a182a8332cefe94df64643",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "index (1).html",
+    "destination": "archive/recovered/flat-export/index.html",
+    "sha256": "aeb4f3d8f05ef77b9a9f4ec78555d41b41d44d7b0171488e178d5ddf64384c8e",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "index-all (1).html",
+    "destination": "archive/recovered/flat-export/index-all.html",
+    "sha256": "f10da2a222c84e3fa91f9bb6ed3712cee4346a089880c9f027f1e6640f9d3c95",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "index-all.html",
+    "destination": "archive/recovered/flat-export/index-all.html",
+    "sha256": "f10da2a222c84e3fa91f9bb6ed3712cee4346a089880c9f027f1e6640f9d3c95",
+    "action": "move",
+    "references": [
+      "glass (1).png",
+      "glass.png",
+      "index (1).html",
+      "index-all (1).html",
+      "index.html",
+      "jquery (1).md",
+      "jquery-3.6.1.min (1).js",
+      "jquery-3.6.1.min.js",
+      "jquery-ui.min (1).css",
+      "jquery-ui.min (1).js",
+      "jquery-ui.min.css",
+      "jquery-ui.min.js",
+      "jquery.md",
+      "jqueryUI (1).md",
+      "jqueryUI.md",
+      "link (1).svg",
+      "link.svg",
+      "member-search-index (1).js",
+      "member-search-index.js",
+      "overview-summary (1).html",
+      "overview-summary.html",
+      "overview-tree (1).html",
+      "overview-tree.html",
+      "package-search-index (1).js",
+      "package-search-index.js",
+      "search (1).html",
+      "search (1).js",
+      "search-page (1).js",
+      "search-page.js",
+      "search.html",
+      "search.js",
+      "serialized-form (1).html",
+      "serialized-form.html",
+      "stylesheet (1).css",
+      "stylesheet.css",
+      "tag-search-index (1).js",
+      "tag-search-index.js",
+      "type-search-index (1).js",
+      "type-search-index.js"
+    ]
+  },
+  {
+    "source": "index.html",
+    "destination": "archive/recovered/flat-export/index.html",
+    "sha256": "aeb4f3d8f05ef77b9a9f4ec78555d41b41d44d7b0171488e178d5ddf64384c8e",
+    "action": "move",
+    "references": [
+      "download (1)",
+      "download (1) (1)",
+      "glass (1).png",
+      "glass.png",
+      "index (1).html",
+      "index-all (1).html",
+      "index-all.html",
+      "jquery (1).md",
+      "jquery-3.6.1.min (1).js",
+      "jquery-3.6.1.min.js",
+      "jquery-ui.min (1).css",
+      "jquery-ui.min (1).js",
+      "jquery-ui.min.css",
+      "jquery-ui.min.js",
+      "jquery.md",
+      "jqueryUI (1).md",
+      "jqueryUI.md",
+      "link (1).svg",
+      "link.svg",
+      "member-search-index (1).js",
+      "member-search-index.js",
+      "overview-summary (1).html",
+      "overview-summary.html",
+      "overview-tree (1).html",
+      "overview-tree.html",
+      "package-search-index (1).js",
+      "package-search-index.js",
+      "recovered/docs/ORIGINAL-README.md",
+      "search (1).html",
+      "search (1).js",
+      "search-page (1).js",
+      "search-page.js",
+      "search.html",
+      "search.js",
+      "serialized-form (1).html",
+      "serialized-form.html",
+      "stylesheet (1).css",
+      "stylesheet.css",
+      "tag-search-index (1).js",
+      "tag-search-index.js",
+      "type-search-index (1).js",
+      "type-search-index.js"
+    ]
+  },
+  {
+    "source": "jquery (1).md",
+    "destination": "archive/recovered/flat-export/jquery.md",
+    "sha256": "b430e6095d6dcdfab9a2ff65e84880cc081d00e6d5cb7e69750b87491a50475f",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "jquery-3.6.1.min (1).js",
+    "destination": "archive/recovered/flat-export/jquery-3.6.1.min.js",
+    "sha256": "85603fc0052b8bb493897264cd77a7284eceba40d4d421e3f5f7c8a0647cae72",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "jquery-3.6.1.min.js",
+    "destination": "archive/recovered/flat-export/jquery-3.6.1.min.js",
+    "sha256": "85603fc0052b8bb493897264cd77a7284eceba40d4d421e3f5f7c8a0647cae72",
+    "action": "move",
+    "references": [
+      "glass (1).png",
+      "glass.png",
+      "index (1).html",
+      "index-all (1).html",
+      "index-all.html",
+      "index.html",
+      "jquery (1).md",
+      "jquery-3.6.1.min (1).js",
+      "jquery-ui.min (1).css",
+      "jquery-ui.min (1).js",
+      "jquery-ui.min.css",
+      "jquery-ui.min.js",
+      "jquery.md",
+      "jqueryUI (1).md",
+      "jqueryUI.md",
+      "link (1).svg",
+      "link.svg",
+      "member-search-index (1).js",
+      "member-search-index.js",
+      "overview-summary (1).html",
+      "overview-summary.html",
+      "overview-tree (1).html",
+      "overview-tree.html",
+      "package-search-index (1).js",
+      "package-search-index.js",
+      "search (1).html",
+      "search (1).js",
+      "search-page (1).js",
+      "search-page.js",
+      "search.html",
+      "search.js",
+      "serialized-form (1).html",
+      "serialized-form.html",
+      "stylesheet (1).css",
+      "stylesheet.css",
+      "tag-search-index (1).js",
+      "tag-search-index.js",
+      "type-search-index (1).js",
+      "type-search-index.js"
+    ]
+  },
+  {
+    "source": "jquery-ui.min (1).css",
+    "destination": "archive/recovered/flat-export/jquery-ui.min.css",
+    "sha256": "494065f64707d6c99d7f97ef01d3db83bb4ac9c3641c2004a4c95e1cadd8b7c2",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "jquery-ui.min (1).js",
+    "destination": "archive/recovered/flat-export/jquery-ui.min.js",
+    "sha256": "60a93eb07128e06cffd51f40a83d423a7ca0e19e517451de9ae38dddddf1f3d8",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "jquery-ui.min.css",
+    "destination": "archive/recovered/flat-export/jquery-ui.min.css",
+    "sha256": "494065f64707d6c99d7f97ef01d3db83bb4ac9c3641c2004a4c95e1cadd8b7c2",
+    "action": "move",
+    "references": [
+      "glass (1).png",
+      "glass.png",
+      "index (1).html",
+      "index-all (1).html",
+      "index-all.html",
+      "index.html",
+      "jquery (1).md",
+      "jquery-3.6.1.min (1).js",
+      "jquery-3.6.1.min.js",
+      "jquery-ui.min (1).css",
+      "jquery-ui.min (1).js",
+      "jquery-ui.min.js",
+      "jquery.md",
+      "jqueryUI (1).md",
+      "jqueryUI.md",
+      "link (1).svg",
+      "link.svg",
+      "member-search-index (1).js",
+      "member-search-index.js",
+      "overview-summary (1).html",
+      "overview-summary.html",
+      "overview-tree (1).html",
+      "overview-tree.html",
+      "package-search-index (1).js",
+      "package-search-index.js",
+      "search (1).html",
+      "search (1).js",
+      "search-page (1).js",
+      "search-page.js",
+      "search.html",
+      "search.js",
+      "serialized-form (1).html",
+      "serialized-form.html",
+      "stylesheet (1).css",
+      "stylesheet.css",
+      "tag-search-index (1).js",
+      "tag-search-index.js",
+      "type-search-index (1).js",
+      "type-search-index.js"
+    ]
+  },
+  {
+    "source": "jquery-ui.min.js",
+    "destination": "archive/recovered/flat-export/jquery-ui.min.js",
+    "sha256": "60a93eb07128e06cffd51f40a83d423a7ca0e19e517451de9ae38dddddf1f3d8",
+    "action": "move",
+    "references": [
+      "glass (1).png",
+      "glass.png",
+      "index (1).html",
+      "index-all (1).html",
+      "index-all.html",
+      "index.html",
+      "jquery (1).md",
+      "jquery-3.6.1.min (1).js",
+      "jquery-3.6.1.min.js",
+      "jquery-ui.min (1).css",
+      "jquery-ui.min (1).js",
+      "jquery-ui.min.css",
+      "jquery.md",
+      "jqueryUI (1).md",
+      "jqueryUI.md",
+      "link (1).svg",
+      "link.svg",
+      "member-search-index (1).js",
+      "member-search-index.js",
+      "overview-summary (1).html",
+      "overview-summary.html",
+      "overview-tree (1).html",
+      "overview-tree.html",
+      "package-search-index (1).js",
+      "package-search-index.js",
+      "search (1).html",
+      "search (1).js",
+      "search-page (1).js",
+      "search-page.js",
+      "search.html",
+      "search.js",
+      "serialized-form (1).html",
+      "serialized-form.html",
+      "stylesheet (1).css",
+      "stylesheet.css",
+      "tag-search-index (1).js",
+      "tag-search-index.js",
+      "type-search-index (1).js",
+      "type-search-index.js"
+    ]
+  },
+  {
+    "source": "jquery.md",
+    "destination": "archive/recovered/flat-export/jquery.md",
+    "sha256": "b430e6095d6dcdfab9a2ff65e84880cc081d00e6d5cb7e69750b87491a50475f",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "jqueryUI (1).md",
+    "destination": "archive/recovered/flat-export/jqueryUI.md",
+    "sha256": "e89e0cbe698f7dc8484f6dc41d47e266a9a2062d3895649ffb5abef88ed4e236",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "jqueryUI.md",
+    "destination": "archive/recovered/flat-export/jqueryUI.md",
+    "sha256": "e89e0cbe698f7dc8484f6dc41d47e266a9a2062d3895649ffb5abef88ed4e236",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "link (1).svg",
+    "destination": "archive/recovered/flat-export/link.svg",
+    "sha256": "ea85ac19277c10dd60b8c5efa528604aa06488de0901d9c7d7c5207a8fed8472",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "link.svg",
+    "destination": "archive/recovered/flat-export/link.svg",
+    "sha256": "ea85ac19277c10dd60b8c5efa528604aa06488de0901d9c7d7c5207a8fed8472",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "logo02 (1).png",
+    "destination": "archive/recovered/flat-export/logo02.png",
+    "sha256": "de0e09a9a712839cd4b6d589d0fe7f3f6f5aca72ef4f753cc55ace7efdf9de31",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "logo02.png",
+    "destination": "archive/recovered/flat-export/logo02.png",
+    "sha256": "de0e09a9a712839cd4b6d589d0fe7f3f6f5aca72ef4f753cc55ace7efdf9de31",
+    "action": "move",
+    "references": [
+      "download (1)",
+      "download (1) (1)",
+      "recovered/docs/ORIGINAL-README.md"
+    ]
+  },
+  {
+    "source": "logo1 (1).png",
+    "destination": "archive/recovered/flat-export/logo1.png",
+    "sha256": "bb38d9e39ce32d6aedd401dd9c7c9d847886a365f850ccc44d49ba9fbc6fdf02",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "logo1.png",
+    "destination": "archive/recovered/flat-export/logo1.png",
+    "sha256": "bb38d9e39ce32d6aedd401dd9c7c9d847886a365f850ccc44d49ba9fbc6fdf02",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "logo2 (1).png",
+    "destination": "archive/recovered/flat-export/logo2.png",
+    "sha256": "db33342e13cce6b11fc236b7602e8832c948a279f0efa004871baaabee26f9aa",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "logo2.png",
+    "destination": "archive/recovered/flat-export/logo2.png",
+    "sha256": "db33342e13cce6b11fc236b7602e8832c948a279f0efa004871baaabee26f9aa",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "logo_x (1).xml",
+    "destination": "archive/recovered/flat-export/logo_x.xml",
+    "sha256": "401d01b5edccfef90b21bcb0eb8ce257e326a90d5044a2ef804e3e7ac179d052",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "logo_x.xml",
+    "destination": "archive/recovered/flat-export/logo_x.xml",
+    "sha256": "401d01b5edccfef90b21bcb0eb8ce257e326a90d5044a2ef804e3e7ac179d052",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "member-search-index (1).js",
+    "destination": "archive/recovered/flat-export/member-search-index.js",
+    "sha256": "05b1b132c48e2ed4f460de71417b12c7598bae82437d8b68a27411c1044a209c",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "member-search-index.js",
+    "destination": "archive/recovered/flat-export/member-search-index.js",
+    "sha256": "05b1b132c48e2ed4f460de71417b12c7598bae82437d8b68a27411c1044a209c",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "model_classifier_screen_v5 (1).tflite",
+    "destination": "archive/recovered/flat-export/model_classifier_screen_v5.tflite",
+    "sha256": "48c84bd2ac064ce2665b62a6e7c0e87f3b4fe259708a76e16625c2b43e1bc078",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "model_classifier_screen_v5.tflite",
+    "destination": "archive/recovered/flat-export/model_classifier_screen_v5.tflite",
+    "sha256": "48c84bd2ac064ce2665b62a6e7c0e87f3b4fe259708a76e16625c2b43e1bc078",
+    "action": "move",
+    "references": [
+      "image_logo (1).png",
+      "image_logo.png",
+      "recovered/models.sha256"
+    ]
+  },
+  {
+    "source": "overview-summary (1).html",
+    "destination": "archive/recovered/flat-export/overview-summary.html",
+    "sha256": "660e286be962f9b913efd7fa6ab00c9e9a78bc4e3c174e4b01a970fcca3c9fa3",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "overview-summary.html",
+    "destination": "archive/recovered/flat-export/overview-summary.html",
+    "sha256": "660e286be962f9b913efd7fa6ab00c9e9a78bc4e3c174e4b01a970fcca3c9fa3",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "overview-tree (1).html",
+    "destination": "archive/recovered/flat-export/overview-tree.html",
+    "sha256": "50b84fbe32ed35b0d5b28598c2ed5a9e01248b01a0bc30aa2e03abd3b61616e6",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "overview-tree.html",
+    "destination": "archive/recovered/flat-export/overview-tree.html",
+    "sha256": "50b84fbe32ed35b0d5b28598c2ed5a9e01248b01a0bc30aa2e03abd3b61616e6",
+    "action": "move",
+    "references": [
+      "glass (1).png",
+      "glass.png",
+      "index (1).html",
+      "index-all (1).html",
+      "index-all.html",
+      "index.html",
+      "jquery-ui.min (1).js",
+      "jquery-ui.min.js",
+      "tag-search-index (1).js",
+      "tag-search-index.js"
+    ]
+  },
+  {
+    "source": "package-search-index (1).js",
+    "destination": "archive/recovered/flat-export/package-search-index.js",
+    "sha256": "6e7d5a3117ef40aca0e83fe542ae23aac81078055212d295bdc1995b04122ea2",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "package-search-index.js",
+    "destination": "archive/recovered/flat-export/package-search-index.js",
+    "sha256": "6e7d5a3117ef40aca0e83fe542ae23aac81078055212d295bdc1995b04122ea2",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "package-summary (22) (1).html",
+    "destination": "archive/recovered/flat-export/package-summary (22).html",
+    "sha256": "1a6ce6b29a12cfbb4fc48bd23597641a8cfc03901616075b449102cdb62fd91a",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "package-summary (22).html",
+    "destination": "archive/recovered/flat-export/package-summary (22).html",
+    "sha256": "1a6ce6b29a12cfbb4fc48bd23597641a8cfc03901616075b449102cdb62fd91a",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "package-summary (24) (1).html",
+    "destination": "archive/recovered/flat-export/package-summary (24).html",
+    "sha256": "ddc7bfe0badbb4785a6b0c68f92357666abd23572e89fb148096c59379d29848",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "package-summary (24).html",
+    "destination": "archive/recovered/flat-export/package-summary (24).html",
+    "sha256": "ddc7bfe0badbb4785a6b0c68f92357666abd23572e89fb148096c59379d29848",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "package-summary (28) (1).html",
+    "destination": "archive/recovered/flat-export/package-summary (28).html",
+    "sha256": "31c7bcba58c2bac4f8c83fe92b8c1deeace130d9463be324c0368868390c5ecf",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "package-summary (28).html",
+    "destination": "archive/recovered/flat-export/package-summary (28).html",
+    "sha256": "31c7bcba58c2bac4f8c83fe92b8c1deeace130d9463be324c0368868390c5ecf",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "package-summary (32) (1).html",
+    "destination": "archive/recovered/flat-export/package-summary (32).html",
+    "sha256": "c15a47b60a4eeede9ffee33433fd990d8b6236607372b9bb1f6dc51b07b78c39",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "package-summary (32).html",
+    "destination": "archive/recovered/flat-export/package-summary (32).html",
+    "sha256": "c15a47b60a4eeede9ffee33433fd990d8b6236607372b9bb1f6dc51b07b78c39",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "package-summary (34) (1).html",
+    "destination": "archive/recovered/flat-export/package-summary (34).html",
+    "sha256": "1703fd3a31868b63095e89fd0640fd6202a29f3d020cf92a746518685dc04d3f",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "package-summary (34).html",
+    "destination": "archive/recovered/flat-export/package-summary (34).html",
+    "sha256": "1703fd3a31868b63095e89fd0640fd6202a29f3d020cf92a746518685dc04d3f",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "package-summary (36) (1).html",
+    "destination": "archive/recovered/flat-export/package-summary (36).html",
+    "sha256": "e16b656801b6e1925d6abafc4f3f03ff3d4c635013a2476c7cb6f349764dfe74",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "package-summary (36).html",
+    "destination": "archive/recovered/flat-export/package-summary (36).html",
+    "sha256": "e16b656801b6e1925d6abafc4f3f03ff3d4c635013a2476c7cb6f349764dfe74",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "package-tree (1).html",
+    "destination": "archive/recovered/flat-export/package-tree.html",
+    "sha256": "c0b4c3fe80f94b9f0f6a0ec39802adb9a2f90eafc07e40299c07f8d4fb1f0704",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "package-tree (21) (1).html",
+    "destination": "archive/recovered/flat-export/package-tree (21).html",
+    "sha256": "60e8cc006cae1fb6c78391ec9e25a3cfe65c6962c59c6c6945d2026cdd2a79d5",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "package-tree (21).html",
+    "destination": "archive/recovered/flat-export/package-tree (21).html",
+    "sha256": "60e8cc006cae1fb6c78391ec9e25a3cfe65c6962c59c6c6945d2026cdd2a79d5",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "package-tree (23) (1).html",
+    "destination": "archive/recovered/flat-export/package-tree (23).html",
+    "sha256": "8faed7e545dbdf402c643ded72573b84e4d3e02174e02da74a14f0dc12eaa5b4",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "package-tree (23).html",
+    "destination": "archive/recovered/flat-export/package-tree (23).html",
+    "sha256": "8faed7e545dbdf402c643ded72573b84e4d3e02174e02da74a14f0dc12eaa5b4",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "package-tree (29) (1).html",
+    "destination": "archive/recovered/flat-export/package-tree (29).html",
+    "sha256": "f3c8664e53c1a05171a2f7dc5051e80b5150b6ba8fdc5316720ee96294474fda",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "package-tree (29).html",
+    "destination": "archive/recovered/flat-export/package-tree (29).html",
+    "sha256": "f3c8664e53c1a05171a2f7dc5051e80b5150b6ba8fdc5316720ee96294474fda",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "package-tree (31) (1).html",
+    "destination": "archive/recovered/flat-export/package-tree (31).html",
+    "sha256": "4316b4d86c89a9157cb6875c2eee66f3df550ada16bec2331b3c049c11f6aa25",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "package-tree (31).html",
+    "destination": "archive/recovered/flat-export/package-tree (31).html",
+    "sha256": "4316b4d86c89a9157cb6875c2eee66f3df550ada16bec2331b3c049c11f6aa25",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "package-tree (33) (1).html",
+    "destination": "archive/recovered/flat-export/package-tree (33).html",
+    "sha256": "af835f98787e9269af5a046edcb821a592fed372139df7b947b471a63cfc236b",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "package-tree (33).html",
+    "destination": "archive/recovered/flat-export/package-tree (33).html",
+    "sha256": "af835f98787e9269af5a046edcb821a592fed372139df7b947b471a63cfc236b",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "package-tree (35) (1).html",
+    "destination": "archive/recovered/flat-export/package-tree (35).html",
+    "sha256": "6f5cf3fac3a3bb82cc9cb4f6e68dfc3f6ee4e5559f8b6adaafc40ae396d54bcd",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "package-tree (35).html",
+    "destination": "archive/recovered/flat-export/package-tree (35).html",
+    "sha256": "6f5cf3fac3a3bb82cc9cb4f6e68dfc3f6ee4e5559f8b6adaafc40ae396d54bcd",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "package-tree (37) (1).html",
+    "destination": "archive/recovered/flat-export/package-tree (37).html",
+    "sha256": "46657d68545dcfb642f14f66988cfd1c5f5327bdd87951e4e9a751a455940a68",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "package-tree (37).html",
+    "destination": "archive/recovered/flat-export/package-tree (37).html",
+    "sha256": "46657d68545dcfb642f14f66988cfd1c5f5327bdd87951e4e9a751a455940a68",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "package-tree.html",
+    "destination": "archive/recovered/flat-export/package-tree.html",
+    "sha256": "c0b4c3fe80f94b9f0f6a0ec39802adb9a2f90eafc07e40299c07f8d4fb1f0704",
+    "action": "move",
+    "references": [
+      "jquery (1).md",
+      "jquery-3.6.1.min (1).js",
+      "jquery-3.6.1.min.js",
+      "jquery-ui.min (1).css",
+      "jquery-ui.min.css",
+      "jquery.md",
+      "jqueryUI (1).md",
+      "jqueryUI.md",
+      "link (1).svg",
+      "link.svg",
+      "member-search-index (1).js",
+      "member-search-index.js",
+      "overview-summary (1).html",
+      "overview-summary.html",
+      "overview-tree (1).html",
+      "overview-tree.html",
+      "package-search-index (1).js",
+      "package-search-index.js",
+      "search (1).html",
+      "search (1).js",
+      "search-page (1).js",
+      "search-page.js",
+      "search.html",
+      "search.js",
+      "serialized-form (1).html",
+      "serialized-form.html",
+      "stylesheet (1).css",
+      "stylesheet.css",
+      "type-search-index (1).js",
+      "type-search-index.js"
+    ]
+  },
+  {
+    "source": "parameters_preferences (1).xml",
+    "destination": "archive/recovered/flat-export/parameters_preferences.xml",
+    "sha256": "cd6fc99a86549fbd17e0876d7de687ab05330200f2a361c0f0083e785af7b101",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "parameters_preferences.xml",
+    "destination": "archive/recovered/flat-export/parameters_preferences.xml",
+    "sha256": "cd6fc99a86549fbd17e0876d7de687ab05330200f2a361c0f0083e785af7b101",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "qrowdies (1).ttf",
+    "destination": "archive/recovered/flat-export/qrowdies.ttf",
+    "sha256": "f7d9c1e62b5133e73a08150d595ffe99de08748ccff9ae09fe03107b320a636f",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "qrowdies.ttf",
+    "destination": "archive/recovered/flat-export/qrowdies.ttf",
+    "sha256": "f7d9c1e62b5133e73a08150d595ffe99de08748ccff9ae09fe03107b320a636f",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "recyclerview_menu_priority (1).xml",
+    "destination": "archive/recovered/flat-export/recyclerview_menu_priority.xml",
+    "sha256": "31a29e64b5b7f718df2f575a2198f4a50ac3d0ee8f6bb341f398e6e8547b18c7",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "recyclerview_menu_priority.xml",
+    "destination": "archive/recovered/flat-export/recyclerview_menu_priority.xml",
+    "sha256": "31a29e64b5b7f718df2f575a2198f4a50ac3d0ee8f6bb341f398e6e8547b18c7",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "search (1).html",
+    "destination": "archive/recovered/flat-export/search.html",
+    "sha256": "2268f06f6d09802b77d512987d3cda215037cf4bbb84bfa22e49845c298ef0d4",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "search (1).js",
+    "destination": "archive/recovered/flat-export/search.js",
+    "sha256": "353fc076610bbaf36815f277548efff8970fee2609115b01efed574e4808f1fc",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "search-page (1).js",
+    "destination": "archive/recovered/flat-export/search-page.js",
+    "sha256": "495c2ef4890dbff02e92e6a4708896b6de00d1d4d5e3034138c8f7f9f24fdcad",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "search-page.js",
+    "destination": "archive/recovered/flat-export/search-page.js",
+    "sha256": "495c2ef4890dbff02e92e6a4708896b6de00d1d4d5e3034138c8f7f9f24fdcad",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "search.html",
+    "destination": "archive/recovered/flat-export/search.html",
+    "sha256": "2268f06f6d09802b77d512987d3cda215037cf4bbb84bfa22e49845c298ef0d4",
+    "action": "move",
+    "references": [
+      "glass (1).png",
+      "glass.png",
+      "index (1).html",
+      "index-all (1).html",
+      "index-all.html",
+      "index.html",
+      "jquery (1).md",
+      "jquery-3.6.1.min (1).js",
+      "jquery-3.6.1.min.js",
+      "jquery-ui.min (1).css",
+      "jquery-ui.min (1).js",
+      "jquery-ui.min.css",
+      "jquery-ui.min.js",
+      "jquery.md",
+      "jqueryUI (1).md",
+      "jqueryUI.md",
+      "link (1).svg",
+      "link.svg",
+      "member-search-index (1).js",
+      "member-search-index.js",
+      "overview-summary (1).html",
+      "overview-summary.html",
+      "overview-tree (1).html",
+      "overview-tree.html",
+      "package-search-index (1).js",
+      "package-search-index.js",
+      "search (1).html",
+      "search (1).js",
+      "search-page (1).js",
+      "search-page.js",
+      "search.js",
+      "serialized-form (1).html",
+      "serialized-form.html",
+      "stylesheet (1).css",
+      "stylesheet.css",
+      "tag-search-index (1).js",
+      "tag-search-index.js",
+      "type-search-index (1).js",
+      "type-search-index.js"
+    ]
+  },
+  {
+    "source": "search.js",
+    "destination": "archive/recovered/flat-export/search.js",
+    "sha256": "353fc076610bbaf36815f277548efff8970fee2609115b01efed574e4808f1fc",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "serialized-form (1).html",
+    "destination": "archive/recovered/flat-export/serialized-form.html",
+    "sha256": "b115727a5ef8c52834b329c7c938af69a4fbb567e7eacf01097f0c3e9c9fcfbf",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "serialized-form.html",
+    "destination": "archive/recovered/flat-export/serialized-form.html",
+    "sha256": "b115727a5ef8c52834b329c7c938af69a4fbb567e7eacf01097f0c3e9c9fcfbf",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "settings (1).gradle",
+    "destination": "archive/recovered/flat-export/settings.gradle",
+    "sha256": "9d2e2c0acdfbf2025a86e695f12d73afaf0305400e8c87b7dfcdce493fb57d3e",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "settings.gradle",
+    "destination": "archive/recovered/flat-export/settings.gradle",
+    "sha256": "9d2e2c0acdfbf2025a86e695f12d73afaf0305400e8c87b7dfcdce493fb57d3e",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "shape_rounded_purple (1).xml",
+    "destination": "archive/recovered/flat-export/shape_rounded_purple.xml",
+    "sha256": "6ac5aa22829457d4bec190e5a53677ad72b360563b09daf16d2c7a464b93fcd4",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "shape_rounded_purple.xml",
+    "destination": "archive/recovered/flat-export/shape_rounded_purple.xml",
+    "sha256": "6ac5aa22829457d4bec190e5a53677ad72b360563b09daf16d2c7a464b93fcd4",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "strings (1).xml",
+    "destination": "archive/recovered/flat-export/strings.xml",
+    "sha256": "ccca6c1f95ea7a39b160c8de16978e472eeb3b71315cb71446b407789b9e14e6",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "strings (17) (1).xml",
+    "destination": "archive/recovered/flat-export/strings (17).xml",
+    "sha256": "c485547815a22eb19bf6d0273ce6c0d1d493ad1ce38512efcbeb6162104999b4",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "strings (17).xml",
+    "destination": "archive/recovered/flat-export/strings (17).xml",
+    "sha256": "c485547815a22eb19bf6d0273ce6c0d1d493ad1ce38512efcbeb6162104999b4",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "strings.xml",
+    "destination": "archive/recovered/flat-export/strings.xml",
+    "sha256": "ccca6c1f95ea7a39b160c8de16978e472eeb3b71315cb71446b407789b9e14e6",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "stylesheet (1).css",
+    "destination": "archive/recovered/flat-export/stylesheet.css",
+    "sha256": "a43be8b0577b497c839d37e4e08d790f5f7bec6b83a483a45a24ee4717f4e101",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "stylesheet.css",
+    "destination": "archive/recovered/flat-export/stylesheet.css",
+    "sha256": "a43be8b0577b497c839d37e4e08d790f5f7bec6b83a483a45a24ee4717f4e101",
+    "action": "move",
+    "references": [
+      "glass (1).png",
+      "glass.png",
+      "index (1).html",
+      "index-all (1).html",
+      "index-all.html",
+      "index.html",
+      "jquery (1).md",
+      "jquery-3.6.1.min (1).js",
+      "jquery-3.6.1.min.js",
+      "jquery-ui.min (1).css",
+      "jquery-ui.min (1).js",
+      "jquery-ui.min.css",
+      "jquery-ui.min.js",
+      "jquery.md",
+      "jqueryUI (1).md",
+      "jqueryUI.md",
+      "link (1).svg",
+      "link.svg",
+      "member-search-index (1).js",
+      "member-search-index.js",
+      "overview-summary (1).html",
+      "overview-summary.html",
+      "overview-tree (1).html",
+      "overview-tree.html",
+      "package-search-index (1).js",
+      "package-search-index.js",
+      "search (1).html",
+      "search (1).js",
+      "search-page (1).js",
+      "search-page.js",
+      "search.html",
+      "search.js",
+      "serialized-form (1).html",
+      "serialized-form.html",
+      "stylesheet (1).css",
+      "tag-search-index (1).js",
+      "tag-search-index.js",
+      "type-search-index (1).js",
+      "type-search-index.js"
+    ]
+  },
+  {
+    "source": "tag-search-index (1).js",
+    "destination": "archive/recovered/flat-export/tag-search-index.js",
+    "sha256": "ea734c476f00cde4a34648e778514fe544d71804bfa524b730006f76ef9b6897",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "tag-search-index.js",
+    "destination": "archive/recovered/flat-export/tag-search-index.js",
+    "sha256": "ea734c476f00cde4a34648e778514fe544d71804bfa524b730006f76ef9b6897",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "themes (1).xml",
+    "destination": "archive/recovered/flat-export/themes.xml",
+    "sha256": "70afc29f63e8919198f0befe30003118c93900f0351cffdb8a7ecc3b6fb9eb02",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "themes (18) (1).xml",
+    "destination": "archive/recovered/flat-export/themes (18).xml",
+    "sha256": "56f2111b65ac7b416834ad8fe8862f004916d74d8ee4271744e7b0e32b11d980",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "themes (18).xml",
+    "destination": "archive/recovered/flat-export/themes (18).xml",
+    "sha256": "56f2111b65ac7b416834ad8fe8862f004916d74d8ee4271744e7b0e32b11d980",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "themes.xml",
+    "destination": "archive/recovered/flat-export/themes.xml",
+    "sha256": "70afc29f63e8919198f0befe30003118c93900f0351cffdb8a7ecc3b6fb9eb02",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "type-search-index (1).js",
+    "destination": "archive/recovered/flat-export/type-search-index.js",
+    "sha256": "f41d3ba7244696128fde2e2cd9eba897a72e1dad17f0dd8a6d74ae4bd41a81be",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "type-search-index.js",
+    "destination": "archive/recovered/flat-export/type-search-index.js",
+    "sha256": "f41d3ba7244696128fde2e2cd9eba897a72e1dad17f0dd8a6d74ae4bd41a81be",
+    "action": "move",
+    "references": []
+  },
+  {
+    "source": "vector_arrow_back (1).xml",
+    "destination": "archive/recovered/flat-export/vector_arrow_back.xml",
+    "sha256": "5a2f930c55b106b295e86b673f89b559b5793a8172227d22c2495d0c5364a65b",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "vector_arrow_back.xml",
+    "destination": "archive/recovered/flat-export/vector_arrow_back.xml",
+    "sha256": "5a2f930c55b106b295e86b673f89b559b5793a8172227d22c2495d0c5364a65b",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "vector_arrow_up (1).xml",
+    "destination": "archive/recovered/flat-export/vector_arrow_up.xml",
+    "sha256": "23d1299d5b6b2a62ba22cf65e2f136bb71be2786306f29011e02235e31ab4234",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "vector_arrow_up.xml",
+    "destination": "archive/recovered/flat-export/vector_arrow_up.xml",
+    "sha256": "23d1299d5b6b2a62ba22cf65e2f136bb71be2786306f29011e02235e31ab4234",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "vector_download (1).xml",
+    "destination": "archive/recovered/flat-export/vector_download.xml",
+    "sha256": "ada02d62dacb6fddb0d1a47cd80ca14bcb904aa9bc0bb941d5264b2100719887",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "vector_download.xml",
+    "destination": "archive/recovered/flat-export/vector_download.xml",
+    "sha256": "ada02d62dacb6fddb0d1a47cd80ca14bcb904aa9bc0bb941d5264b2100719887",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "vector_home (1).xml",
+    "destination": "archive/recovered/flat-export/vector_home.xml",
+    "sha256": "6a70a8125ddb89c634bd51a77e252dee3f6fefb39bbcc1bb82160e9aebab60a2",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "vector_home.xml",
+    "destination": "archive/recovered/flat-export/vector_home.xml",
+    "sha256": "6a70a8125ddb89c634bd51a77e252dee3f6fefb39bbcc1bb82160e9aebab60a2",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "vector_language (1).xml",
+    "destination": "archive/recovered/flat-export/vector_language.xml",
+    "sha256": "7e66fbbc240a5cb93187559e6004c48e5899c0d793413e71ef782ec332730e00",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "vector_language.xml",
+    "destination": "archive/recovered/flat-export/vector_language.xml",
+    "sha256": "7e66fbbc240a5cb93187559e6004c48e5899c0d793413e71ef782ec332730e00",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "vector_layers (1).xml",
+    "destination": "archive/recovered/flat-export/vector_layers.xml",
+    "sha256": "ae1ea712e0bc2f5a0f98b4adcc42e6cece2b73fa71f7bf5a19f0cc0be500aa0c",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "vector_layers.xml",
+    "destination": "archive/recovered/flat-export/vector_layers.xml",
+    "sha256": "ae1ea712e0bc2f5a0f98b4adcc42e6cece2b73fa71f7bf5a19f0cc0be500aa0c",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "vector_more (1).xml",
+    "destination": "archive/recovered/flat-export/vector_more.xml",
+    "sha256": "e01102eace2f930c10ae798f2cc33f863d7d80711c779d1eb7578b9982e6fcdd",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "vector_more.xml",
+    "destination": "archive/recovered/flat-export/vector_more.xml",
+    "sha256": "e01102eace2f930c10ae798f2cc33f863d7d80711c779d1eb7578b9982e6fcdd",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "vector_params (1).xml",
+    "destination": "archive/recovered/flat-export/vector_params.xml",
+    "sha256": "540877e2415633e55fc765b6f7522a0d70ae7f28dd738b7213ee94edc88b12f7",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "vector_params.xml",
+    "destination": "archive/recovered/flat-export/vector_params.xml",
+    "sha256": "540877e2415633e55fc765b6f7522a0d70ae7f28dd738b7213ee94edc88b12f7",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "vector_permission (1).xml",
+    "destination": "archive/recovered/flat-export/vector_permission.xml",
+    "sha256": "7091a67477695c6c9e938cac2b44c559f639fcddbaa41b684499d0b9071ac268",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "vector_permission.xml",
+    "destination": "archive/recovered/flat-export/vector_permission.xml",
+    "sha256": "7091a67477695c6c9e938cac2b44c559f639fcddbaa41b684499d0b9071ac268",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "vector_placeholder (1).xml",
+    "destination": "archive/recovered/flat-export/vector_placeholder.xml",
+    "sha256": "b369fc7dff36843706ccf487244bfe0b2dd2940d69a802dfb6baed1abfac3bba",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "vector_placeholder.xml",
+    "destination": "archive/recovered/flat-export/vector_placeholder.xml",
+    "sha256": "b369fc7dff36843706ccf487244bfe0b2dd2940d69a802dfb6baed1abfac3bba",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "vector_rocketstop (1).xml",
+    "destination": "archive/recovered/flat-export/vector_rocketstop.xml",
+    "sha256": "38381d0d0a64770d992c98e5b5e492555690af40e2fc6ee59e5a1c2a7c0fdcde",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "vector_rocketstop.xml",
+    "destination": "archive/recovered/flat-export/vector_rocketstop.xml",
+    "sha256": "38381d0d0a64770d992c98e5b5e492555690af40e2fc6ee59e5a1c2a7c0fdcde",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "vector_theme (1).xml",
+    "destination": "archive/recovered/flat-export/vector_theme.xml",
+    "sha256": "9e458dc4e09e78452135643a4d5aa6918b83830162092cedf8861e5106826445",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "vector_theme.xml",
+    "destination": "archive/recovered/flat-export/vector_theme.xml",
+    "sha256": "9e458dc4e09e78452135643a4d5aa6918b83830162092cedf8861e5106826445",
+    "action": "move",
+    "references": [
+      "recovered/upstream-resources.json"
+    ]
+  },
+  {
+    "source": "widget_kofi (1).xml",
+    "destination": "archive/recovered/flat-export/widget_kofi.xml",
+    "sha256": "a14a0d90684d1b505a19482889000e606761e54987249b571c8541ba3c14e485",
+    "action": "deduplicate",
+    "references": []
+  },
+  {
+    "source": "widget_kofi.xml",
+    "destination": "archive/recovered/flat-export/widget_kofi.xml",
+    "sha256": "a14a0d90684d1b505a19482889000e606761e54987249b571c8541ba3c14e485",
+    "action": "move",
+    "references": []
+  }
+]

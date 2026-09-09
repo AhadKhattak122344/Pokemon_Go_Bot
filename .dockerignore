@@ -1,12 +1,11 @@
 *
-!recovered
-!recovered/**
 !cloud-lab
 !cloud-lab/**
-recovered/.gradle
-recovered/app/build
-recovered/local.properties
-cloud-lab/artifacts
 cloud-lab/.venv
+cloud-lab/.tmp
+cloud-lab/.uv-cache
+cloud-lab/artifacts
+cloud-lab/apks/*.apk
 **/__pycache__
 **/.pytest_cache
+**/*.egg-info

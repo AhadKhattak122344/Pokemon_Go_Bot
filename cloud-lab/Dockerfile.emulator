@@ -23,8 +23,8 @@ COPY cloud-lab/scripts/ /opt/lab/scripts/
 RUN chmod +x /opt/lab/scripts/*.sh
 ENV AVD_NAME=baseline EMULATOR_ACCEL=off EMULATOR_GPU=swiftshader_indirect BOOT_TIMEOUT=900
 EXPOSE 5037 5559
-HEALTHCHECK --interval=15s --timeout=10s --start-period=900s --retries=3 \
-    CMD adb -s emulator-5554 get-state | grep -qx device && test "$(adb -s emulator-5554 shell getprop sys.boot_completed | tr -d '\r')" = 1
+HEALTHCHECK --interval=15s --timeout=15s --start-period=1900s --retries=3 \
+    CMD /opt/lab/scripts/wait_for_adb.sh 10
 ENTRYPOINT ["/opt/lab/scripts/start_emulator.sh"]
 
 FROM python:3.12.10-slim-bookworm AS orchestrator
