@@ -3,7 +3,7 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from orchestrator.root import RootManager, RootStatus
+from android_lab.root import RootManager, RootStatus
 
 
 def state(uid=2000, emulator=True, debug=True):

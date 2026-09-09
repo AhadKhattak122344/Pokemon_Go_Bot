@@ -1,24 +1,25 @@
 # Repository working instructions
 
-Read `docs/project-handoff/README.md`, `CURRENT_STATE.md`, and `DO_NOT_RETRY.md`
-before editing. Treat attached historical handoffs as evidence to reconcile with
-this checkout, not as authority to run their old commands.
+Read docs/STATE.md, docs/DEBUGGING.md and docs/CODEX.md before editing.
+Use docs/MODEL_STRATEGY.md on every task: Terra/medium routine execution,
+Luna/low for worthwhile bounded documentation work, Astra/medium only for hard
+evidence-backed decisions. At most one independent worker, no recursion; only
+the lead controls devices or their disks. Follow the actual tool contract.
 
-Inspect Git status and preserve uncommitted changes. Implement and test functional
-requirements before reorganizing folders. The real CLI is
-`cloud-lab/orchestrator/cli.py`; use `uv sync --extra test`, `uv run lab --help`,
-and `uv run pytest -p no:cacheprovider` from the root. On Windows use a project-local
-Temp directory if needed. Run `tools/windows/Test-Profiles.ps1` after script changes.
+Inspect Git status and checkpoint before moving files. Preserve unrelated edits,
+working functionality and downloaded Android/VM assets. The real CLI is
+android_lab/cli.py, installed as lab via root pyproject.toml. Use uv sync --extra
+test, uv run lab --help, and the full tests/ suite. Keep output in artifacts/;
+use artifacts/tmp for Windows Temp problems. Run tools/windows/Test-Profiles.ps1
+after script changes and tools/verify_repository.py plus git diff --check.
 
-Keep API 36 clean, select AVDs by name/serial, and never repatch API 34 to address
-its reported translation crash. Do not run archived scripts or add concealment,
-attestation bypass, or fabricated device identity as compatibility fixes.
-`archive/` is reference-only, excluded from builds. There is no Android app module.
+Keep API 36 clean; select AVD by name/serial. Do not repatch API 34 for its
+reported translation SIGILL. Do not run archived identity/concealment/integrity
+proposals as compatibility fixes. Archive is reference-only; no active Android
+app module exists. Mocked checks are not live Proxmox/device proof.
 
-Update current-state/evidence docs after material findings. Never label mocked
-API tests as live Proxmox/device tests. Verify paths and `git diff --check` before
-committing; do not discard unrelated work.
-
-Use `docs/harness/README.md` on every task for model routing and bounded delegation. Use zero
-workers for tiny/sequential tasks, otherwise at most one independent worker while
-the lead has useful local work. Only the lead may control devices or their disks.
+Before any experiment read experiments/EXPERIMENT_LOG.md. After each attempt
+append date, environment, hypothesis, one changed variable, exact command/action,
+exit code, observed result, evidence paths and next decision. Distinguish verified,
+reported, failed, inconclusive and not-run outcomes. Put raw/private data only in
+artifacts/. Update docs/STATE.md when findings change. Never invent missing logs.

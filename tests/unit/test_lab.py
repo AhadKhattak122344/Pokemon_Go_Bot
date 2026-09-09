@@ -4,10 +4,10 @@ from unittest.mock import patch
 
 import pytest
 
-from orchestrator.adb import Adb
-from orchestrator.config import component, load
-from orchestrator.location import Point, distance, follow, read_gpx, updates
-from orchestrator.cli import smoke
+from android_lab.adb import Adb
+from android_lab.config import component, load
+from android_lab.location import Point, distance, follow, read_gpx, updates
+from android_lab.cli import smoke
 
 
 def test_adb_keeps_serial_and_quotes_device_shell():
@@ -52,7 +52,7 @@ def test_other_app_component_is_rejected():
 
 def test_failed_launch_still_writes_report(tmp_path):
     cfg = load(Path(__file__).resolve().parents[2] / 'config/default.yaml')
-    with patch('orchestrator.cli.wait_ready'), patch.object(Adb, 'shell', return_value=''):
+    with patch('android_lab.cli.wait_ready'), patch.object(Adb, 'shell', return_value=''):
         with patch.object(Adb, 'run', return_value=''):
             with pytest.raises(RuntimeError, match='not installed'):
                 smoke(Adb(), cfg, tmp_path)
@@ -87,10 +87,10 @@ def test_route_schedule_accounts_for_adb_latency(tmp_path):
         sent.append(now[0])
         now[0] += 0.2
     points = [Point(0, 0), Point(0, 0.001), Point(0, 0.002)]
-    with patch('orchestrator.location.read_gpx', return_value=points), \
-         patch('orchestrator.location.updates', return_value=iter(zip(points, (0, 1, 1)))), \
-         patch('orchestrator.location.time.monotonic', side_effect=lambda: now[0]), \
-         patch('orchestrator.location.time.sleep', side_effect=sleep), \
-         patch('orchestrator.location.set_location', side_effect=send):
+    with patch('android_lab.location.read_gpx', return_value=points), \
+         patch('android_lab.location.updates', return_value=iter(zip(points, (0, 1, 1)))), \
+         patch('android_lab.location.time.monotonic', side_effect=lambda: now[0]), \
+         patch('android_lab.location.time.sleep', side_effect=sleep), \
+         patch('android_lab.location.set_location', side_effect=send):
         follow(Adb(), tmp_path / 'route.gpx', 1, tmp_path / 'trace.csv')
     assert sent == pytest.approx([0, 1, 2])

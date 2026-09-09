@@ -19,7 +19,7 @@ RUN sdkmanager 'platform-tools'
 FROM sdk AS emulator
 RUN sdkmanager 'emulator' 'system-images;android-34;google_apis;x86_64' \
     && echo no | avdmanager create avd --name baseline --package 'system-images;android-34;google_apis;x86_64' --device pixel_7
-COPY cloud-lab/scripts/ /opt/lab/scripts/
+COPY tools/linux/ /opt/lab/scripts/
 RUN chmod +x /opt/lab/scripts/*.sh
 ENV AVD_NAME=baseline EMULATOR_ACCEL=off EMULATOR_GPU=swiftshader_indirect BOOT_TIMEOUT=900
 EXPOSE 5037 5559
@@ -31,6 +31,11 @@ FROM python:3.12.10-slim-bookworm AS orchestrator
 COPY --from=sdk /opt/android-sdk/platform-tools/ /opt/platform-tools/
 ENV PATH="/opt/platform-tools:${PATH}"
 WORKDIR /lab
-COPY cloud-lab/ .
+COPY pyproject.toml .
+COPY android_lab/ ./android_lab/
+COPY config/default.yaml config/api36.yaml config/proxmox.example.json ./config/
+COPY config/routes/ ./config/routes/
+COPY config/docker/ ./config/docker/
+COPY tests/ ./tests/
 RUN pip install --no-cache-dir '.[test]'
 ENTRYPOINT ["lab"]

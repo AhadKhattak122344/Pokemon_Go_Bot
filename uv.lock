@@ -2,16 +2,10 @@ version = 1
 revision = 3
 requires-python = ">=3.11"
 
-[manifest]
-members = [
-    "android-cloud-lab",
-    "android-qa-workspace",
-]
-
 [[package]]
 name = "android-cloud-lab"
 version = "0.1.0"
-source = { editable = "cloud-lab" }
+source = { editable = "." }
 dependencies = [
     { name = "pyyaml" },
 ]
@@ -25,26 +19,6 @@ test = [
 requires-dist = [
     { name = "pytest", marker = "extra == 'test'", specifier = "==8.3.5" },
     { name = "pyyaml", specifier = "==6.0.2" },
-]
-provides-extras = ["test"]
-
-[[package]]
-name = "android-qa-workspace"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "android-cloud-lab" },
-]
-
-[package.optional-dependencies]
-test = [
-    { name = "pytest" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "android-cloud-lab", editable = "cloud-lab" },
-    { name = "pytest", marker = "extra == 'test'", specifier = "==8.3.5" },
 ]
 provides-extras = ["test"]
 

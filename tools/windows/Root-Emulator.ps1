@@ -9,7 +9,7 @@ if (!(Test-Path $python)) { throw 'Python runtime missing. See tools/windows/OPT
 $report = Join-Path $WorkspaceRoot ("artifacts/root-{0}-{1}.json" -f $Action,[guid]::NewGuid().ToString('N'))
 Push-Location $WorkspaceRoot
 try {
-    & $python -m orchestrator.cli --config cloud-lab/config/default.yaml root $Action --out $report
+    & $python -m android_lab.cli --config config/default.yaml root $Action --out $report
     if ($LASTEXITCODE -ne 0) { throw "Root command failed. See $report" }
 } finally {
     Pop-Location

@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 from urllib.error import HTTPError
 
-from orchestrator import proxmox as fleet
+from android_lab import proxmox as fleet
 EXAMPLE = Path(__file__).parents[2] / "config/proxmox.example.json"
 
 

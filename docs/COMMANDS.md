@@ -1,6 +1,33 @@
+# Current commands
+
+Run from repository root unless noted. Full setup is in START-HERE.md.
+
+```powershell
+uv sync --extra test
+uv run lab --help
+uv run pytest -p no:cacheprovider
+uv build --out-dir artifacts/dist
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Test-Profiles.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Start-Emulator.ps1 -Profile Api36
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Test-Emulator.ps1 -Profile Api36
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Stop-Emulator.ps1 -Profile Api36
+```
+
+After loading the Android environment in the current process:
+
+```powershell
+uv run lab --config config/api36.yaml status
+uv run lab --config config/api36.yaml diagnostics
+uv run lab proxmox plan --config config/proxmox.example.json
+uv run lab proxmox --help
+```
+
+`proxmox preflight` and `deploy` use a configured real host and API token. `deploy`
+requires a fresh `--out` journal. See the dedicated guide before invoking live writes.
+
 # Proxmox deployment preparation
 
-The maintained implementation is `cloud-lab/orchestrator/proxmox.py`, registered
+The maintained implementation is `android_lab/proxmox.py`, registered
 as `lab proxmox`. Its unit tests use fake API responses. No real Proxmox host was
 contacted during this change. Keep one host and one guest image as the pilot.
 
@@ -38,7 +65,7 @@ an OS installation or generalize Android user data automatically.
 From the repository root:
 
 ```powershell
-Copy-Item cloud-lab/config/proxmox.example.json cloud-lab/config/proxmox.json
+Copy-Item config/proxmox.example.json config/proxmox.json
 uv run python -c "import uuid; print(uuid.uuid4())"
 ```
 
@@ -47,7 +74,7 @@ namespace UUID** from the command above, and choose unused instance VMIDs/names.
 The example points at a reserved example hostname and cannot deploy as-is.
 
 ```powershell
-uv run lab proxmox plan --config cloud-lab/config/proxmox.json --out artifacts/proxmox-plan.json
+uv run lab proxmox plan --config config/proxmox.json --out artifacts/proxmox-plan.json
 ```
 
 `plan` is offline, validates the configuration, and deterministically derives
@@ -71,7 +98,7 @@ prove write permissions; inspect effective token ACLs in Proxmox before deployin
 See the [official token and privilege guide](https://github.com/proxmox/pve-docs/blob/master/pveum.adoc).
 
 ```powershell
-uv run lab proxmox preflight --config cloud-lab/config/proxmox.json --out artifacts/proxmox-preflight.json
+uv run lab proxmox preflight --config config/proxmox.json --out artifacts/proxmox-preflight.json
 ```
 
 Preflight rejects occupied IDs/names, unavailable templates/bridges/storage,
@@ -83,7 +110,7 @@ host changes can still make a later API write fail.
 ## Deploy only after pilot acceptance
 
 ```powershell
-uv run lab proxmox deploy --config cloud-lab/config/proxmox.json --out artifacts/proxmox-deploy.json
+uv run lab proxmox deploy --config config/proxmox.json --out artifacts/proxmox-deploy.json
 ```
 
 A fresh output path is required. The tool rechecks preflight, full-clones each VM,
@@ -104,9 +131,9 @@ With the actual guest debugging address in `adb.serial` of a local Android YAML
 scenario, and ADB available in the current environment:
 
 ```powershell
-uv run lab --config cloud-lab/config/local-guest.yaml connect
-uv run lab --config cloud-lab/config/local-guest.yaml status
-uv run lab --config cloud-lab/config/local-guest.yaml diagnostics
+uv run lab --config config/local-guest.yaml connect
+uv run lab --config config/local-guest.yaml status
+uv run lab --config config/local-guest.yaml diagnostics
 ```
 
 Demonstrate cold-reboot persistence, a real ARM/ARM64 native test for each required
@@ -116,4 +143,60 @@ Only then benchmark concurrency, CPU, memory, graphics and storage at the intend
 fleet size. Do not report unseen guest capabilities as passed.
 
 Protocol sources and the rejected handoff claims are recorded in
-[HANDOFF-FACT-CHECK.md](HANDOFF-FACT-CHECK.md).
+[DEBUGGING.md](DEBUGGING.md).
+
+# Explicit emulator debug-root controls
+
+From the root after loading the Android environment:
+
+```powershell
+uv run lab root status
+uv run lab root enable
+uv run lab root disable
+uv run lab root self-test
+```
+
+Set `LAB_SERIAL` or select a YAML scenario for the intended owned debug emulator.
+`status` only probes; it does not run `su`. Enable/disable uses `adb root`/`adb unroot`,
+waits for reconnect and verifies numeric UID. Self-test restores the original ADB
+privilege in a finally block. Each action writes a JSON report. Unsupported builds
+and physical devices are rejected before changes. Do not run transitions concurrently.
+
+ADB daemon privilege is distinct from app-level Magisk `su`. Optional unavailable
+probes are reported as unknown. Nothing here patches boot images or hides root.
+The separately available [Windows Magisk setup](../tools/windows/OPTIONAL-SETUP.md)
+is only for the owned API 34 debug image and requires explicit invocation.
+
+The supplied handoff already reports root on the modified `baseline` AVD; do not
+repatch it to fix ARM translation SIGILL. Keep `poke_api36_test` clean until its
+ordinary authentication failure is understood. Historical live-root reports from
+earlier sessions are not current migration verification evidence.
+
+## CLI configuration and optional Linux runtime
+
+Global `--config YAML` precedes the Android command; Proxmox JSON `--config`
+follows `proxmox plan/preflight/deploy`. `LAB_SERIAL`, `ADB_SERVER_SOCKET`,
+`LAB_ARTIFACTS` and `LAB_PROFILE` override the corresponding scenario values.
+The default scenario is API 34 for Docker; choose `config/api36.yaml` for native
+API 36. Set the real app package/activity before install/smoke tests. `smoke`
+clears logcat; capture diagnostics first when preserving an existing failure.
+
+Linux requires Docker Engine/Compose v2 and working `/dev/kvm` on an x86_64 host.
+The container is Google APIs API 34 and does not include Play Store. Do not repeat
+the reported software-emulated Windows/WSL failure without new KVM evidence.
+Run from the repository root:
+
+```sh
+docker compose -f config/docker/docker-compose.yml -f config/docker/docker-compose.kvm.yml build
+LAB_PROFILE=nested-virt uv run lab up
+uv run lab status
+uv run lab install --apk assets/apks/your-app.apk
+uv run lab smoke
+LAB_PROFILE=nested-virt uv run lab down
+uv run lab location set --lat 40.758 --lon -73.985
+uv run lab location follow --gpx config/routes/sample_city_walk.gpx --speed-mps 1.4
+```
+
+Location calls are emulator QA inputs, not proof an app consumed them. Container
+startup retains its bounded two-attempt boot policy. Docker lifecycle commands
+require this source checkout; device and Proxmox commands also work from a wheel.

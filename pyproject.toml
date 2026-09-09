@@ -1,18 +1,26 @@
 [project]
-name = "android-qa-workspace"
+name = "android-cloud-lab"
 version = "0.1.0"
+description = "Headless Android QA lab for user-supplied APKs"
 requires-python = ">=3.11"
-dependencies = ["android-cloud-lab"]
+dependencies = ["PyYAML==6.0.2"]
 
 [project.optional-dependencies]
 test = ["pytest==8.3.5"]
 
-[tool.uv.workspace]
-members = ["cloud-lab"]
+[project.scripts]
+lab = "android_lab.cli:main"
 
-[tool.uv.sources]
-android-cloud-lab = { workspace = true }
+[tool.setuptools]
+packages = ["android_lab"]
+
+[tool.setuptools.package-data]
+android_lab = ["default.yaml"]
 
 [tool.pytest.ini_options]
-testpaths = ["cloud-lab/tests/unit"]
+testpaths = ["tests/unit"]
 norecursedirs = ["archive", ".tools", ".venv", ".tmp", "artifacts"]
+
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"

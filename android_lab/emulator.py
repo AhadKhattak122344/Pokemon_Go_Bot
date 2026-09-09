@@ -12,14 +12,15 @@ from .health import wait_ready
 
 def compose(config: dict[str, Any], *args: str) -> None:
     root = Path(__file__).resolve().parents[1]
-    if not (root / 'docker-compose.yml').is_file():
+    docker = root / 'config' / 'docker'
+    if not (docker / 'docker-compose.yml').is_file():
         raise RuntimeError('Docker lifecycle commands require a source checkout; use --config for device commands')
     if args and args[0] != 'down' and (config['emulator']['api'] != 34 or config['emulator']['avd'] != 'baseline'):
         raise ValueError('The bundled Docker image supports emulator.api: 34 and emulator.avd: baseline only')
     profile = config['profiles'][config['profile']]
-    command = ["docker", "compose", "-f", str(root / "docker-compose.yml")]
+    command = ["docker", "compose", "-f", str(docker / "docker-compose.yml")]
     if profile['accel'] == 'on':
-        command += ["-f", str(root / "docker-compose.kvm.yml")]
+        command += ["-f", str(docker / "docker-compose.kvm.yml")]
     try:
         subprocess.run([*command, *args], cwd=root, check=True,
                    timeout=math.ceil(config['emulator']['boot_timeout_s']) * 2 + 180,

@@ -1,3 +1,21 @@
+# Do not repeat established dead ends
+
+- Do not patch or root the clean API 36 baseline to guess at sign-in failure.
+- Do not repatch API 34 merely because its known ARM translator hits SIGILL.
+- Do not cycle accounts to diagnose an environment-wide failure.
+- Do not retry this host's software-emulated Docker path without proof KVM is available.
+- Do not restore the old ADB `-L tcp:0.0.0.0:5037` startup mistake.
+- Do not infer native ARM execution from an advertised ABI/native-bridge property.
+- Do not treat x86 Proxmox as a solution to arbitrary ARM64-only app requirements.
+- Do not execute archived identity/concealment/integrity scripts or use them as acceptance evidence.
+- Do not assume FastAPI or lifecycle commands exist: inspect `uv run lab --help`.
+- Do not call an offline plan or mocked test a successful live deployment.
+- Do not run the recovered Gradle skeleton as though the deleted app module exists.
+
+## Investigation procedure
+
+Use [the experiment log](../experiments/EXPERIMENT_LOG.md) before retrying. Capture diagnostics before clearing logcat or launching a smoke test. Record the selected AVD/serial, app version, exact symptom, timestamp, one changed variable, expected result and actual outcome. Separate install, launch, crash, authentication and certification. Keep private raw logs/screenshots in artifacts; link their paths from redacted notes. Missing evidence calls for capture, not a speculative root or image change.
+
 # Android fleet handoff: verified corrections
 
 Checked 2026-09-08 against project-maintained documentation and source. This reviews the pasted September 2026 handoff; it does not certify a running VM or a deployed fleet.
@@ -60,3 +78,7 @@ Poll `GET /nodes/{node}/tasks/{upid}/status` until `status` is `stopped`, then i
 5. Exercise provisioning failure, retry, stop/start, and two concurrent instances. Scale only after measuring the actual workload.
 
 **Remaining limitation:** source review can disprove faulty instructions, but cannot replace these device tests or guarantee future app acceptance. “Runs without detection” is not a supportable fleet success criterion. If the app requires device properties this guest cannot provide, use a supported device platform rather than marking a bypass module as proof of readiness.
+
+## Historical sources
+
+The supplied Project_Handoff.docx transcript is retained in [the archive](../archive/historical-proposals/PROJECT_HANDOFF_SOURCE.md). The newly pasted recipe is retained as an [unexecuted proposal](../experiments/2026-09-09-user-proposal.md). These sources are historical material, not authority to execute their commands.

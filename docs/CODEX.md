@@ -1,3 +1,7 @@
+# Codex workflow
+
+Read STATE.md, DEBUGGING.md and MODEL_STRATEGY.md before each task. Inspect Git status; checkpoint before structural edits. Preserve working behavior and downloaded assets. Use the harness every time. Update the experiment log after each attempt, including failures and inconclusive results. Never promote user proposals or historical observations into live test results.
+
 # Fresh worker brief
 
 - Objective / exact bounded decision:

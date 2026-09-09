@@ -21,9 +21,11 @@ def main() -> int:
         if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != item['sha256']:
             errors.append(f"Archive bytes changed: {item['source']}")
     docs = [ROOT / name for name in ('README.md', 'START-HERE.md', 'AGENTS.md', 'QWEN.md')]
-    docs += list((ROOT / 'docs').rglob('*.md'))
-    docs += [ROOT / 'cloud-lab/README.md', ROOT / 'tools/windows/OPTIONAL-SETUP.md']
-    docs += list((ROOT / 'cloud-lab/docs').glob('*.md'))
+    docs += [ROOT / 'docs' / name for name in (
+        'ARCHITECTURE.md', 'CODEX.md', 'COMMANDS.md', 'DEBUGGING.md',
+        'INSTALLED_COMPONENTS.md', 'MODEL_STRATEGY.md', 'STATE.md',
+    )]
+    docs += list((ROOT / 'experiments').rglob('*.md')) if (ROOT / 'experiments').is_dir() else []
     for doc in docs:
         for link in re.findall(r'\[[^\]]+\]\(([^)]+)\)', doc.read_text(encoding='utf-8')):
             if '://' in link or link.startswith('#'):
@@ -35,7 +37,7 @@ def main() -> int:
                 ['status'], ['smoke'], ['install'], ['root'], ['location'],
                 ['location', 'set'], ['location', 'follow']]
     for command in commands:
-        result = subprocess.run([sys.executable, '-m', 'orchestrator.cli', *command, '--help'],
+        result = subprocess.run([sys.executable, '-m', 'android_lab.cli', *command, '--help'],
                                 capture_output=True, text=True, timeout=30, cwd=ROOT)
         if result.returncode:
             errors.append(f"CLI parser failed for {command}: {result.stderr}")

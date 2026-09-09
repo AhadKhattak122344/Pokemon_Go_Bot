@@ -4,7 +4,7 @@ Updated September 9, 2026.
 
 ## Implemented in this checkout
 
-- `orchestrator.cli:main` is the installed `lab` entry point in the root uv workspace.
+- `android_lab.cli:main` is the installed `lab` entry point from the root Python project.
 - Native profiles use stable AVD names/ports: clean API 36 `poke_api36_test` at
   emulator-5556; existing API 34 `baseline` at emulator-5554; separate debug
   `baseline-rooted` at emulator-5554. Startup applies no Magisk patches.
@@ -34,7 +34,7 @@ checks. ADB UID was 2000. No root/image patches were applied. Installed CLI
 
 Dependencies synced with the frozen lockfile. All 92 unit tests, Windows profile
 checks, 280 archive hashes and 13 CLI help checks passed. A Terra/medium worker
-prepared ignored `cloud-lab/config/proxmox.json` with a fresh namespace and
+prepared ignored `config/proxmox.json` with a fresh namespace and
 `artifacts/proxmox-setup-plan-20260909-150832.json` (offline plan exit 0).
 The Proxmox host/template/storage/network fields remain examples awaiting actual
 deployment values. No Proxmox host was contacted. The emulator was left running.
@@ -47,3 +47,18 @@ a real Proxmox host and guest choice, Linux/KVM behavior, and fleet capacity.
 No sign-in, root patch, or real Proxmox deployment is claimed by repository tests.
 There is no canonical Android app module: it was removed in cbc1d35. Gradle
 skeleton/export material is retained only as provenance.
+
+## Current investigation
+
+The user reports Pokemon GO currently cannot open. No fresh app launch/crash or authentication reproduction was performed during this layout migration. The immediate failure mode remains unknown; it must not be assumed identical to the earlier sign-in failure. Track every attempt in [the experiment log](../experiments/EXPERIMENT_LOG.md). Proxmox remains preparation-only.
+
+## Layout migration verification
+
+Checkpoint: `checkpoint/layout-before-android-lab-20260909` at `4972269`.
+Package is now `android_lab/`, scenarios `config/`, tests `tests/`, Linux helpers
+`tools/linux/`, Docker definitions `config/docker/`. The installed command remains
+`lab`; no business logic was rewritten. All 92 tests passed in the checkout and
+a fresh export. The wheel, isolated entry point and packaged default config passed.
+Windows profile, Bash syntax, Compose configuration, archive hashes and CLI help
+checks passed. No device state or downloaded VM/Android asset was changed.
+See [experiment history](../experiments/EXPERIMENT_LOG.md) for exact scope.

@@ -30,5 +30,5 @@ htmlcov/
 *.key
 *.log
 
-cloud-lab/config/proxmox.json
-cloud-lab/config/local*.yaml
+config/proxmox.json
+config/local*.yaml

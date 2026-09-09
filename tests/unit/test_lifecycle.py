@@ -6,10 +6,10 @@ from unittest.mock import Mock, patch
 import pytest
 import yaml
 
-from orchestrator import config, emulator
-from orchestrator.adb import Adb
-from orchestrator.cli import main, resumed_activity, smoke
-from orchestrator.health import wait_ready
+from android_lab import config, emulator
+from android_lab.adb import Adb
+from android_lab.cli import main, resumed_activity, smoke
+from android_lab.health import wait_ready
 
 
 @pytest.fixture
@@ -31,7 +31,7 @@ def test_null_ready_activity_successfully_launches_and_writes_artifacts(cfg, tmp
     adb.shell.side_effect = shell
     adb.run.return_value = ''
     adb.screenshot.return_value = b'\x89PNG\r\n\x1a\n'
-    with patch('orchestrator.cli.wait_ready'), patch('orchestrator.cli.time.sleep'):
+    with patch('android_lab.cli.wait_ready'), patch('android_lab.cli.time.sleep'):
         smoke(adb, cfg, tmp_path)
     assert json.loads((tmp_path / 'meta.json').read_text())['error'] is None
     assert 'failures="0"' in (tmp_path / 'junit.xml').read_text()
@@ -72,7 +72,7 @@ def test_smoke_rejects_crash_missing_artifacts_or_activity_exit(cfg, tmp_path, f
     adb.shell.side_effect = shell
     adb.run.side_effect = run
     adb.screenshot.return_value = b'\x89PNG\r\n\x1a\n'
-    with patch('orchestrator.cli.wait_ready'), patch('orchestrator.cli.time.sleep'):
+    with patch('android_lab.cli.wait_ready'), patch('android_lab.cli.time.sleep'):
         with pytest.raises(RuntimeError):
             smoke(adb, cfg, tmp_path)
     assert json.loads((tmp_path / 'meta.json').read_text())['error']
@@ -83,7 +83,7 @@ def test_boot_waits_for_package_manager_and_recovers_from_offline():
     adb = Mock()
     adb.run.side_effect = [subprocess.CalledProcessError(1, []), 'device', 'device']
     adb.shell.side_effect = ['1', 'Error: Could not access the Package Manager', '1', 'package:/system/framework/framework-res.apk']
-    with patch('orchestrator.health.time.sleep'):
+    with patch('android_lab.health.time.sleep'):
         wait_ready(adb, 5)
     assert adb.run.call_count == 3
     assert adb.shell.call_count == 4
@@ -93,8 +93,8 @@ def test_boot_timeout_reports_not_ready_package_manager():
     adb = Mock()
     adb.run.return_value = 'device'
     adb.shell.side_effect = ['1', '']
-    with patch('orchestrator.health.time.monotonic', side_effect=[0, 0, 0, 0, 0, 1, 1]), \
-         patch('orchestrator.health.time.sleep'):
+    with patch('android_lab.health.time.monotonic', side_effect=[0, 0, 0, 0, 0, 1, 1]), \
+         patch('android_lab.health.time.sleep'):
         with pytest.raises(TimeoutError, match='package manager'):
             wait_ready(adb, 1)
 
@@ -154,7 +154,7 @@ def test_compose_uses_acceleration_and_timeout_from_selected_profile(cfg):
     cfg['profile'] = 'custom'
     cfg['profiles']['custom'] = {'accel': 'on', 'gpu': 'host'}
     cfg['emulator']['boot_timeout_s'] = 42.5
-    with patch('orchestrator.emulator.subprocess.run') as run:
+    with patch('android_lab.emulator.subprocess.run') as run:
         emulator.compose(cfg, 'up', '-d', 'emulator')
     command = run.call_args.args[0]
     env = run.call_args.kwargs['env']
@@ -167,7 +167,7 @@ def test_compose_uses_acceleration_and_timeout_from_selected_profile(cfg):
 
 def test_compose_rejects_configuration_the_image_cannot_honor(cfg):
     cfg['emulator']['api'] = 35
-    with patch('orchestrator.emulator.subprocess.run') as run:
+    with patch('android_lab.emulator.subprocess.run') as run:
         with pytest.raises(ValueError, match='34'):
             emulator.compose(cfg, 'up')
         run.assert_not_called()
@@ -175,15 +175,15 @@ def test_compose_rejects_configuration_the_image_cannot_honor(cfg):
 
 def test_startup_waits_for_container_owned_retry_window(cfg):
     adb = Mock()
-    with patch('orchestrator.emulator.compose') as compose, patch('orchestrator.emulator.wait_ready') as wait:
+    with patch('android_lab.emulator.compose') as compose, patch('android_lab.emulator.wait_ready') as wait:
         emulator.up(cfg, adb)
     compose.assert_called_once_with(cfg, 'up', '-d', '--wait', '--wait-timeout', '1290', 'emulator')
     wait.assert_called_once_with(adb, 30)
 
 
 def test_status_exits_nonzero_for_booting_device(cfg):
-    with patch('sys.argv', ['lab', 'status']), patch('orchestrator.cli.config.load', return_value=cfg), \
-         patch('orchestrator.cli.wait_ready', side_effect=TimeoutError('still booting')):
+    with patch('sys.argv', ['lab', 'status']), patch('android_lab.cli.config.load', return_value=cfg), \
+         patch('android_lab.cli.wait_ready', side_effect=TimeoutError('still booting')):
         with pytest.raises(SystemExit) as exc:
             main()
     assert exc.value.code == 1

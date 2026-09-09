@@ -1,3 +1,8 @@
+# Historical verification record
+
+Paths below describe the previous checkout layout at the time of those runs.
+They are evidence, not current setup commands. Use ../docs/COMMANDS.md now.
+
 # Verification evidence
 
 Session: September 9, 2026, Windows checkout on `main`.

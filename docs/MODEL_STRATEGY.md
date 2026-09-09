@@ -33,7 +33,7 @@ config. See the official [configuration reference](https://learn.chatgpt.com/doc
 Use zero workers for tiny or sequential work. Delegate only meaningful independent
 work while the lead has useful local work. Keep at most one worker open; close it
 before another. Workers never delegate. Only the lead controls a device, VM, or
-its disks. Give each worker a fresh brief using [BRIEF.md](BRIEF.md), with explicit
+its disks. Give each worker a fresh brief using [CODEX.md](CODEX.md), with explicit
 owned files, constraints, facts, acceptance checks, and report limit.
 
 Use the named roles in `.codex/agents/`. When the collaboration API requires
@@ -64,7 +64,7 @@ Save full test logs locally, inspect failures with targeted searches, and preser
 the actual command exit code. Do not pipe away failures and call the run passing.
 Workers return paths, exit codes and evidence in at most 200 words (300 for hard
 diagnosis). Before ending a task record changed paths, verified results, remaining
-uncertainties and the next bounded action in the maintained project handoff.
+uncertainties and the next bounded action in the STATE.md and experiments/EXPERIMENT_LOG.md.
 
 ## Validation
 
@@ -83,6 +83,6 @@ Validation on September 9, 2026: all four TOML files parsed; Codex 0.153.4
 `gpt-5.6-terra`. The overall doctor command exited 1 for environment diagnostics,
 so this is not a fully passing doctor report. Without explicit flags the diagnostic
 selected the existing Astra default: project-role loading has not been demonstrated
-in a live session. Verify it before delegation; use zero workers until then.
+in a live session. Verify named-role loading before relying on it. In this collaboration runtime, explicit model/effort overrides with a fresh brief have been used successfully for Terra/medium; this does not establish local CLI role discovery.
 No model call was made for this check. Repository validation: 92 tests passed,
 280 archive hashes, 22 documentation files and 13 CLI help paths checked.

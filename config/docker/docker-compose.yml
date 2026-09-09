@@ -1,8 +1,8 @@
 services:
   emulator:
     build:
-      context: ..
-      dockerfile: cloud-lab/Dockerfile.emulator
+      context: ../..
+      dockerfile: config/docker/Dockerfile.emulator
       target: emulator
     platform: linux/amd64
     init: true
@@ -14,21 +14,21 @@ services:
       - '127.0.0.1:5037:5037'
       - '127.0.0.1:5555:5559'
     volumes:
-      - ./artifacts:/artifacts
+      - ../../artifacts:/artifacts
     shm_size: 2gb
     stop_grace_period: 30s
     healthcheck:
       start_period: ${BOOT_HEALTH_START_PERIOD:-1900s}
   lab:
     build:
-      context: ..
-      dockerfile: cloud-lab/Dockerfile.emulator
+      context: ../..
+      dockerfile: config/docker/Dockerfile.emulator
       target: orchestrator
     environment:
       ADB_SERVER_SOCKET: tcp:emulator:5037
     volumes:
-      - ./artifacts:/lab/artifacts
-      - ./apks:/lab/apks:ro
+      - ../../artifacts:/lab/artifacts
+      - ../../assets/apks:/lab/apks:ro
     depends_on:
       emulator:
         condition: service_healthy

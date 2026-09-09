@@ -1,6 +1,6 @@
 # Architecture
 
-Root uv workspace -> editable android-cloud-lab -> orchestrator.cli.
+Root Python project -> editable android-cloud-lab distribution -> android_lab.cli:main.
 
 - `adb.py`: selected-device subprocess transport, shell quoting, bounded calls,
   TCP connection/authorization and screenshots.
@@ -17,3 +17,7 @@ Root uv workspace -> editable android-cloud-lab -> orchestrator.cli.
 No FastAPI, PostgreSQL, Redis, Celery, Frida, concealment or integrity-bypass stack
 is part of the active implementation. Add services only for demonstrated needs.
 X86 KVM acceleration and ARM-native application compatibility are separate concerns.
+
+## Repository boundaries
+
+`android_lab/` is the importable package; `config/` holds scenarios, routes and Docker definitions; `tests/` holds unit tests. `tools/windows/` owns native setup and `tools/linux/` owns container startup. `artifacts/` holds ignored runtime output; `experiments/` holds tracked dated findings. `.codex/agents/` remains at the root. `assets/` and `.tools/` contain existing inputs/toolchains and were not altered. `archive/` remains reference-only. The packaged `android_lab/default.yaml` is a wheel fallback, checked against `config/default.yaml`.

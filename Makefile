@@ -1,6 +1,6 @@
-COMPOSE = docker compose
+COMPOSE = docker compose -f config/docker/docker-compose.yml
 ifeq ($(PROFILE),nested-virt)
-COMPOSE += -f docker-compose.yml -f docker-compose.kvm.yml
+COMPOSE += -f config/docker/docker-compose.kvm.yml
 endif
 
 .PHONY: build up smoke down test

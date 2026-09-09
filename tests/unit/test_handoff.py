@@ -5,12 +5,12 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from orchestrator.adb import Adb
-from orchestrator.cli import main
-from orchestrator.diagnostics import capture
-from orchestrator.health import wait_ready
-from orchestrator import config, emulator
-from orchestrator.root import RootManager
+from android_lab.adb import Adb
+from android_lab.cli import main
+from android_lab.diagnostics import capture
+from android_lab.health import wait_ready
+from android_lab import config, emulator
+from android_lab.root import RootManager
 
 
 def test_diagnostics_collects_without_clearing_logs_or_changing_root(tmp_path):
@@ -53,7 +53,7 @@ def test_capture_preserves_existing_directory_and_rejects_shell_injection(tmp_pa
     (subprocess.CalledProcessError(1, 'adb', stderr='device unauthorized'), RuntimeError, 'unauthorized'),
 ])
 def test_adb_errors_are_actionable(error, expected, message):
-    with patch('orchestrator.adb.subprocess.run', side_effect=error):
+    with patch('android_lab.adb.subprocess.run', side_effect=error):
         with pytest.raises(expected, match=message):
             Adb().run('get-state')
 
@@ -86,7 +86,7 @@ def test_connect_rejects_bad_endpoint(serial):
 
 def test_docker_missing_has_actionable_message():
     cfg = config.load(config.default_path())
-    with patch('orchestrator.emulator.subprocess.run', side_effect=FileNotFoundError()):
+    with patch('android_lab.emulator.subprocess.run', side_effect=FileNotFoundError()):
         with pytest.raises(FileNotFoundError, match='Docker executable was not found'):
             emulator.compose(cfg, 'down')
 
@@ -101,8 +101,8 @@ def test_new_commands_are_exposed_in_installed_cli(capsys):
 
 def test_proxmox_cli_dispatches_without_android_config():
     with patch('sys.argv', ['lab', 'proxmox', 'plan', '--config', 'fleet.json']), \
-         patch('orchestrator.cli.proxmox.main', return_value=0) as call, \
-         patch('orchestrator.cli.config.load') as load, pytest.raises(SystemExit) as result:
+         patch('android_lab.cli.proxmox.main', return_value=0) as call, \
+         patch('android_lab.cli.config.load') as load, pytest.raises(SystemExit) as result:
         main()
     assert result.value.code == 0
     call.assert_called_once_with(['plan', '--config', 'fleet.json'])
