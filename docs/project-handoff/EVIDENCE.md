@@ -65,3 +65,16 @@ No real Proxmox server, target-app login, Android boot, root transition, or inte
 test was exercised in this migration. API 34 SIGILL/API 36 sign-in findings are
 attributed to the supplied handoff, not to current tests. Mocked success does not
 establish those external outcomes.
+
+## Subsequent local setup, September 9, 2026
+
+After the migration, a real local Android boot was verified: Start-Emulator.ps1
+Api36 exited 0, Android 16/API 36 boot completed, Google packages were present,
+and ADB UID was 2000. WHPX acceleration check exited 0. Installed `lab status`
+and `lab diagnostics` exited 0 against emulator-5556; saved capture:
+`artifacts/setup-api36-20260909/`. No app sign-in or root transition was attempted.
+Frozen dependency sync, 92 tests, PowerShell profiles, archive hashes and CLI
+help verification passed. Proxmox preparation produced an offline plan only:
+`artifacts/proxmox-setup-plan-20260909-150832.json`; no remote host was contacted.
+The routine independent preparation worker used Terra/medium; no Astra worker
+or diagnostic escalation was needed. The lead retained exclusive device control.

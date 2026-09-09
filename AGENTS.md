@@ -19,6 +19,6 @@ Update current-state/evidence docs after material findings. Never label mocked
 API tests as live Proxmox/device tests. Verify paths and `git diff --check` before
 committing; do not discard unrelated work.
 
-Follow `docs/harness/README.md` for model routing and bounded delegation. Use zero
+Use `docs/harness/README.md` on every task for model routing and bounded delegation. Use zero
 workers for tiny/sequential tasks, otherwise at most one independent worker while
 the lead has useful local work. Only the lead may control devices or their disks.
