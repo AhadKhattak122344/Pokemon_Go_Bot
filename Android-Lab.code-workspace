@@ -1,0 +1,33 @@
+{
+  "folders": [
+    { "name": "Project code and instructions", "path": "." },
+    { "name": "Experiment evidence and logs", "path": "artifacts" },
+    { "name": "Android SDK, AVDs and toolchains", "path": ".tools" },
+    { "name": "APKs, ISO and downloaded components", "path": "assets" },
+    { "name": "Preserved Android and game reference", "path": "archive/recovered" }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.git": true,
+      "**/__pycache__": true,
+      "**/.pytest_cache": true,
+      "**/*.egg-info": true,
+      ".tools": true,
+      ".venv": true,
+      ".uv-cache": true,
+      "artifacts": true,
+      "assets": true,
+      "archive": true
+    },
+    "search.exclude": {
+      "**/.tools/**": true,
+      "**/.venv/**": true,
+      "**/.uv-cache/**": true,
+      "**/__pycache__/**": true,
+      "**/_archive/**": true,
+      "**/system-images/**": true,
+      "**/*.avd/**": true
+    },
+    "explorer.compactFolders": false
+  }
+}

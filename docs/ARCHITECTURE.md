@@ -7,10 +7,13 @@ Root Python project -> editable android-cloud-lab distribution -> android_lab.cl
 - `health.py`: bounded transport/boot/package-manager readiness.
 - `diagnostics.py`: read-only capture and partial evidence reports.
 - `cli.py`: parser, dispatch and app launch smoke/JUnit artifacts.
+- `experiment.py`: pre-capture, optional one launch, crash classification; refuses concealment zips.
 - `root.py`: explicit debug-ADB transitions with restoration tests.
 - `location.py`: deterministic emulator geo routes for authorized QA.
 - `proxmox.py`: validated JSON plan, token-auth HTTPS API, template checks,
   UPID polling and full-clone task journal.
+- `tools/validate_against_history.py`: checks proposed approaches against
+  `codex_memory/attempted_approaches.json` before repeating non-retryable failures.
 - Windows scripts own native AVD startup. Linux Compose owns Docker startup and
   two cold-boot attempts. Do not mix those lifecycles on one emulator port.
 
@@ -20,4 +23,4 @@ X86 KVM acceleration and ARM-native application compatibility are separate conce
 
 ## Repository boundaries
 
-`android_lab/` is the importable package; `config/` holds scenarios, routes and Docker definitions; `tests/` holds unit tests. `tools/windows/` owns native setup and `tools/linux/` owns container startup. `artifacts/` holds ignored runtime output; `experiments/` holds tracked dated findings. `.codex/agents/` remains at the root. `assets/` and `.tools/` contain existing inputs/toolchains and were not altered. `archive/` remains reference-only. The packaged `android_lab/default.yaml` is a wheel fallback, checked against `config/default.yaml`.
+`android_lab/` is the importable package; `config/` holds scenarios, routes and Docker definitions; `tests/` holds unit tests. `tools/windows/` owns native setup and `tools/linux/` owns container startup. `artifacts/` holds ignored runtime output; `experiments/` holds tracked dated findings and the reusable attempt template. `knowledge_base/` holds summarized working knowledge and failed paths. `codex_memory/` holds compact machine-readable context for future sessions. `.codex/agents/` remains at the root. `assets/` and `.tools/` contain existing inputs/toolchains and were not altered. `archive/` remains reference-only. The packaged `android_lab/default.yaml` is a wheel fallback, checked against `config/default.yaml`.

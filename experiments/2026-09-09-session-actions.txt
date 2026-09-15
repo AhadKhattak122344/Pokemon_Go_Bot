@@ -1,0 +1,508 @@
+SESSION ACTION LOG
+Project: Pokemon_Go_Bot (android-cloud-lab)
+Host: Windows, workspace C:\Users\ahadk\Downloads\Pokemod_Qwen
+Date: 2026-09-09 (local EDT)
+Operator: Grok in this checkout
+Purpose: Exact record of what was tried so it can be copied into another document.
+
+This file is a session transcript of actions, not a claim that Niantic login succeeded.
+Account emails are redacted. Raw screenshots and logcat stay under artifacts/.
+
+
+================================================================
+0. STARTING STATE (READ BEFORE CHANGING ANYTHING)
+================================================================
+
+Git repo is Pokemon_Go_Bot/ on branch main, ahead of origin/main, with a large
+staged layout migration (cloud-lab/orchestrator -> android_lab). Workspace root
+is not a git repo.
+
+Installed CLI: lab -> android_lab.cli:main  (package android-cloud-lab 0.1.0)
+Python: 3.12.10 via uv / .venv
+ADB: .tools/android-sdk/platform-tools/adb.exe (37.x from prior setup)
+
+AVDs under .tools/android-user/avd/:
+  - poke_api36_test   API 36 / Android 16  google_apis_playstore  port 5556  serial emulator-5556
+  - baseline          API 34 / Android 14  google_apis_playstore  port 5554
+  - baseline-rooted   API 34 / Android 14  google_apis (debuggable, no Play Store)  port 5554
+  baseline and baseline-rooted cannot run together (same port).
+
+Historical (not retested at session start):
+  H04  API 34 Pokemon GO ARM64 via ndk_translation -> SIGILL
+  H05  Clean API 36 reached login UI; two accounts Failed to Sign In; no decisive logs
+  R01  User said the game currently cannot open (not reproduced yet)
+
+assets/apks/ was empty. Pokemon GO was already installed on poke_api36_test.
+
+Package observed later:
+  com.nianticlabs.pokemongo
+  versionName=0.427.0
+  versionCode=2026082702
+  minSdk=28 targetSdk=36
+  primaryCpuAbi=arm64-v8a
+  launcher: com.nianticlabs.pokemongo/com.nianticproject.holoholo.libholoholo.unity.UnityMainActivity
+  splits: base.apk + split_config.arm64_v8a.apk
+
+User also pasted a Proxmox/Bliss/Magisk/Play Integrity Fix/Shamiko/IMEI/Pixel-fingerprint
+fleet spec. That stack was NOT executed. See section 11.
+
+
+================================================================
+1. REPO SURVEY
+================================================================
+
+Read: START-HERE.md, README.md, AGENTS.md, QWEN.md, docs/STATE.md,
+docs/ARCHITECTURE.md, docs/COMMANDS.md, docs/DEBUGGING.md,
+docs/INSTALLED_COMPONENTS.md, experiments/EXPERIMENT_LOG.md,
+experiments/2026-09-09-user-proposal.md, pyproject.toml, android_lab/*.py,
+tools/windows/*.ps1, assets/manifest.json.
+
+Searched the machine for a Pokemon GO APK:
+  C:\Users\ahadk\Downloads, Desktop, Pokemod_Qwen, rootAVD
+  Result: no pokemongo APK on disk. Magisk APKs only.
+  Game was later found already installed on the API 36 AVD.
+
+
+================================================================
+2. CODE ADDED IN THIS SESSION (NOT CONCEALMENT)
+================================================================
+
+New files:
+  android_lab/experiment.py
+  config/pokemongo.yaml
+  tools/windows/Run-Experiment.ps1
+  tests/unit/test_experiment.py
+
+Edited:
+  android_lab/cli.py          added: lab experiment [--launch] [--login] [--login-timeout] [--apk] [--package] [--out]
+  tools/windows/install_magisk.py   retry adb start-server / wait-for-device after Magisk live setup
+  tools/verify_repository.py        CLI help path for experiment
+  tests/unit/test_handoff.py        help text includes experiment
+  docs/ARCHITECTURE.md, docs/COMMANDS.md, docs/STATE.md, experiments/EXPERIMENT_LOG.md
+
+lab experiment refuses these payloads by filename before any adb install:
+  shamiko, play-integrity-fix / playintegrityfix, universal-safetynet,
+  zygisk-next, lsposed, magiskhide, device-emulator, pif-, any .zip Magisk module,
+  any Magisk APK (Magisk is only via tools/windows/Install-Magisk.ps1)
+
+New scenario config/pokemongo.yaml:
+  serial emulator-5556
+  avd poke_api36_test
+  api 36
+  package com.nianticlabs.pokemongo
+  activity .../UnityMainActivity
+
+Unit tests after changes: 106 passed (later 31 on the experiment+handoff subset).
+tools/verify_repository.py: PASS 280 archive hashes, 14 docs, 14 CLI help paths.
+tools/windows/Test-Profiles.ps1: PASS.
+
+
+================================================================
+3. API 36 BOOT AND PROCESS-OPEN (GAME OPENS)
+================================================================
+
+Working directory for all lab commands: Pokemon_Go_Bot
+
+3.1 First boot this session
+  powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Start-Emulator.ps1 -Profile Api36
+
+  Result: poke_api36_test ready on emulator-5556
+  Boot=1, API=36, Release=16
+  ABI=x86_64,arm64-v8a
+  native bridge=libndk_translation.so
+  ADB UID=2000 (not root)
+  WHPX operational
+  GPU: NVIDIA GeForce GTX 1050 Ti (gfxstream / host)
+  No Magisk, no image patches
+  Evidence: artifacts/profile-Api36-dee7ef3b14904a49b44f4fcf12147b03.json
+            artifacts/emulator-poke_api36_test-36c53ae1a9fd4ddc8adb05402befc187.log
+            "Boot completed in 43227 ms"
+  Display from emulator log: 320x640 dpi 160
+  AVD config.ini also has hw.lcd.width=320 hw.lcd.height=640 hw.ramSize=96M
+  Start-Emulator overrides RAM with -memory 4096 -cores 4 -gpu auto -no-snapshot-load
+
+3.2 Load ADB into the process
+  Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+  . ./tools/windows/Android-Environment.ps1
+
+3.3 Read-only capture (does NOT clear logcat)
+  uv run lab --config config/pokemongo.yaml experiment --package com.nianticlabs.pokemongo --out artifacts/pgo-r01-capture
+
+  Result: installed=true
+  classification first said root_or_integrity_signal because leftover GMS "Play Integrity"
+  lines were in logcat without a launch. Classifier was later changed so that hint
+  only applies after --launch.
+  crash.txt empty (no SIGILL)
+  primaryCpuAbi=arm64-v8a, version 0.427.0
+  Home screen screenshot in artifacts/pgo-r01-capture/pre/screen.png
+
+3.4 First launch attempt (FAILED / hung)
+  uv run lab --config config/pokemongo.yaml experiment --package com.nianticlabs.pokemongo --launch --out artifacts/pgo-r01-launch
+
+  Used am start -S -W -n <launcher> which can hang on Unity.
+  Emulator process disappeared. adb: device emulator-5556 not found.
+  Hung lab process was killed.
+  Code change: stop using am start -W; use am start -S -n with 60s timeout.
+
+3.5 Restart API 36
+  powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Start-Emulator.ps1 -Profile Api36
+  Ready again. Profile json: artifacts/profile-Api36-e496e578fc584ad9b8fad591633d95ca.json
+
+3.6 Successful launch
+  uv run lab --config config/pokemongo.yaml experiment --package com.nianticlabs.pokemongo --launch --out artifacts/pgo-r01-launch2
+
+  launch.txt:
+    Stopping: com.nianticlabs.pokemongo
+    Starting: Intent { cmp=com.nianticlabs.pokemongo/com.nianticproject.holoholo.libholoholo.unity.UnityMainActivity }
+
+  dumpsys: topResumedActivity = UnityMainActivity
+  screenshot artifacts/pgo-r01-launch2/launch.png = 10th Anniversary splash
+  crash buffer empty
+  ~12s later still resumed, crash buffer still empty
+  Classifier initially launch_error because am start without -W does not print "Status: ok".
+  Fixed: resumed activity => foreground_ok
+
+3.7 Later re-open after emulators were stopped
+  Start-Emulator.ps1 -Profile Api36
+  uv run lab --config config/pokemongo.yaml experiment --package com.nianticlabs.pokemongo --launch --out artifacts/pgo-open-201902
+
+  classification=foreground_ok, resumed=true
+  screenshot = Pokeball loading screen
+  still UnityMainActivity after 8s, crash buffer empty
+
+CONCLUSION FOR OPEN: the game PROCESS OPENS on clean API 36. No Magisk. No modules.
+
+
+================================================================
+4. MAGISK ON API 34 DEBUG AVD (SEPARATE GUEST)
+================================================================
+
+API 36 left running on 5556. Started API 34 on 5554 at the same time.
+
+4.1 Boot rooted profile
+  powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Start-Emulator.ps1 -Profile Rooted
+
+  AVD baseline-rooted, serial emulator-5554
+  API 34 Android 14, userdebug, ABI x86_64,arm64-v8a, bridge libndk_translation.so
+  ADB UID 2000 at boot
+  Evidence: artifacts/profile-Rooted-27d45356e6e84dcb9f15e2c4508eb667.json
+
+4.2 Probe su before Magisk script
+  adb -s emulator-5554 shell id                 -> uid=2000(shell)
+  adb -s emulator-5554 shell command -v su      -> /system/xbin/su
+  adb -s emulator-5554 shell su -c id           -> su: invalid uid/gid '-c'
+  adb -s emulator-5554 shell su 0 id            -> uid=0 context=u:r:su:s0
+  That is STOCK Google APIs su, not Magisk (Magisk context is u:r:magisk:s0).
+  adb -s emulator-5554 root                     -> then id uid=0 u:r:su:s0
+
+4.3 Magisk live setup
+  Local files used (checksums already in install_magisk.py):
+    .tools/Magisk-v30.7.apk
+    .tools/magisk-source/build.py
+    .tools/magisk-source/scripts/live_setup.sh
+
+  powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Install-Magisk.ps1 -Serial emulator-5554
+
+  Upstream live_setup ran. Warnings:
+    chmod: ./magisk32: No such file or directory
+    cp: can't stat './magisk32'
+  Then ADB server at tcp:5037 dropped:
+    error: cannot connect to daemon at tcp:5037
+  Script threw: Magisk emulator setup failed (exit 1)
+
+  After adb start-server, BOTH emulators were still listed:
+    emulator-5554 device
+    emulator-5556 device
+
+4.4 Magisk actually present despite script exit 1
+  adb -s emulator-5554 shell /debug_ramdisk/magisk -v
+    -> 30.7:MAGISK:R
+  adb -s emulator-5554 shell /debug_ramdisk/magisk --path
+    -> /debug_ramdisk
+  ls /debug_ramdisk: magisk, magiskpolicy, su -> ./magisk, resetprop, supolicy
+  adb -s emulator-5554 shell magisk su -c id
+    -> uid=0(root) context=u:r:magisk:s0
+
+  install_magisk.py was then patched to restart adb and wait-for-device after setup_avd.
+
+CONCLUSION FOR MAGISK: Magisk 30.7 su works on baseline-rooted. Temporary live setup
+(lost on a later cold reboot unless re-run). No Shamiko, no PIF, no Zygisk Next.
+
+
+================================================================
+5. SAME GAME APK ON MAGISK API 34 (COEXISTENCE, NO HIDE)
+================================================================
+
+5.1 Pull APKs from API 36 (already installed there)
+  adb -s emulator-5556 shell pm path com.nianticlabs.pokemongo
+    package:.../base.apk
+    package:.../split_config.arm64_v8a.apk
+  adb -s emulator-5556 pull <base> artifacts/pgo-apk/base.apk
+    108621411 bytes
+  adb -s emulator-5556 pull <split> artifacts/pgo-apk/split_config.arm64_v8a.apk
+    89061785 bytes
+
+5.2 Install on API 34
+  adb -s emulator-5554 install-multiple -r artifacts/pgo-apk/base.apk artifacts/pgo-apk/split_config.arm64_v8a.apk
+  -> Success
+
+5.3 Launch on Magisk guest
+  $env:LAB_SERIAL='emulator-5554'
+  uv run lab --config config/pokemongo.yaml experiment --package com.nianticlabs.pokemongo --launch --out artifacts/pgo-r01-34-launch
+
+  classification=foreground_ok, resumed=true
+  screenshot: 10th Anniversary splash (plus Android "Viewing full screen" overlay)
+  logcat: ndk_translation: Initialized NDK translation (aarch64), version 0.2.3
+  Magisk still reported in experiment.json: magisk_binary=/system_ext/bin/magisk, adb_uid=0
+
+5.4 ~15 seconds later
+  adb -s emulator-5554 logcat -b crash -d
+
+  Fatal signal 4 (SIGILL), code -6 (SI_TKILL ...) in tid UnityMain, pid pokemongo
+  Process uptime: 8s
+  Cmdline: com.nianticlabs.pokemongo
+  ABI: x86_64
+  backtrace: #00 pc 0000000000000000  <unknown>
+
+  Saved: artifacts/pgo-r01-34-sigill-crash.txt
+  After crash: topResumedActivity = NexusLauncherActivity on 5554
+  Magisk su still uid=0 u:r:magisk:s0
+  API 36 still had UnityMainActivity resumed
+
+CONCLUSION: Magisk does not stop the API 34 ARM translation SIGILL.
+Do not treat Magisk as a crash fix. Game-open guest is API 36.
+
+
+================================================================
+6. LOGIN CHECK ON API 36
+================================================================
+
+6.1 Found the game already on Google account picker
+  adb -s emulator-5556 shell dumpsys activity activities
+    topResumedActivity=...gms/.common.account.AccountPickerActivity
+  dumpsys account: two com.google accounts already on the device (emails redacted)
+  uiautomator dump: title "Choose an account" / "to continue to Pokemon GO"
+  First row bounds [24,250][296,318]  (tap target center 160,284)
+  Second row was a second Google account. "Add another account" also present.
+  Consent text: Google will share name, email, profile picture with Pokemon GO.
+
+  Policy this session: tap the FIRST account once. Do not cycle to the second account.
+
+6.2 Tap first account
+  adb -s emulator-5556 logcat -b all -c
+  adb -s emulator-5556 shell input tap 160 284
+
+6.3 Google OAuth path observed in logcat
+  START ... GOOGLE_SIGN_IN ... SignInHubActivity
+  START ... gms/.auth.api.signin.ui.SignInActivity
+  START ... gms/.signin.activity.SignInActivity
+  AccountPicker / SignIn activities then CLOSE
+  App returns to UnityMainActivity
+  uiautomator after return: only com.nianticlabs.pokemongo:id/unitySurfaceView
+  (Unity dialogs are NOT in the accessibility tree)
+
+6.4 ~25s later screenshot
+  artifacts/pgo-after-google-signin.png
+  Unity dialog:
+    Failed to Sign In
+    RETRY
+    TRY A DIFFERENT ACCOUNT
+
+  This is Niantic's in-game failure, after Google OAuth completed.
+  Unity does not print "Failed to Sign In" into logcat in a useful way.
+
+6.5 Location permission
+  dumpsys showed LOCATION / BACKGROUND_LOCATION / ACTIVITY / PRECISE_LOCATION DENIED
+  Granted (standard Android runtime grants, not a concealment module):
+    adb -s emulator-5556 shell pm grant com.nianticlabs.pokemongo android.permission.ACCESS_FINE_LOCATION
+    adb -s emulator-5556 shell pm grant com.nianticlabs.pokemongo android.permission.ACCESS_COARSE_LOCATION
+  First grant attempt: device already gone (emulator had died).
+  After later reboot, grants were applied before a login re-run.
+
+6.6 lab experiment --login added
+  uv run lab --config config/pokemongo.yaml experiment --login --login-timeout 180
+
+  Behavior:
+    launch the game
+    if AccountPicker visible, tap first gms container once
+    wait up to N seconds
+    classify: account_picker | google_signin | sign_in_failed | in_game | splash_or_unknown
+  Does not tap "TRY A DIFFERENT ACCOUNT".
+
+6.7 First --login run
+  Emulator was already dead: adb.exe: device 'emulator-5556' not found
+  Hung wait_ready killed after ~330s
+  wait_login was then made lighter (logcat -t 80, uiautomator only if gms in activity)
+
+6.8 Restart API 36 again
+  Start-Emulator.ps1 -Profile Api36
+  Profile: artifacts/profile-Api36-5978d0ab385c46bda6de98ee917e6538.json
+
+6.9 --login on fresh boot (FALSE POSITIVE)
+  pm grant FINE + COARSE location
+  uv run lab --config config/pokemongo.yaml experiment --login --login-timeout 120 --out artifacts/pgo-login-check2
+
+  Returned classification=in_game authentication=session_loaded in ~10s
+  THAT WAS A BUG: classifier treated "permissionStatus LOCATION status: GRANTED"
+  (from the pm grant) as in-game.
+  Screenshots were still the Pokeball loading screen.
+  Classifier fixed: in_game only if MapScene / NearbyPokemon / similar, not location grant.
+
+6.10 Watch current session without force-stop
+  python wait_login(..., timeout=150) -> artifacts/pgo-login-wait3/
+  Result: stage=google_signin, account_tapped=True  (another classifier bug:
+  dumpsys still mentioned SignInHubActivity in mLastPausedActivity)
+  Screenshot artifacts/pgo-login-wait3/login.png = Failed to Sign In again
+  Classifier then fixed to use only the topResumedActivity line.
+
+6.11 Environment checks while Failed to Sign In was on screen
+  date: Wed Sep 9 20:36:01 EDT 2026
+  settings get global auto_time: 1
+  ping -c 2 8.8.8.8: 0% loss, ~170ms
+  Play Services versionName=26.33.32 (updated system app)
+  GPS last location: 37.421998,-122.084000 (emulator default / Googleplex)
+  fused location present
+  screenshot artifacts/pgo-signin-now.png = Failed to Sign In still showing
+
+6.12 One GPS change + Retry tap (did not complete)
+  uv run lab --config config/pokemongo.yaml location set --lat 40.758 --lon -73.985
+  adb -s emulator-5556 shell input tap 160 348
+  Both failed: ADB TCP 5556 refused, device not found. Emulator had died again.
+
+CONCLUSION FOR LOGIN:
+  Open: yes
+  Google account picker: yes
+  One existing Google account selected: yes
+  Google OAuth activities completed: yes
+  Niantic session: Failed to Sign In
+  Location grant: did not clear the dialog
+  Second Google account: NOT tried
+  Play Protect UI certification: not read (manual_check_required)
+
+
+================================================================
+7. EMULATOR CRASHES / DISCONNECTS SEEN
+================================================================
+
+The qemu/emulator process exited more than once:
+  - during first Unity launch with am start -W
+  - during a heavy full-logcat login poll
+  - when trying location set + Retry tap
+
+Not treated as the Pokemon GO "can't open" bug. After each restart, the game
+opened again on API 36. AVD display is 320x640; host GPU is GTX 1050 Ti.
+
+
+================================================================
+8. COMMANDS THAT WERE THE HAPPY PATH (COPY THESE)
+================================================================
+
+From Pokemon_Go_Bot:
+
+  powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Start-Emulator.ps1 -Profile Api36
+
+  Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+  . ./tools/windows/Android-Environment.ps1
+
+  uv run lab --config config/pokemongo.yaml experiment --package com.nianticlabs.pokemongo --out artifacts/pgo-capture
+  uv run lab --config config/pokemongo.yaml experiment --package com.nianticlabs.pokemongo --launch --out artifacts/pgo-launch
+  uv run lab --config config/pokemongo.yaml experiment --login --login-timeout 180 --out artifacts/pgo-login
+
+  powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Start-Emulator.ps1 -Profile Rooted
+  powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Install-Magisk.ps1 -Serial emulator-5554
+  adb -s emulator-5554 shell magisk su -c id
+
+
+================================================================
+9. EVIDENCE PATHS
+================================================================
+
+API 36 open / splash
+  artifacts/pgo-r01-launch2/launch.png
+  artifacts/pgo-r01-launch2/experiment.json
+  artifacts/pgo-open-201902/launch.png
+  artifacts/pgo-open-201902/experiment.json
+
+API 36 package dump
+  artifacts/pgo-r01-capture/pre/target-package.txt
+
+API 34 Magisk + SIGILL
+  artifacts/pgo-r01-34-launch/
+  artifacts/pgo-r01-34-sigill-crash.txt
+
+Login failure
+  artifacts/pgo-after-google-signin.png
+  artifacts/pgo-login-wait3/login.png
+  artifacts/pgo-signin-now.png
+  artifacts/pgo-login-uidump.xml
+  artifacts/pgo-login-logcat.txt
+  artifacts/pgo-signin-failed-logcat.txt
+
+Pulled APKs (local, not committed)
+  artifacts/pgo-apk/base.apk
+  artifacts/pgo-apk/split_config.arm64_v8a.apk
+
+
+================================================================
+10. WHAT THE RESULTS MEAN
+================================================================
+
+Worked:
+  - Clean API 36 boots with WHPX, Play Services, Play Store present, ADB UID 2000
+  - Pokemon GO 0.427.0 process starts and stays in UnityMainActivity (splash / loading)
+  - Magisk 30.7 su on API 34 debug AVD
+  - lab experiment capture/launch/login harness
+  - 106 unit tests green at the time of the harness landing
+
+Did not work:
+  - Pokemon GO on Magisk API 34: splash then SIGILL in UnityMain (~8s)
+  - Niantic login on clean API 36: Google OAuth ok, then Failed to Sign In
+  - Location permission grant as a fix for Failed to Sign In
+  - GPS rewrite to 40.758,-73.985 (emulator died before Retry)
+
+Not proven:
+  - Play Protect certification in the Play Store UI
+  - In-map / post-login gameplay
+  - Live Proxmox
+  - Magisk surviving a cold reboot of baseline-rooted without re-running Install-Magisk.ps1
+
+
+================================================================
+11. WHAT WAS NOT DONE (EXPLICIT)
+================================================================
+
+Not installed, not flashed, not configured:
+  Play Integrity Fix
+  Universal SafetyNet Fix
+  Shamiko
+  Zygisk Next
+  MagiskHide Props / Pixel 4 fingerprint
+  LSPosed
+  Device Emulator
+  libhoudini Magisk module
+  IMEI / Android ID / serial spoofing
+  pm clear of GMS / GSF / Play Store as a certification trick
+  DenyList for com.nianticlabs.pokemongo or GMS
+  Second Google account (no account cycling)
+  FastAPI / Celery / Redis / Postgres identity manager
+  Proxmox / Bliss OS fleet
+  Patching the Pokemon GO APK
+  Rooting or Magisk on poke_api36_test (API 36 was kept clean)
+
+Reason: those are identity / integrity concealment steps. The measured failure after
+open is Niantic rejecting the session on an emulator, not a missing Magisk module
+on API 36, and not the API 34 SIGILL (that guest is a different crash).
+
+
+================================================================
+12. FILES TO READ NEXT
+================================================================
+
+  experiments/EXPERIMENT_LOG.md     indexed outcomes V04 V05 F01 F02
+  docs/STATE.md                     current investigation paragraph
+  docs/DEBUGGING.md                 do-not-retry list
+  android_lab/experiment.py         capture / launch / login implementation
+  config/pokemongo.yaml             API 36 scenario
+  this file                         full session action list
+
+End of log.

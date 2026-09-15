@@ -11,6 +11,12 @@ powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Test-Profiles.
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Start-Emulator.ps1 -Profile Api36
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Test-Emulator.ps1 -Profile Api36
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Stop-Emulator.ps1 -Profile Api36
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Start-Emulator.ps1 -Profile Api361
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Test-Emulator.ps1 -Profile Api361
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Stop-Emulator.ps1 -Profile Api361
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Start-Emulator.ps1 -Profile Api37
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Test-Emulator.ps1 -Profile Api37
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Stop-Emulator.ps1 -Profile Api37
 ```
 
 After loading the Android environment in the current process:
@@ -18,12 +24,50 @@ After loading the Android environment in the current process:
 ```powershell
 uv run lab --config config/api36.yaml status
 uv run lab --config config/api36.yaml diagnostics
+uv run lab --config config/pokemongo.yaml observe --package com.nianticlabs.pokemongo --duration 30 --interval 3
+uv run lab --config config/pokemongo.yaml observe --package com.nianticlabs.pokemongo --duration 30 --interval 3 --launch
+uv run lab --config config/pokemongo.yaml experiment --package com.nianticlabs.pokemongo
+uv run lab --config config/pokemongo.yaml experiment --package com.nianticlabs.pokemongo --launch
+uv run lab --config config/pokemongo.yaml experiment --login --login-timeout 180
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Run-Experiment.ps1 -Profile Api36 -Launch
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Run-Experiment.ps1 -Profile Api361 -Launch
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/windows/Run-Experiment.ps1 -Profile Api37 -Launch
 uv run lab proxmox plan --config config/proxmox.example.json
 uv run lab proxmox --help
+uv run python tools/validate_against_history.py "use api 34 with magiskhide"
 ```
+
+`lab observe` defaults to the configured app when `--package` is omitted and creates a fresh directory with `evidence.jsonl`, raw activity
+snapshots, screenshots, and `observe.json`. It records capture completeness
+separately from whether a requested package process was observed; neither result
+establishes login, certification, or game progress. `--launch` starts only the
+configured app component, and only after its pre-capture succeeds.
+
+`Api361` is an isolated Android 16/API 36.1 test profile at `poke_api361_test`
+on `emulator-5558`. It requires the exact official image
+`system-images;android-36.1;google_apis_playstore;x86_64`; its lab YAML retains
+`emulator.api: 36` because the YAML parser expects an integer SDK field.
+
+`Api37` is an experimental Android 17/API 37 profile at `poke_api37_test` on
+`emulator-5560`. It requires the separately installed official revision 6 or
+newer `system-images;android-37.0;google_apis_playstore;x86_64` image; it is
+intentionally not added to the default Bootstrap downloads. Revision 6 is the
+minimum recommended by Google's emulator troubleshooting for Google
+authentication/certification failures. API 36.1 remains known unstable. No game
+success is claimed for API 37.
+
+`Start-Emulator.ps1` accepts `-Gpu auto|host|software|lavapipe|swiftshader|swangle`
+and `-DisableSharedSlots` for launch troubleshooting. A successful start reports
+only boot/version checks; observe the display and app separately before treating
+the emulator as ready.
 
 `proxmox preflight` and `deploy` use a configured real host and API token. `deploy`
 requires a fresh `--out` journal. See the dedicated guide before invoking live writes.
+
+`tools/validate_against_history.py` checks a proposed approach against
+`codex_memory/attempted_approaches.json`. A nonzero exit means the suggestion
+matches a known non-retryable failure; read the printed source and use the listed
+alternative or create a genuinely new bounded experiment.
 
 # Proxmox deployment preparation
 
@@ -200,3 +244,11 @@ uv run lab location follow --gpx config/routes/sample_city_walk.gpx --speed-mps 
 Location calls are emulator QA inputs, not proof an app consumed them. Container
 startup retains its bounded two-attempt boot policy. Docker lifecycle commands
 require this source checkout; device and Proxmox commands also work from a wheel.
+
+## Login observation
+
+`lab --config config/pokemongo.yaml experiment --login --login-timeout 60`
+launches and observes. It does not select a Google account. If an account picker
+appears, choose the intended account manually. Classifications are evidence hints;
+confirm a Unity dialog or game map visually. A timeout leaves authentication
+unverified. Preserve the JSON report even when boot or capture fails.

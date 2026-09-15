@@ -10,7 +10,7 @@ import uuid
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from . import config, diagnostics, emulator, location, proxmox
+from . import config, diagnostics, emulator, location, observe, proxmox
 from .adb import Adb
 from .health import wait_ready
 from .root import RootManager
@@ -91,6 +91,12 @@ def main() -> None:
     diagnostic = commands.add_parser('diagnostics', help='Read-only device/log capture; never clears logs or roots a device')
     diagnostic.add_argument('--out', type=Path, help='New artifact directory')
     diagnostic.add_argument('--package', help='Optional installed app package to inspect')
+    observation = commands.add_parser('observe', help='Bounded read-only process, activity, and screenshot evidence capture')
+    observation.add_argument('--out', type=Path, help='New artifact directory')
+    observation.add_argument('--package', help='Package whose PID is recorded; defaults to configured app')
+    observation.add_argument('--duration', type=float, default=30, help='Positive observation duration in seconds')
+    observation.add_argument('--interval', type=float, default=3, help='Positive capture interval in seconds')
+    observation.add_argument('--launch', action='store_true', help='Launch only the configured component after a useful pre-capture')
     fleet = commands.add_parser('proxmox', help='Plan, preflight, or deploy template clones')
     fleet.add_argument('action', choices=['plan', 'preflight', 'deploy'])
     fleet.add_argument('--config', dest='fleet_config', type=Path, required=True)
@@ -100,6 +106,16 @@ def main() -> None:
     root.add_argument('--out', type=Path, help='JSON report path; defaults to a unique artifacts file')
     install = commands.add_parser('install')
     install.add_argument('--apk', type=Path, required=True)
+    experiment = commands.add_parser(
+        'experiment',
+        help='Capture diagnostics then optionally launch; refuses concealment/integrity modules',
+    )
+    experiment.add_argument('--out', type=Path, help='New artifact directory')
+    experiment.add_argument('--package', help='Installed app package to inspect or launch')
+    experiment.add_argument('--launch', action='store_true', help='Start the app after capture; clears logcat only after pre-capture')
+    experiment.add_argument('--login', action='store_true', help='After launch, observe login evidence; account selection remains manual')
+    experiment.add_argument('--login-timeout', type=float, default=180, help='Seconds to wait for login/in-game after launch')
+    experiment.add_argument('--apk', type=Path, help='Optional APK to install first; concealment zips are refused')
     loc = commands.add_parser('location').add_subparsers(dest='location_command', required=True)
     fix = loc.add_parser('set')
     fix.add_argument('--lat', type=float, required=True)
@@ -131,6 +147,14 @@ def main() -> None:
             out = args.out or Path(cfg['artifacts']) / ('diagnostics-' + uuid.uuid4().hex)
             diagnostics.capture(adb, out, args.package)
             print(f'Diagnostics captured: {out}. App authentication and certification are not inferred.')
+        elif args.command == 'observe':
+            out = args.out or Path(cfg['artifacts']) / ('observe-' + time.strftime('%Y%m%d-%H%M%S') + '-' + uuid.uuid4().hex[:8])
+            report = observe.run(adb, cfg, out, package=args.package,
+                                 duration_s=args.duration, interval_s=args.interval,
+                                 launch=args.launch,
+                                 on_sample=lambda sample: print(json.dumps(sample, sort_keys=True), flush=True))
+            print(json.dumps(report, indent=2))
+            print(f'Observation captured: {out}. Collection status and process evidence do not establish sign-in or game state.')
         elif args.command == 'root':
             out = args.out or Path(cfg['artifacts']) / ('root-' + uuid.uuid4().hex + '.json')
             out.parent.mkdir(parents=True, exist_ok=True)
@@ -155,6 +179,16 @@ def main() -> None:
             if not args.apk.is_file() or args.apk.suffix.lower() != '.apk':
                 raise ValueError('Pass an existing APK file')
             print(adb.run('install', '-r', str(args.apk.resolve()), timeout=180))
+        elif args.command == 'experiment':
+            from . import experiment as experiment_mod
+            out = args.out or Path(cfg['artifacts']) / ('experiment-' + uuid.uuid4().hex)
+            report = experiment_mod.run(
+                adb, cfg, out, package=args.package,
+                launch=args.launch or args.login, apk=args.apk,
+                login=args.login, login_timeout_s=args.login_timeout,
+            )
+            print(json.dumps(report, indent=2))
+            print(f'Experiment captured: {out}. Classification is not certification or sign-in proof.')
         elif args.command == 'smoke':
             out = Path(cfg['artifacts']) / (time.strftime('%Y%m%d-%H%M%S') + '-' + uuid.uuid4().hex[:8])
             smoke(adb, cfg, out)

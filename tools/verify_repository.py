@@ -23,9 +23,12 @@ def main() -> int:
     docs = [ROOT / name for name in ('README.md', 'START-HERE.md', 'AGENTS.md', 'QWEN.md')]
     docs += [ROOT / 'docs' / name for name in (
         'ARCHITECTURE.md', 'CODEX.md', 'COMMANDS.md', 'DEBUGGING.md',
-        'INSTALLED_COMPONENTS.md', 'MODEL_STRATEGY.md', 'STATE.md',
+        'INSTALLED_COMPONENTS.md', 'MODEL_STRATEGY.md', 'STATE.md', 'LOGIN_READ_FIRST.md',
+        'FLEET.md', 'PROJECT_MAP.md',
     )]
     docs += list((ROOT / 'experiments').rglob('*.md')) if (ROOT / 'experiments').is_dir() else []
+    docs += list((ROOT / 'knowledge_base').rglob('*.md')) if (ROOT / 'knowledge_base').is_dir() else []
+    docs += list((ROOT / 'codex_memory').rglob('*.md')) if (ROOT / 'codex_memory').is_dir() else []
     for doc in docs:
         for link in re.findall(r'\[[^\]]+\]\(([^)]+)\)', doc.read_text(encoding='utf-8')):
             if '://' in link or link.startswith('#'):
@@ -33,8 +36,8 @@ def main() -> int:
             target = unquote(link.split('#')[0])
             if not (doc.parent / target).exists():
                 errors.append(f"Broken link in {doc.relative_to(ROOT)}: {link}")
-    commands = [[], ['proxmox'], ['diagnostics'], ['connect'], ['up'], ['down'],
-                ['status'], ['smoke'], ['install'], ['root'], ['location'],
+    commands = [[], ['proxmox'], ['diagnostics'], ['observe'], ['connect'], ['up'], ['down'],
+                ['status'], ['smoke'], ['install'], ['root'], ['experiment'], ['location'],
                 ['location', 'set'], ['location', 'follow']]
     for command in commands:
         result = subprocess.run([sys.executable, '-m', 'android_lab.cli', *command, '--help'],

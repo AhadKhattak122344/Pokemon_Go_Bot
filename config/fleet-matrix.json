@@ -1,0 +1,53 @@
+{
+  "defaults": {
+    "enabled": true,
+    "ramMb": 3072,
+    "heapMb": 576,
+    "internalStorageMb": 8192,
+    "sdcardMb": 2048,
+    "gpu": "auto",
+    "features": [],
+    "extraArgs": []
+  },
+  "avds": [
+    {
+      "name": "fleet_api35_pixel8",
+      "port": 5562,
+      "image": "system-images;android-35;google_apis_playstore;x86_64",
+      "device": ["pixel_8", "pixel_7", "pixel_6"],
+      "displayName": "Pixel 8",
+      "gpu": "auto",
+      "reason": "Untested API gap between API34 (ndk_translation SIGILL) and API36 (game opens). Newer translation layer than API34."
+    },
+    {
+      "name": "fleet_api36_pixel9",
+      "port": 5564,
+      "image": "system-images;android-36;google_apis_playstore;x86_64",
+      "device": ["pixel_9", "pixel_8_pro", "pixel_8", "pixel_7", "pixel_6"],
+      "displayName": "Pixel 9",
+      "ramMb": 4096,
+      "gpu": "auto",
+      "reason": "Same image that opens the game on poke_api36_test. Fresh AVD with Pixel profile + PlayStore.enabled to see whether certification/sign-in depends on the AVD profile rather than the image."
+    },
+    {
+      "name": "fleet_api37_angle",
+      "port": 5566,
+      "image": "system-images;android-37.0;google_apis_playstore;x86_64",
+      "device": ["pixel_9", "pixel_8", "pixel_7", "pixel_6"],
+      "displayName": "Pixel 9 API37",
+      "ramMb": 4096,
+      "gpu": "swangle",
+      "features": ["-GLDMA", "-GLDMA2", "-Vulkan", "-VulkanNativeSwapchain"],
+      "reason": "Supported ANGLE/SwiftShader backend with DMA/Vulkan features off. The original angle_indirect request was rejected by emulator37.1.11 and fell back to auto; this corrected mode is a separate exploratory renderer case."
+    },
+    {
+      "name": "fleet_api33_pixel7",
+      "port": 5568,
+      "image": "system-images;android-33;google_apis_playstore;x86_64",
+      "device": ["pixel_7", "pixel_6"],
+      "displayName": "Pixel 7",
+      "enabled": false,
+      "reason": "Optional older-translation control. Likely SIGILL like API34; disabled by default."
+    }
+  ]
+}

@@ -27,6 +27,7 @@ if ($WithEmulator) {
         'emulator',
         'system-images;android-34;google_apis_playstore;x86_64',
         'system-images;android-36;google_apis_playstore;x86_64',
+        'system-images;android-36.1;google_apis_playstore;x86_64',
         'system-images;android-34;google_apis;x86_64'
     )
 }

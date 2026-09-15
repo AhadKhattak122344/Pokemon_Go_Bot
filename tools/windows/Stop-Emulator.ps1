@@ -1,4 +1,4 @@
-param([ValidateSet('Api36','Play','Rooted')][string]$Profile = 'Api36')
+param([ValidateSet('Api36','Api361','Api37','Play','Rooted')][string]$Profile = 'Api36')
 . "$PSScriptRoot/Android-Environment.ps1"
 . "$PSScriptRoot/Emulator-Profiles.ps1"
 $selected = Get-LabProfile $Profile

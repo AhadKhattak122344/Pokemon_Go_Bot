@@ -1,13 +1,16 @@
 function Get-LabProfile {
-    param([ValidateSet('Api36','Play','Rooted')][string]$Profile = 'Api36')
+    param([ValidateSet('Api36','Api361','Api37','Play','Rooted')][string]$Profile = 'Api36')
     $profiles = @{
         Api36 = @{ Avd='poke_api36_test'; Api='36'; Release='16'; Port=5556; Variant='google_apis_playstore'; PlayStore=$true }
+        Api361 = @{ Avd='poke_api361_test'; Api='36'; Minor='1'; ImageApi='36.1'; Release='16'; Port=5558; Variant='google_apis_playstore'; PlayStore=$true }
+        Api37 = @{ Avd='poke_api37_test'; Api='37'; ImageApi='37.0'; Release='17'; Port=5560; Variant='google_apis_playstore'; PlayStore=$true }
         Play = @{ Avd='baseline'; Api='34'; Release='14'; Port=5554; Variant='google_apis_playstore'; PlayStore=$true }
         Rooted = @{ Avd='baseline-rooted'; Api='34'; Release='14'; Port=5554; Variant='google_apis'; PlayStore=$false }
     }
     $result = $profiles[$Profile].Clone()
     $result.Serial = "emulator-$($result.Port)"
-    $result.Image = "system-images;android-$($result.Api);$($result.Variant);x86_64"
+    $imageApi = if ($result.ContainsKey('ImageApi')) { $result.ImageApi } else { $result.Api }
+    $result.Image = "system-images;android-$imageApi;$($result.Variant);x86_64"
     return $result
 }
 

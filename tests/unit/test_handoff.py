@@ -96,7 +96,7 @@ def test_new_commands_are_exposed_in_installed_cli(capsys):
         main()
     assert result.value.code == 0
     help_text = capsys.readouterr().out
-    assert all(name in help_text for name in ('proxmox', 'diagnostics', 'connect'))
+    assert all(name in help_text for name in ('proxmox', 'diagnostics', 'connect', 'experiment'))
 
 
 def test_proxmox_cli_dispatches_without_android_config():

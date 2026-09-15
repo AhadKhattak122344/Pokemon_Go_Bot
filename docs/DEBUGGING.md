@@ -1,5 +1,8 @@
 # Do not repeat established dead ends
 
+**Before every Pokemon GO login attempt, read [LOGIN_READ_FIRST.md](LOGIN_READ_FIRST.md)**
+and update its attempt ledger afterwards. It defines success and the next test.
+
 - Do not patch or root the clean API 36 baseline to guess at sign-in failure.
 - Do not repatch API 34 merely because its known ARM translator hits SIGILL.
 - Do not cycle accounts to diagnose an environment-wide failure.

@@ -59,10 +59,23 @@ os.chdir(source)
 upstream.setup_avd()
 
 deadline = time.monotonic() + 180
-while shell('getprop', 'sys.boot_completed') != '1':
-    if time.monotonic() >= deadline:
-        raise SystemExit('Android did not finish restarting within 180 seconds.')
+booted = False
+last_error = 'ADB unavailable after Magisk live setup'
+while time.monotonic() < deadline:
+    try:
+        subprocess.run([str(adb), 'start-server'], timeout=15, check=False,
+                       capture_output=True)
+        subprocess.run([str(adb), '-s', args.serial, 'wait-for-device'],
+                       timeout=30, check=False, capture_output=True)
+        if shell('getprop', 'sys.boot_completed') == '1':
+            booted = True
+            break
+        last_error = 'sys.boot_completed is not 1'
+    except (subprocess.SubprocessError, OSError, TimeoutError) as exc:
+        last_error = str(exc)
     time.sleep(3)
+if not booted:
+    raise SystemExit(f'Android did not finish restarting within 180 seconds: {last_error}')
 print('Magisk daemon:', shell('/debug_ramdisk/magisk', '-v'))
 print('Magisk path:', shell('/debug_ramdisk/magisk', '--path'))
 print('SELinux:', shell('getenforce'))

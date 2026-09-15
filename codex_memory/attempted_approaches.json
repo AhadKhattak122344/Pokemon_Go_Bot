@@ -1,0 +1,272 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-09-14",
+  "experiments": [
+    {
+      "id": "V01",
+      "name": "native_api36_baseline_boot",
+      "status": "SUCCESS",
+      "date": "2026-09-09",
+      "approach": "Use native WHPX API 36 AVD poke_api36_test for local testing",
+      "result": "Boot, package manager, Google packages, diagnostics, and Pokemon GO launch verified",
+      "tags": [
+        "api36",
+        "whpx",
+        "emulator",
+        "launch"
+      ],
+      "match_terms": [
+        "api 36",
+        "poke_api36_test",
+        "emulator-5556"
+      ],
+      "retry_allowed": true,
+      "source": "experiments/EXPERIMENT_LOG.md#V01"
+    },
+    {
+      "id": "F01",
+      "name": "api34_arm64_translation_sigill",
+      "status": "FAILED",
+      "date": "2026-09-09",
+      "approach": "Run Pokemon GO ARM64 split on rooted API 34 with ndk_translation",
+      "result": "Fatal signal 4 SIGILL in UnityMain after native translation starts",
+      "tags": [
+        "api34",
+        "ndk_translation",
+        "sigill",
+        "magisk",
+        "arm64"
+      ],
+      "match_terms": [
+        "api 34",
+        "android 14",
+        "ndk translation",
+        "ndk_translation",
+        "sigill",
+        "rooted baseline"
+      ],
+      "retry_allowed": false,
+      "failure_reason": "Native ARM64 translation crash is separate from login/root hiding",
+      "alternative": "Use the clean API 36 launch baseline or a supported/certified Android device",
+      "source": "experiments/EXPERIMENT_LOG.md#F01"
+    },
+    {
+      "id": "L16",
+      "name": "api36_designated_account_login",
+      "status": "FAILED",
+      "date": "2026-09-13",
+      "approach": "Select the designated Google account on clean API 36 Pokemon GO",
+      "result": "Failed to Sign In returned; process stayed running and crash buffer was empty",
+      "tags": [
+        "api36",
+        "login",
+        "pokemon-go",
+        "designated-account"
+      ],
+      "match_terms": [
+        "try same account",
+        "select account again",
+        "failed to sign in",
+        "cold restart",
+        "warm foreground"
+      ],
+      "retry_allowed": false,
+      "failure_reason": "Repeated same-account attempts already reproduced the failure without a decisive new signal",
+      "alternative": "Use a certified physical Android comparison or publisher-side transaction diagnosis",
+      "source": "experiments/EXPERIMENT_LOG.md#L16-L17"
+    },
+    {
+      "id": "L21",
+      "name": "api361_surfaceflinger_assertion",
+      "status": "FAILED",
+      "date": "2026-09-14",
+      "approach": "Boot API36.1 Google Play image with auto/software/shared-slot variations",
+      "result": "SurfaceFlinger aborted and screenshot capture failed",
+      "tags": [
+        "api36.1",
+        "surfaceflinger",
+        "gpu",
+        "display"
+      ],
+      "match_terms": [
+        "api36.1",
+        "api 36.1",
+        "surfaceflinger",
+        "shared slots",
+        "readcolorbufferdma"
+      ],
+      "retry_allowed": false,
+      "failure_reason": "Boot markers did not provide usable display readiness",
+      "alternative": "Do not repeat these renderer settings without new evidence",
+      "source": "experiments/EXPERIMENT_LOG.md#L19-L21"
+    },
+    {
+      "id": "L22",
+      "name": "api37_auto_host_boot_timeout",
+      "status": "FAILED",
+      "date": "2026-09-14",
+      "approach": "Boot API37 Google Play revision6 with auto/host rendering",
+      "result": "ADB stayed offline through the startup timeout",
+      "tags": [
+        "api37",
+        "boot-timeout",
+        "gpu",
+        "offline"
+      ],
+      "match_terms": [
+        "api37 auto",
+        "api 37 auto",
+        "api37 host",
+        "api 37 host",
+        "adb offline"
+      ],
+      "retry_allowed": false,
+      "failure_reason": "The auto/host renderer path did not bring the guest online",
+      "alternative": "Run the planned single-variable API37 software GPU comparison",
+      "source": "experiments/EXPERIMENT_LOG.md#L22"
+    },
+    {
+      "id": "H02",
+      "name": "docker_wsl_without_kvm",
+      "status": "FAILED",
+      "date": "2026-09-09",
+      "approach": "Run Android through Docker/WSL without usable KVM",
+      "result": "Reported unsuccessful due to lack of acceleration",
+      "tags": [
+        "docker",
+        "wsl",
+        "kvm",
+        "software-emulation"
+      ],
+      "match_terms": [
+        "docker",
+        "wsl",
+        "without kvm",
+        "software emulation"
+      ],
+      "retry_allowed": false,
+      "failure_reason": "The host path lacks the required acceleration evidence",
+      "alternative": "Use native WHPX locally or a real Linux/KVM host",
+      "source": "experiments/EXPERIMENT_LOG.md#H02"
+    },
+    {
+      "id": "P01",
+      "name": "archived_identity_concealment_stack",
+      "status": "REJECTED",
+      "date": "2026-09-09",
+      "approach": "Run archived identity, concealment, integrity, or fingerprint scripts as a compatibility fix",
+      "result": "Rejected by source review and project policy",
+      "tags": [
+        "identity",
+        "concealment",
+        "integrity",
+        "fingerprint",
+        "magisk-module"
+      ],
+      "match_terms": [
+        "shamiko",
+        "play integrity fix",
+        "pif",
+        "magiskhide",
+        "spoof",
+        "fingerprint",
+        "imei"
+      ],
+      "retry_allowed": false,
+      "failure_reason": "String changes and concealment modules are not certification or app acceptance evidence",
+      "alternative": "Capture legitimate certification/login evidence or move to a supported device platform",
+      "source": "docs/DEBUGGING.md"
+    },
+    {
+      "id": "P02",
+      "name": "pasted_play_integrity_bypass_runbook",
+      "status": "REJECTED",
+      "date": "2026-09-14",
+      "approach": "Build a Bliss OS rooted Pokemon GO stack with root concealment, Play Integrity bypass, identity spoofing, ADB hiding, location anti-detection, and residential proxy masking",
+      "result": "Rejected; not implemented or documented as an active procedure",
+      "tags": [
+        "bliss",
+        "api33",
+        "magisk",
+        "shamiko",
+        "lsposed",
+        "pif",
+        "play-integrity",
+        "spoofing",
+        "proxy"
+      ],
+      "match_terms": [
+        "bliss os 16.9.6",
+        "api 33",
+        "android 13",
+        "magisk v27",
+        "shamiko",
+        "play integrity fix",
+        "pif json",
+        "yasnac",
+        "lsposed",
+        "zygisk",
+        "denylist",
+        "resetprop",
+        "pixel 8 fingerprint",
+        "device identity spoofing",
+        "spoof location",
+        "mock mock locations",
+        "residential proxy",
+        "datacenter ip",
+        "disable adb after setup",
+        "behavioral anti detection"
+      ],
+      "retry_allowed": false,
+      "failure_reason": "The runbook is a root-concealment, device-identity spoofing, Play Integrity bypass, anti-detection, and IP-masking workflow for a protected game",
+      "alternative": "Use legitimate device-farm lifecycle work, official compatibility testing, certified physical Android comparison, or publisher-side diagnosis",
+      "source": "latest pasted implementation request"
+    },
+    {
+      "id": "L23-L24",
+      "name": "api37_software_display_failure",
+      "status": "FAILED",
+      "date": "2026-09-14",
+      "approach": "API37 Play revision6 software GPU, then same configuration with GLDirectMem disabled",
+      "result": "Boot marker reached; SurfaceFlinger SIGABRT at hasReadColorBufferDma; no PNG",
+      "match_terms": [
+        "api37 software",
+        "api 37 software",
+        "api37 gldirectmem",
+        "api37 no directmem"
+      ],
+      "retry_allowed": false,
+      "failure_reason": "Both measured configurations fail display stability; boot marker is insufficient",
+      "alternative": "New renderer/image evidence or prepared Android guest on actual Proxmox host",
+      "source": "experiments/EXPERIMENT_LOG.md"
+    }
+  ],
+  "patterns": {
+    "android_api": {
+      "working_for_launch_only": [
+        36
+      ],
+      "failing": [
+        "34-arm64-translation",
+        "36.1-display",
+        "37-auto-host-boot",
+        "37-software-display"
+      ],
+      "unverified_for_login": [
+        36,
+        37
+      ]
+    },
+    "proxmox": {
+      "working": [
+        "offline plan",
+        "mocked preflight/deploy ordering"
+      ],
+      "unverified": [
+        "live host preflight",
+        "live deployment",
+        "Android guest readiness"
+      ]
+    }
+  }
+}
